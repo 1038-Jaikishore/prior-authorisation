@@ -11,7 +11,7 @@ from pymongo import UpdateOne
 from pymongo.errors import BulkWriteError
 from app.db.connection import db_connection
 from app.core.config import settings
-from app.services.embedding import get_embedding_provider
+from app.services.embedding import get_embedding_provider, validate_provider
 from app.services.policy_chunker import (
     clean_html,
     split_text_by_paragraphs,
@@ -23,6 +23,13 @@ def run_indexing(full_rebuild: bool = False) -> Dict[str, Any]:
     start_time = time.time()
     db = db_connection.get_db()
     provider = get_embedding_provider()
+    
+    # Validate provider first to ensure we don't proceed with configuration errors
+    print(f"Validating embedding provider '{settings.embedding_provider}'...")
+    validation = validate_provider(provider)
+    if validation["status"] == "INVALID":
+        raise ValueError(f"Embedding provider validation failed: {validation['error']}")
+    print(f"Provider validated successfully! Model: {validation['model']}, Dimensions: {validation['dimensions']}")
     
     # -------------------------------------------------------------
     # 1. Clean / Rebuild Setup
@@ -155,13 +162,9 @@ def run_indexing(full_rebuild: bool = False) -> Dict[str, Any]:
     print("Processing LCDs...")
     lcd_fields = RAG_FIELD_SELECTION["LCD"]
     test_lcd_ids = ["33942", "34544", "34538", "66666", "77777", "88888", "99999"]
-    lcd_query = {
-        "$or": [
-            {"lcd_id.canonical_value": {"$in": test_lcd_ids}},
-            {"_id": {"$exists": True}}
-        ]
-    }
-    lcd_cursor = db["lcds"].find(lcd_query).limit(25)
+    test_lcds = list(db["lcds"].find({"lcd_id.canonical_value": {"$in": test_lcd_ids}}))
+    other_lcds = list(db["lcds"].find({"lcd_id.canonical_value": {"$nin": test_lcd_ids}}).limit(max(0, 25 - len(test_lcds))))
+    lcd_cursor = test_lcds + other_lcds
     for doc in lcd_cursor:
         lcd_count += 1
         doc_id = doc["lcd_id"]["display_value"]
@@ -224,13 +227,9 @@ def run_indexing(full_rebuild: bool = False) -> Dict[str, Any]:
     print("Processing Articles...")
     art_fields = RAG_FIELD_SELECTION["Article"]
     test_art_ids = ["57311", "99999", "77777"]
-    art_query = {
-        "$or": [
-            {"article_id.canonical_value": {"$in": test_art_ids}},
-            {"_id": {"$exists": True}}
-        ]
-    }
-    art_cursor = db["articles"].find(art_query).limit(25)
+    test_arts = list(db["articles"].find({"article_id.canonical_value": {"$in": test_art_ids}}))
+    other_arts = list(db["articles"].find({"article_id.canonical_value": {"$nin": test_art_ids}}).limit(max(0, 25 - len(test_arts))))
+    art_cursor = test_arts + other_arts
     for doc in art_cursor:
         article_count += 1
         doc_id = doc["article_id"]["display_value"]
@@ -309,8 +308,12 @@ def run_indexing(full_rebuild: bool = False) -> Dict[str, Any]:
             embeddings = provider.get_embeddings(texts)
             for idx, emb in enumerate(embeddings):
                 batch[idx]["embedding"] = emb
+                batch[idx]["embedding_provider"] = settings.embedding_provider
                 batch[idx]["embedding_model"] = settings.embedding_model
+                batch[idx]["embedding_dimensions"] = provider.get_dimensions()
                 batch[idx]["embedding_version"] = "1.1.0"
+                from datetime import datetime, timezone
+                batch[idx]["embedded_at"] = datetime.now(timezone.utc).isoformat()
         except Exception as e:
             print(f"Error generating embeddings for batch {i}-{i+batch_size}: {str(e)}")
             failures += len(batch)

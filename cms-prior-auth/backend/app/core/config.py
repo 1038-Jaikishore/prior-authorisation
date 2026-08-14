@@ -6,6 +6,7 @@ class Settings(BaseSettings):
     mongodb_db: str = "cms_prior_auth"
     
     # Embedding Configuration
+    openrouter_api_key: str = ""
     embedding_provider: str = "mock"
     embedding_model: str = "text-embedding-3-small"
     embedding_api_key: str = ""
