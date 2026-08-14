@@ -117,3 +117,5 @@ Thumbs.db
 
 # Generated data
 backend/data/normalized/
+backend/data/patient_data/*
+!backend/data/patient_data/.gitkeep
