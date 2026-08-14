@@ -1,6 +1,7 @@
 from fastapi import FastAPI
 from app.db.connection import db_connection
 from app.api.policy import router as policy_router
+from app.api.policy_rag import router as policy_rag_router
 
 app = FastAPI(
     title="CMS Prior Authorization Decision-Support System",
@@ -9,6 +10,7 @@ app = FastAPI(
 )
 
 app.include_router(policy_router)
+app.include_router(policy_rag_router)
 
 @app.get("/health")
 def health_check():
