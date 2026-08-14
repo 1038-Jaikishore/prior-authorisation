@@ -1,0 +1,1951 @@
+{
+  "CMS_HCPCS_Code_Groups_All_Articles.csv": {
+    "physical_format": "CSV",
+    "encoding": "utf-8",
+    "row_count": 1945,
+    "col_count": 5,
+    "candidate_keys": [],
+    "columns": [
+      {
+        "name": "article_id",
+        "type": "int64",
+        "null_count": 0,
+        "date_format": null
+      },
+      {
+        "name": "article_version",
+        "type": "int64",
+        "null_count": 0,
+        "date_format": null
+      },
+      {
+        "name": "hcpc_code_group",
+        "type": "int64",
+        "null_count": 0,
+        "date_format": null
+      },
+      {
+        "name": "paragraph",
+        "type": "object",
+        "null_count": 630,
+        "date_format": null
+      },
+      {
+        "name": "last_updated",
+        "type": "object",
+        "null_count": 0,
+        "date_format": "MM/DD/YYYY"
+      }
+    ]
+  },
+  "CMS_HCPCS_Modifier_Groups_All_Articles.csv": {
+    "physical_format": "CSV",
+    "encoding": "utf-8",
+    "row_count": 1286,
+    "col_count": 5,
+    "candidate_keys": [],
+    "columns": [
+      {
+        "name": "article_id",
+        "type": "int64",
+        "null_count": 0,
+        "date_format": null
+      },
+      {
+        "name": "article_version",
+        "type": "int64",
+        "null_count": 0,
+        "date_format": null
+      },
+      {
+        "name": "hcpc_modifier_group",
+        "type": "int64",
+        "null_count": 0,
+        "date_format": null
+      },
+      {
+        "name": "paragraph",
+        "type": "object",
+        "null_count": 902,
+        "date_format": null
+      },
+      {
+        "name": "last_updated",
+        "type": "object",
+        "null_count": 0,
+        "date_format": "MM/DD/YYYY"
+      }
+    ]
+  },
+  "CMS_HCPCS_Modifiers_All_Articles.csv": {
+    "physical_format": "CSV",
+    "encoding": "utf-8",
+    "row_count": 579,
+    "col_count": 7,
+    "candidate_keys": [],
+    "columns": [
+      {
+        "name": "article_id",
+        "type": "int64",
+        "null_count": 0,
+        "date_format": null
+      },
+      {
+        "name": "article_version",
+        "type": "int64",
+        "null_count": 0,
+        "date_format": null
+      },
+      {
+        "name": "hcpc_modifier_code_id",
+        "type": "object",
+        "null_count": 0,
+        "date_format": null
+      },
+      {
+        "name": "hcpc_modifier_code_version",
+        "type": "int64",
+        "null_count": 0,
+        "date_format": null
+      },
+      {
+        "name": "hcpc_modifier_group",
+        "type": "int64",
+        "null_count": 0,
+        "date_format": null
+      },
+      {
+        "name": "description",
+        "type": "object",
+        "null_count": 0,
+        "date_format": null
+      },
+      {
+        "name": "last_updated",
+        "type": "object",
+        "null_count": 0,
+        "date_format": "MM/DD/YYYY"
+      }
+    ]
+  },
+  "CMS_HCPC_code.csv": {
+    "physical_format": "CSV",
+    "encoding": "utf-8",
+    "row_count": 14098,
+    "col_count": 9,
+    "candidate_keys": [],
+    "columns": [
+      {
+        "name": "article_id",
+        "type": "int64",
+        "null_count": 0,
+        "date_format": null
+      },
+      {
+        "name": "article_version",
+        "type": "int64",
+        "null_count": 0,
+        "date_format": null
+      },
+      {
+        "name": "hcpc_code_id",
+        "type": "object",
+        "null_count": 0,
+        "date_format": null
+      },
+      {
+        "name": "hcpc_code_version",
+        "type": "int64",
+        "null_count": 0,
+        "date_format": null
+      },
+      {
+        "name": "hcpc_code_group",
+        "type": "int64",
+        "null_count": 0,
+        "date_format": null
+      },
+      {
+        "name": "long_description",
+        "type": "object",
+        "null_count": 0,
+        "date_format": null
+      },
+      {
+        "name": "short_description",
+        "type": "object",
+        "null_count": 0,
+        "date_format": null
+      },
+      {
+        "name": "range",
+        "type": "object",
+        "null_count": 0,
+        "date_format": null
+      },
+      {
+        "name": "last_updated",
+        "type": "object",
+        "null_count": 0,
+        "date_format": "MM/DD/YYYY"
+      }
+    ]
+  },
+  "CMS_LCD_HCPCS_All_LCDs (1).csv": {
+    "physical_format": "CSV",
+    "encoding": "utf-8",
+    "row_count": 1910,
+    "col_count": 9,
+    "candidate_keys": [],
+    "columns": [
+      {
+        "name": "lcd_id",
+        "type": "int64",
+        "null_count": 0,
+        "date_format": null
+      },
+      {
+        "name": "lcd_version",
+        "type": "int64",
+        "null_count": 0,
+        "date_format": null
+      },
+      {
+        "name": "hcpc_code_id",
+        "type": "object",
+        "null_count": 0,
+        "date_format": null
+      },
+      {
+        "name": "hcpc_code_version",
+        "type": "int64",
+        "null_count": 0,
+        "date_format": null
+      },
+      {
+        "name": "hcpc_code_group",
+        "type": "int64",
+        "null_count": 0,
+        "date_format": null
+      },
+      {
+        "name": "long_description",
+        "type": "object",
+        "null_count": 0,
+        "date_format": null
+      },
+      {
+        "name": "short_description",
+        "type": "object",
+        "null_count": 0,
+        "date_format": null
+      },
+      {
+        "name": "range",
+        "type": "object",
+        "null_count": 0,
+        "date_format": null
+      },
+      {
+        "name": "last_updated",
+        "type": "object",
+        "null_count": 0,
+        "date_format": "MM/DD/YYYY"
+      }
+    ]
+  },
+  "CMS_LCD_HCPCS_Code_Groups_All_LCDs.csv": {
+    "physical_format": "CSV",
+    "encoding": "utf-8",
+    "row_count": 95,
+    "col_count": 5,
+    "candidate_keys": [],
+    "columns": [
+      {
+        "name": "lcd_id",
+        "type": "int64",
+        "null_count": 0,
+        "date_format": null
+      },
+      {
+        "name": "lcd_version",
+        "type": "int64",
+        "null_count": 0,
+        "date_format": null
+      },
+      {
+        "name": "hcpc_code_group",
+        "type": "int64",
+        "null_count": 0,
+        "date_format": null
+      },
+      {
+        "name": "paragraph",
+        "type": "object",
+        "null_count": 0,
+        "date_format": null
+      },
+      {
+        "name": "last_updated",
+        "type": "object",
+        "null_count": 0,
+        "date_format": "MM/DD/YYYY"
+      }
+    ]
+  },
+  "CMS_Other_Coding_Information_All_Articles.csv": {
+    "physical_format": "CSV",
+    "encoding": "utf-8",
+    "row_count": 1221,
+    "col_count": 6,
+    "candidate_keys": [
+      "article_id"
+    ],
+    "columns": [
+      {
+        "name": "article_id",
+        "type": "int64",
+        "null_count": 0,
+        "date_format": null
+      },
+      {
+        "name": "article_version",
+        "type": "int64",
+        "null_count": 0,
+        "date_format": null
+      },
+      {
+        "name": "other_coding_group",
+        "type": "int64",
+        "null_count": 0,
+        "date_format": null
+      },
+      {
+        "name": "paragraph",
+        "type": "object",
+        "null_count": 943,
+        "date_format": null
+      },
+      {
+        "name": "codes",
+        "type": "object",
+        "null_count": 1220,
+        "date_format": null
+      },
+      {
+        "name": "last_updated",
+        "type": "object",
+        "null_count": 0,
+        "date_format": "MM/DD/YYYY"
+      }
+    ]
+  },
+  "article_bill_codes.csv": {
+    "physical_format": "CSV",
+    "encoding": "utf-8",
+    "row_count": 1376,
+    "col_count": 7,
+    "candidate_keys": [],
+    "columns": [
+      {
+        "name": "article_id",
+        "type": "int64",
+        "null_count": 0,
+        "date_format": null
+      },
+      {
+        "name": "article_version",
+        "type": "int64",
+        "null_count": 0,
+        "date_format": null
+      },
+      {
+        "name": "bill_code_id",
+        "type": "int64",
+        "null_count": 0,
+        "date_format": null
+      },
+      {
+        "name": "bill_code_version",
+        "type": "int64",
+        "null_count": 0,
+        "date_format": null
+      },
+      {
+        "name": "description",
+        "type": "object",
+        "null_count": 0,
+        "date_format": null
+      },
+      {
+        "name": "last_updated",
+        "type": "object",
+        "null_count": 0,
+        "date_format": "MM/DD/YYYY"
+      },
+      {
+        "name": "source_article_id",
+        "type": "int64",
+        "null_count": 0,
+        "date_format": null
+      }
+    ]
+  },
+  "article_related_lcds.csv": {
+    "physical_format": "CSV",
+    "encoding": "utf-8",
+    "row_count": 856,
+    "col_count": 10,
+    "candidate_keys": [],
+    "columns": [
+      {
+        "name": "article_id",
+        "type": "int64",
+        "null_count": 0,
+        "date_format": null
+      },
+      {
+        "name": "article_version",
+        "type": "int64",
+        "null_count": 0,
+        "date_format": null
+      },
+      {
+        "name": "last_updated",
+        "type": "object",
+        "null_count": 0,
+        "date_format": "MM/DD/YYYY"
+      },
+      {
+        "name": "r_article_id",
+        "type": "float64",
+        "null_count": 611,
+        "date_format": null
+      },
+      {
+        "name": "r_article_version",
+        "type": "float64",
+        "null_count": 611,
+        "date_format": null
+      },
+      {
+        "name": "r_contractor_id",
+        "type": "int64",
+        "null_count": 0,
+        "date_format": null
+      },
+      {
+        "name": "r_lcd_id",
+        "type": "float64",
+        "null_count": 245,
+        "date_format": null
+      },
+      {
+        "name": "r_lcd_version",
+        "type": "float64",
+        "null_count": 245,
+        "date_format": null
+      },
+      {
+        "name": "related_num",
+        "type": "int64",
+        "null_count": 0,
+        "date_format": null
+      },
+      {
+        "name": "url",
+        "type": "object",
+        "null_count": 0,
+        "date_format": null
+      }
+    ]
+  },
+  "article_related_ncd_documents_data.csv": {
+    "physical_format": "CSV",
+    "encoding": "utf-8",
+    "row_count": 2515,
+    "col_count": 8,
+    "candidate_keys": [],
+    "columns": [
+      {
+        "name": "article_id",
+        "type": "int64",
+        "null_count": 0,
+        "date_format": null
+      },
+      {
+        "name": "article_version",
+        "type": "int64",
+        "null_count": 0,
+        "date_format": null
+      },
+      {
+        "name": "last_updated",
+        "type": "object",
+        "null_count": 0,
+        "date_format": "MM/DD/YYYY"
+      },
+      {
+        "name": "r_ncd_id",
+        "type": "int64",
+        "null_count": 0,
+        "date_format": null
+      },
+      {
+        "name": "r_ncd_version",
+        "type": "int64",
+        "null_count": 0,
+        "date_format": null
+      },
+      {
+        "name": "related_num",
+        "type": "int64",
+        "null_count": 0,
+        "date_format": null
+      },
+      {
+        "name": "source_article_id",
+        "type": "int64",
+        "null_count": 0,
+        "date_format": null
+      },
+      {
+        "name": "url",
+        "type": "object",
+        "null_count": 0,
+        "date_format": null
+      }
+    ]
+  },
+  "articles_700.csv": {
+    "physical_format": "CSV",
+    "encoding": "utf-8",
+    "row_count": 700,
+    "col_count": 39,
+    "candidate_keys": [
+      "url"
+    ],
+    "columns": [
+      {
+        "name": "document_id",
+        "type": "int64",
+        "null_count": 0,
+        "date_format": null
+      },
+      {
+        "name": "document_version",
+        "type": "int64",
+        "null_count": 0,
+        "date_format": null
+      },
+      {
+        "name": "document_display_id",
+        "type": "object",
+        "null_count": 0,
+        "date_format": null
+      },
+      {
+        "name": "document_type",
+        "type": "object",
+        "null_count": 0,
+        "date_format": null
+      },
+      {
+        "name": "note",
+        "type": "object",
+        "null_count": 566,
+        "date_format": null
+      },
+      {
+        "name": "title",
+        "type": "object",
+        "null_count": 0,
+        "date_format": null
+      },
+      {
+        "name": "contractor_name_type",
+        "type": "object",
+        "null_count": 0,
+        "date_format": null
+      },
+      {
+        "name": "updated_on",
+        "type": "object",
+        "null_count": 0,
+        "date_format": "MM/DD/YYYY"
+      },
+      {
+        "name": "updated_on_sort",
+        "type": "int64",
+        "null_count": 0,
+        "date_format": null
+      },
+      {
+        "name": "effective_date",
+        "type": "object",
+        "null_count": 0,
+        "date_format": "MM/DD/YYYY"
+      },
+      {
+        "name": "retirement_date",
+        "type": "object",
+        "null_count": 586,
+        "date_format": "MM/DD/YYYY"
+      },
+      {
+        "name": "url",
+        "type": "object",
+        "null_count": 0,
+        "date_format": null
+      },
+      {
+        "name": "article_id",
+        "type": "int64",
+        "null_count": 0,
+        "date_format": null
+      },
+      {
+        "name": "article_version",
+        "type": "int64",
+        "null_count": 0,
+        "date_format": null
+      },
+      {
+        "name": "article_type",
+        "type": "int64",
+        "null_count": 0,
+        "date_format": null
+      },
+      {
+        "name": "article_type_description",
+        "type": "object",
+        "null_count": 0,
+        "date_format": null
+      },
+      {
+        "name": "article_pub_date",
+        "type": "object",
+        "null_count": 0,
+        "date_format": "MM/DD/YYYY"
+      },
+      {
+        "name": "article_eff_date",
+        "type": "object",
+        "null_count": 74,
+        "date_format": "MM/DD/YYYY"
+      },
+      {
+        "name": "article_end_date",
+        "type": "object",
+        "null_count": 586,
+        "date_format": "MM/DD/YYYY"
+      },
+      {
+        "name": "description",
+        "type": "object",
+        "null_count": 0,
+        "date_format": null
+      },
+      {
+        "name": "other_comments",
+        "type": "float64",
+        "null_count": 700,
+        "date_format": null
+      },
+      {
+        "name": "sad_url",
+        "type": "object",
+        "null_count": 2,
+        "date_format": null
+      },
+      {
+        "name": "thirty_percent",
+        "type": "object",
+        "null_count": 0,
+        "date_format": null
+      },
+      {
+        "name": "status",
+        "type": "object",
+        "null_count": 0,
+        "date_format": null
+      },
+      {
+        "name": "last_updated",
+        "type": "object",
+        "null_count": 0,
+        "date_format": "MM/DD/YYYY"
+      },
+      {
+        "name": "history_exp",
+        "type": "object",
+        "null_count": 586,
+        "date_format": null
+      },
+      {
+        "name": "key_article",
+        "type": "object",
+        "null_count": 115,
+        "date_format": null
+      },
+      {
+        "name": "icd9_covered_para",
+        "type": "float64",
+        "null_count": 700,
+        "date_format": null
+      },
+      {
+        "name": "icd9_noncovered_para",
+        "type": "float64",
+        "null_count": 700,
+        "date_format": null
+      },
+      {
+        "name": "revenue_para",
+        "type": "object",
+        "null_count": 488,
+        "date_format": null
+      },
+      {
+        "name": "article_rev_end_date",
+        "type": "object",
+        "null_count": 591,
+        "date_format": "MM/DD/YYYY"
+      },
+      {
+        "name": "source_article_id",
+        "type": "float64",
+        "null_count": 595,
+        "date_format": null
+      },
+      {
+        "name": "date_retired",
+        "type": "object",
+        "null_count": 586,
+        "date_format": "MM/DD/YYYY"
+      },
+      {
+        "name": "keywords",
+        "type": "object",
+        "null_count": 541,
+        "date_format": null
+      },
+      {
+        "name": "icd10_doc",
+        "type": "object",
+        "null_count": 0,
+        "date_format": null
+      },
+      {
+        "name": "add_icd10_info",
+        "type": "object",
+        "null_count": 516,
+        "date_format": null
+      },
+      {
+        "name": "cms_cov_policy",
+        "type": "object",
+        "null_count": 255,
+        "date_format": null
+      },
+      {
+        "name": "display_id",
+        "type": "float64",
+        "null_count": 700,
+        "date_format": null
+      },
+      {
+        "name": "reference_article",
+        "type": "object",
+        "null_count": 22,
+        "date_format": null
+      }
+    ]
+  },
+  "cms_article_jurisdiction.csv.xls": {
+    "physical_format": "CSV",
+    "encoding": "utf-8",
+    "row_count": 258,
+    "col_count": 5,
+    "candidate_keys": [
+      "article_id + article_version + state_id"
+    ],
+    "columns": [
+      {
+        "name": "article_id",
+        "type": "int64",
+        "null_count": 0,
+        "date_format": null
+      },
+      {
+        "name": "article_version",
+        "type": "int64",
+        "null_count": 0,
+        "date_format": null
+      },
+      {
+        "name": "state_id",
+        "type": "int64",
+        "null_count": 0,
+        "date_format": null
+      },
+      {
+        "name": "last_updated",
+        "type": "object",
+        "null_count": 0,
+        "date_format": "MM/DD/YYYY"
+      },
+      {
+        "name": "state_name",
+        "type": "object",
+        "null_count": 0,
+        "date_format": null
+      }
+    ]
+  },
+  "cms_lcd_primary_jurisdiction.csv.xls": {
+    "physical_format": "CSV",
+    "encoding": "utf-8",
+    "row_count": 240,
+    "col_count": 5,
+    "candidate_keys": [
+      "lcd_id + lcd_version + state_id"
+    ],
+    "columns": [
+      {
+        "name": "lcd_id",
+        "type": "int64",
+        "null_count": 0,
+        "date_format": null
+      },
+      {
+        "name": "lcd_version",
+        "type": "int64",
+        "null_count": 0,
+        "date_format": null
+      },
+      {
+        "name": "state_id",
+        "type": "int64",
+        "null_count": 0,
+        "date_format": null
+      },
+      {
+        "name": "state_name",
+        "type": "object",
+        "null_count": 0,
+        "date_format": null
+      },
+      {
+        "name": "last_updated",
+        "type": "object",
+        "null_count": 0,
+        "date_format": "MM/DD/YYYY"
+      }
+    ]
+  },
+  "icd10_covered_all_articles.csv": {
+    "physical_format": "CSV",
+    "encoding": "utf-8",
+    "row_count": 226419,
+    "col_count": 10,
+    "candidate_keys": [],
+    "columns": [
+      {
+        "name": "article_id",
+        "type": "int64",
+        "null_count": 0,
+        "date_format": null
+      },
+      {
+        "name": "article_version",
+        "type": "int64",
+        "null_count": 0,
+        "date_format": null
+      },
+      {
+        "name": "icd10_code_id",
+        "type": "object",
+        "null_count": 0,
+        "date_format": null
+      },
+      {
+        "name": "icd10_code_version",
+        "type": "int64",
+        "null_count": 0,
+        "date_format": null
+      },
+      {
+        "name": "icd10_covered_group",
+        "type": "int64",
+        "null_count": 0,
+        "date_format": null
+      },
+      {
+        "name": "range",
+        "type": "object",
+        "null_count": 0,
+        "date_format": null
+      },
+      {
+        "name": "sort_order",
+        "type": "int64",
+        "null_count": 0,
+        "date_format": null
+      },
+      {
+        "name": "description",
+        "type": "object",
+        "null_count": 0,
+        "date_format": null
+      },
+      {
+        "name": "asterisk",
+        "type": "object",
+        "null_count": 0,
+        "date_format": null
+      },
+      {
+        "name": "last_updated",
+        "type": "object",
+        "null_count": 0,
+        "date_format": "MM/DD/YYYY"
+      }
+    ]
+  },
+  "icd10_noncovered_all_articles.csv": {
+    "physical_format": "CSV",
+    "encoding": "utf-8",
+    "row_count": 24449,
+    "col_count": 9,
+    "candidate_keys": [],
+    "columns": [
+      {
+        "name": "article_id",
+        "type": "int64",
+        "null_count": 0,
+        "date_format": null
+      },
+      {
+        "name": "article_version",
+        "type": "int64",
+        "null_count": 0,
+        "date_format": null
+      },
+      {
+        "name": "icd10_code_id",
+        "type": "object",
+        "null_count": 0,
+        "date_format": null
+      },
+      {
+        "name": "icd10_code_version",
+        "type": "int64",
+        "null_count": 0,
+        "date_format": null
+      },
+      {
+        "name": "icd10_noncovered_group",
+        "type": "int64",
+        "null_count": 0,
+        "date_format": null
+      },
+      {
+        "name": "range",
+        "type": "object",
+        "null_count": 0,
+        "date_format": null
+      },
+      {
+        "name": "sort_order",
+        "type": "int64",
+        "null_count": 0,
+        "date_format": null
+      },
+      {
+        "name": "description",
+        "type": "object",
+        "null_count": 0,
+        "date_format": null
+      },
+      {
+        "name": "last_updated",
+        "type": "object",
+        "null_count": 0,
+        "date_format": "MM/DD/YYYY"
+      }
+    ]
+  },
+  "icd10_pcs_codes.csv": {
+    "physical_format": "CSV",
+    "encoding": "utf-8",
+    "row_count": 259,
+    "col_count": 9,
+    "candidate_keys": [],
+    "columns": [
+      {
+        "name": "article_id",
+        "type": "object",
+        "null_count": 0,
+        "date_format": null
+      },
+      {
+        "name": "article_version",
+        "type": "object",
+        "null_count": 0,
+        "date_format": null
+      },
+      {
+        "name": "description",
+        "type": "object",
+        "null_count": 0,
+        "date_format": null
+      },
+      {
+        "name": "icd10_pcs_group",
+        "type": "object",
+        "null_count": 0,
+        "date_format": null
+      },
+      {
+        "name": "icd10_pcs_code",
+        "type": "object",
+        "null_count": 0,
+        "date_format": null
+      },
+      {
+        "name": "range",
+        "type": "object",
+        "null_count": 0,
+        "date_format": null
+      },
+      {
+        "name": "last_updated",
+        "type": "object",
+        "null_count": 0,
+        "date_format": "MM/DD/YYYY"
+      },
+      {
+        "name": "asterisk",
+        "type": "object",
+        "null_count": 0,
+        "date_format": null
+      },
+      {
+        "name": "icd10_pcs_code_id",
+        "type": "object",
+        "null_count": 0,
+        "date_format": null
+      }
+    ]
+  },
+  "icd10cm_tabular_2027.pdf": {
+    "physical_format": "PDF",
+    "encoding": "binary",
+    "row_count": 2075,
+    "col_count": 1,
+    "candidate_keys": [
+      "Page Number"
+    ],
+    "columns": [
+      {
+        "name": "Page Content",
+        "type": "string",
+        "null_count": 0,
+        "date_format": null
+      }
+    ]
+  },
+  "lcd_article_relationship.csv": {
+    "physical_format": "CSV",
+    "encoding": "utf-8",
+    "row_count": 2172,
+    "col_count": 6,
+    "candidate_keys": [],
+    "columns": [
+      {
+        "name": "lcd_id",
+        "type": "int64",
+        "null_count": 0,
+        "date_format": null
+      },
+      {
+        "name": "lcd_version",
+        "type": "int64",
+        "null_count": 0,
+        "date_format": null
+      },
+      {
+        "name": "article_id",
+        "type": "int64",
+        "null_count": 0,
+        "date_format": null
+      },
+      {
+        "name": "article_version",
+        "type": "int64",
+        "null_count": 0,
+        "date_format": null
+      },
+      {
+        "name": "contractor_id",
+        "type": "int64",
+        "null_count": 0,
+        "date_format": null
+      },
+      {
+        "name": "last_updated",
+        "type": "object",
+        "null_count": 0,
+        "date_format": "MM/DD/YYYY"
+      }
+    ]
+  },
+  "lcd_contractor.csv": {
+    "physical_format": "CSV",
+    "encoding": "utf-8",
+    "row_count": 13968,
+    "col_count": 6,
+    "candidate_keys": [
+      "lcd_id + lcd_version + contractor_id"
+    ],
+    "columns": [
+      {
+        "name": "lcd_id",
+        "type": "int64",
+        "null_count": 0,
+        "date_format": null
+      },
+      {
+        "name": "lcd_version",
+        "type": "int64",
+        "null_count": 0,
+        "date_format": null
+      },
+      {
+        "name": "contractor_id",
+        "type": "int64",
+        "null_count": 0,
+        "date_format": null
+      },
+      {
+        "name": "contractor_type_id",
+        "type": "int64",
+        "null_count": 0,
+        "date_format": null
+      },
+      {
+        "name": "contractor_version",
+        "type": "int64",
+        "null_count": 0,
+        "date_format": null
+      },
+      {
+        "name": "last_updated",
+        "type": "object",
+        "null_count": 0,
+        "date_format": "MM/DD/YYYY"
+      }
+    ]
+  },
+  "lcd_documents.csv": {
+    "physical_format": "CSV",
+    "encoding": "utf-8",
+    "row_count": 975,
+    "col_count": 12,
+    "candidate_keys": [
+      "url"
+    ],
+    "columns": [
+      {
+        "name": "contractor_name_type",
+        "type": "object",
+        "null_count": 0,
+        "date_format": null
+      },
+      {
+        "name": "document_display_id",
+        "type": "object",
+        "null_count": 0,
+        "date_format": null
+      },
+      {
+        "name": "document_id",
+        "type": "int64",
+        "null_count": 0,
+        "date_format": null
+      },
+      {
+        "name": "document_type",
+        "type": "object",
+        "null_count": 0,
+        "date_format": null
+      },
+      {
+        "name": "document_version",
+        "type": "int64",
+        "null_count": 0,
+        "date_format": null
+      },
+      {
+        "name": "effective_date",
+        "type": "object",
+        "null_count": 0,
+        "date_format": "MM/DD/YYYY"
+      },
+      {
+        "name": "note",
+        "type": "object",
+        "null_count": 830,
+        "date_format": null
+      },
+      {
+        "name": "retirement_date",
+        "type": "object",
+        "null_count": 855,
+        "date_format": "MM/DD/YYYY"
+      },
+      {
+        "name": "title",
+        "type": "object",
+        "null_count": 0,
+        "date_format": null
+      },
+      {
+        "name": "updated_on",
+        "type": "object",
+        "null_count": 0,
+        "date_format": "MM/DD/YYYY"
+      },
+      {
+        "name": "updated_on_sort",
+        "type": "int64",
+        "null_count": 0,
+        "date_format": null
+      },
+      {
+        "name": "url",
+        "type": "object",
+        "null_count": 0,
+        "date_format": null
+      }
+    ]
+  },
+  "lcd_full_data.csv": {
+    "physical_format": "CSV",
+    "encoding": "utf-8",
+    "row_count": 975,
+    "col_count": 48,
+    "candidate_keys": [
+      "lcd_id + lcd_version"
+    ],
+    "columns": [
+      {
+        "name": "lcd_id",
+        "type": "int64",
+        "null_count": 0,
+        "date_format": null
+      },
+      {
+        "name": "lcd_version",
+        "type": "int64",
+        "null_count": 0,
+        "date_format": null
+      },
+      {
+        "name": "display_id",
+        "type": "float64",
+        "null_count": 975,
+        "date_format": null
+      },
+      {
+        "name": "title",
+        "type": "object",
+        "null_count": 0,
+        "date_format": null
+      },
+      {
+        "name": "determination_number",
+        "type": "float64",
+        "null_count": 975,
+        "date_format": null
+      },
+      {
+        "name": "cms_cov_policy",
+        "type": "object",
+        "null_count": 25,
+        "date_format": null
+      },
+      {
+        "name": "orig_det_eff_date",
+        "type": "object",
+        "null_count": 0,
+        "date_format": "MM/DD/YYYY"
+      },
+      {
+        "name": "ent_det_end_date",
+        "type": "object",
+        "null_count": 855,
+        "date_format": "MM/DD/YYYY"
+      },
+      {
+        "name": "rev_eff_date",
+        "type": "object",
+        "null_count": 80,
+        "date_format": "MM/DD/YYYY"
+      },
+      {
+        "name": "rev_end_date",
+        "type": "object",
+        "null_count": 863,
+        "date_format": "MM/DD/YYYY"
+      },
+      {
+        "name": "indication",
+        "type": "object",
+        "null_count": 0,
+        "date_format": null
+      },
+      {
+        "name": "diagnoses_support",
+        "type": "float64",
+        "null_count": 975,
+        "date_format": null
+      },
+      {
+        "name": "icd9_dont_support_para",
+        "type": "float64",
+        "null_count": 975,
+        "date_format": null
+      },
+      {
+        "name": "icd9_dont_support_ast",
+        "type": "float64",
+        "null_count": 975,
+        "date_format": null
+      },
+      {
+        "name": "diagnoses_dont_support",
+        "type": "float64",
+        "null_count": 975,
+        "date_format": null
+      },
+      {
+        "name": "coding_guidelines",
+        "type": "float64",
+        "null_count": 975,
+        "date_format": null
+      },
+      {
+        "name": "doc_reqs",
+        "type": "float64",
+        "null_count": 975,
+        "date_format": null
+      },
+      {
+        "name": "appendices",
+        "type": "float64",
+        "null_count": 975,
+        "date_format": null
+      },
+      {
+        "name": "util_guide",
+        "type": "float64",
+        "null_count": 975,
+        "date_format": null
+      },
+      {
+        "name": "source_info",
+        "type": "object",
+        "null_count": 302,
+        "date_format": null
+      },
+      {
+        "name": "adv_meeting",
+        "type": "float64",
+        "null_count": 975,
+        "date_format": null
+      },
+      {
+        "name": "comment_start_dt",
+        "type": "float64",
+        "null_count": 975,
+        "date_format": null
+      },
+      {
+        "name": "comment_end_dt",
+        "type": "float64",
+        "null_count": 975,
+        "date_format": null
+      },
+      {
+        "name": "notice_start_dt",
+        "type": "object",
+        "null_count": 246,
+        "date_format": "MM/DD/YYYY"
+      },
+      {
+        "name": "rev_hist_num",
+        "type": "float64",
+        "null_count": 975,
+        "date_format": null
+      },
+      {
+        "name": "history_exp",
+        "type": "object",
+        "null_count": 855,
+        "date_format": null
+      },
+      {
+        "name": "last_reviewed_on",
+        "type": "object",
+        "null_count": 182,
+        "date_format": "MM/DD/YYYY"
+      },
+      {
+        "name": "thirty_percent",
+        "type": "object",
+        "null_count": 0,
+        "date_format": null
+      },
+      {
+        "name": "status",
+        "type": "object",
+        "null_count": 0,
+        "date_format": null
+      },
+      {
+        "name": "last_updated",
+        "type": "object",
+        "null_count": 0,
+        "date_format": "MM/DD/YYYY"
+      },
+      {
+        "name": "draft_contact",
+        "type": "float64",
+        "null_count": 975,
+        "date_format": null
+      },
+      {
+        "name": "revenue_para",
+        "type": "float64",
+        "null_count": 975,
+        "date_format": null
+      },
+      {
+        "name": "source_lcd_id",
+        "type": "float64",
+        "null_count": 600,
+        "date_format": null
+      },
+      {
+        "name": "add_icd10_info",
+        "type": "float64",
+        "null_count": 975,
+        "date_format": null
+      },
+      {
+        "name": "keywords",
+        "type": "object",
+        "null_count": 660,
+        "date_format": null
+      },
+      {
+        "name": "associated_info",
+        "type": "object",
+        "null_count": 279,
+        "date_format": null
+      },
+      {
+        "name": "notice_end_dt",
+        "type": "object",
+        "null_count": 241,
+        "date_format": "MM/DD/YYYY"
+      },
+      {
+        "name": "date_retired",
+        "type": "object",
+        "null_count": 855,
+        "date_format": "MM/DD/YYYY"
+      },
+      {
+        "name": "draft_released_date",
+        "type": "float64",
+        "null_count": 975,
+        "date_format": null
+      },
+      {
+        "name": "icd10_doc",
+        "type": "object",
+        "null_count": 0,
+        "date_format": null
+      },
+      {
+        "name": "synopsis_changes",
+        "type": "float64",
+        "null_count": 975,
+        "date_format": null
+      },
+      {
+        "name": "bibliography",
+        "type": "object",
+        "null_count": 0,
+        "date_format": null
+      },
+      {
+        "name": "summary_of_evidence",
+        "type": "object",
+        "null_count": 0,
+        "date_format": null
+      },
+      {
+        "name": "analysis_of_evidence",
+        "type": "object",
+        "null_count": 0,
+        "date_format": null
+      },
+      {
+        "name": "mcd_publish_date",
+        "type": "float64",
+        "null_count": 975,
+        "date_format": null
+      },
+      {
+        "name": "issue",
+        "type": "object",
+        "null_count": 214,
+        "date_format": null
+      },
+      {
+        "name": "issue_change",
+        "type": "object",
+        "null_count": 717,
+        "date_format": null
+      },
+      {
+        "name": "mac_initiated",
+        "type": "object",
+        "null_count": 0,
+        "date_format": null
+      }
+    ]
+  },
+  "lcd_master_excel_safe.csv.xlsx": {
+    "physical_format": "Excel",
+    "encoding": "binary",
+    "row_count": 1002,
+    "col_count": 10,
+    "candidate_keys": [],
+    "columns": [
+      {
+        "name": "lcd_id",
+        "type": "object",
+        "null_count": 2,
+        "date_format": null
+      },
+      {
+        "name": "lcd_version",
+        "type": "object",
+        "null_count": 1,
+        "date_format": null
+      },
+      {
+        "name": "display_id",
+        "type": "object",
+        "null_count": 1,
+        "date_format": null
+      },
+      {
+        "name": "title",
+        "type": "object",
+        "null_count": 1,
+        "date_format": null
+      },
+      {
+        "name": "cms_cov_policy",
+        "type": "object",
+        "null_count": 32,
+        "date_format": null
+      },
+      {
+        "name": "indication",
+        "type": "object",
+        "null_count": 21,
+        "date_format": null
+      },
+      {
+        "name": "orig_det_eff_date",
+        "type": "object",
+        "null_count": 53,
+        "date_format": null
+      },
+      {
+        "name": "rev_eff_date",
+        "type": "object",
+        "null_count": 134,
+        "date_format": null
+      },
+      {
+        "name": "last_updated",
+        "type": "object",
+        "null_count": 54,
+        "date_format": "MM/DD/YYYY"
+      },
+      {
+        "name": "keywords",
+        "type": "object",
+        "null_count": 698,
+        "date_format": null
+      }
+    ]
+  },
+  "lcd_related_documents.csv": {
+    "physical_format": "CSV",
+    "encoding": "utf-8",
+    "row_count": 1805,
+    "col_count": 10,
+    "candidate_keys": [],
+    "columns": [
+      {
+        "name": "last_updated",
+        "type": "object",
+        "null_count": 0,
+        "date_format": "MM/DD/YYYY"
+      },
+      {
+        "name": "lcd_id",
+        "type": "int64",
+        "null_count": 0,
+        "date_format": null
+      },
+      {
+        "name": "lcd_version",
+        "type": "int64",
+        "null_count": 0,
+        "date_format": null
+      },
+      {
+        "name": "r_article_id",
+        "type": "float64",
+        "null_count": 399,
+        "date_format": null
+      },
+      {
+        "name": "r_article_version",
+        "type": "float64",
+        "null_count": 399,
+        "date_format": null
+      },
+      {
+        "name": "r_contractor_id",
+        "type": "int64",
+        "null_count": 0,
+        "date_format": null
+      },
+      {
+        "name": "r_lcd_id",
+        "type": "float64",
+        "null_count": 1406,
+        "date_format": null
+      },
+      {
+        "name": "r_lcd_version",
+        "type": "float64",
+        "null_count": 1406,
+        "date_format": null
+      },
+      {
+        "name": "related_num",
+        "type": "int64",
+        "null_count": 0,
+        "date_format": null
+      },
+      {
+        "name": "url",
+        "type": "object",
+        "null_count": 0,
+        "date_format": null
+      }
+    ]
+  },
+  "lcd_related_ncd_documents.csv": {
+    "physical_format": "CSV",
+    "encoding": "utf-8",
+    "row_count": 1553,
+    "col_count": 8,
+    "candidate_keys": [],
+    "columns": [
+      {
+        "name": "last_updated",
+        "type": "object",
+        "null_count": 0,
+        "date_format": "MM/DD/YYYY"
+      },
+      {
+        "name": "lcd_id",
+        "type": "int64",
+        "null_count": 0,
+        "date_format": null
+      },
+      {
+        "name": "lcd_version",
+        "type": "int64",
+        "null_count": 0,
+        "date_format": null
+      },
+      {
+        "name": "r_ncd_id",
+        "type": "int64",
+        "null_count": 0,
+        "date_format": null
+      },
+      {
+        "name": "r_ncd_version",
+        "type": "int64",
+        "null_count": 0,
+        "date_format": null
+      },
+      {
+        "name": "related_num",
+        "type": "int64",
+        "null_count": 0,
+        "date_format": null
+      },
+      {
+        "name": "source_lcd_id",
+        "type": "int64",
+        "null_count": 0,
+        "date_format": null
+      },
+      {
+        "name": "url",
+        "type": "object",
+        "null_count": 0,
+        "date_format": null
+      }
+    ]
+  },
+  "lcd_revision_history.csv": {
+    "physical_format": "CSV",
+    "encoding": "utf-8",
+    "row_count": 7987,
+    "col_count": 6,
+    "candidate_keys": [],
+    "columns": [
+      {
+        "name": "lcd_id",
+        "type": "int64",
+        "null_count": 0,
+        "date_format": null
+      },
+      {
+        "name": "lcd_version",
+        "type": "int64",
+        "null_count": 0,
+        "date_format": null
+      },
+      {
+        "name": "rev_hist_num",
+        "type": "int64",
+        "null_count": 0,
+        "date_format": null
+      },
+      {
+        "name": "rev_hist_date",
+        "type": "object",
+        "null_count": 0,
+        "date_format": "MM/DD/YYYY"
+      },
+      {
+        "name": "rev_hist_exp",
+        "type": "object",
+        "null_count": 2,
+        "date_format": null
+      },
+      {
+        "name": "last_updated",
+        "type": "object",
+        "null_count": 0,
+        "date_format": "MM/DD/YYYY"
+      }
+    ]
+  },
+  "ncd_documents_data.csv": {
+    "physical_format": "CSV",
+    "encoding": "utf-8",
+    "row_count": 357,
+    "col_count": 19,
+    "candidate_keys": [
+      "document_display_id",
+      "document_id",
+      "title"
+    ],
+    "columns": [
+      {
+        "name": "ama_statement",
+        "type": "float64",
+        "null_count": 357,
+        "date_format": null
+      },
+      {
+        "name": "benefit_category",
+        "type": "object",
+        "null_count": 0,
+        "date_format": null
+      },
+      {
+        "name": "cross_reference",
+        "type": "object",
+        "null_count": 242,
+        "date_format": null
+      },
+      {
+        "name": "document_display_id",
+        "type": "object",
+        "null_count": 0,
+        "date_format": null
+      },
+      {
+        "name": "document_id",
+        "type": "int64",
+        "null_count": 0,
+        "date_format": null
+      },
+      {
+        "name": "document_version",
+        "type": "int64",
+        "null_count": 0,
+        "date_format": null
+      },
+      {
+        "name": "effective_date",
+        "type": "object",
+        "null_count": 0,
+        "date_format": "MM/DD/YYYY"
+      },
+      {
+        "name": "effective_end_date",
+        "type": "object",
+        "null_count": 345,
+        "date_format": "MM/DD/YYYY"
+      },
+      {
+        "name": "implementation_date",
+        "type": "object",
+        "null_count": 139,
+        "date_format": "MM/DD/YYYY"
+      },
+      {
+        "name": "indications_limitations",
+        "type": "object",
+        "null_count": 1,
+        "date_format": null
+      },
+      {
+        "name": "item_service_description",
+        "type": "object",
+        "null_count": 112,
+        "date_format": null
+      },
+      {
+        "name": "other_text",
+        "type": "object",
+        "null_count": 334,
+        "date_format": null
+      },
+      {
+        "name": "publication_number",
+        "type": "object",
+        "null_count": 0,
+        "date_format": null
+      },
+      {
+        "name": "qr_modifier_date",
+        "type": "float64",
+        "null_count": 357,
+        "date_format": null
+      },
+      {
+        "name": "reasons_for_denial",
+        "type": "float64",
+        "null_count": 357,
+        "date_format": null
+      },
+      {
+        "name": "revision_history",
+        "type": "object",
+        "null_count": 102,
+        "date_format": null
+      },
+      {
+        "name": "title",
+        "type": "object",
+        "null_count": 0,
+        "date_format": null
+      },
+      {
+        "name": "transmittal_number",
+        "type": "float64",
+        "null_count": 96,
+        "date_format": null
+      },
+      {
+        "name": "transmittal_url",
+        "type": "object",
+        "null_count": 147,
+        "date_format": null
+      }
+    ]
+  },
+  "revenue_codes.csv": {
+    "physical_format": "CSV",
+    "encoding": "utf-8",
+    "row_count": 356,
+    "col_count": 7,
+    "candidate_keys": [],
+    "columns": [
+      {
+        "name": "article_id",
+        "type": "object",
+        "null_count": 0,
+        "date_format": null
+      },
+      {
+        "name": "article_version",
+        "type": "object",
+        "null_count": 0,
+        "date_format": null
+      },
+      {
+        "name": "description",
+        "type": "object",
+        "null_count": 0,
+        "date_format": null
+      },
+      {
+        "name": "last_updated",
+        "type": "object",
+        "null_count": 0,
+        "date_format": "MM/DD/YYYY"
+      },
+      {
+        "name": "range",
+        "type": "object",
+        "null_count": 0,
+        "date_format": null
+      },
+      {
+        "name": "revenue_code",
+        "type": "object",
+        "null_count": 0,
+        "date_format": null
+      },
+      {
+        "name": "revenue_code_id",
+        "type": "object",
+        "null_count": 0,
+        "date_format": null
+      }
+    ]
+  }
+}
