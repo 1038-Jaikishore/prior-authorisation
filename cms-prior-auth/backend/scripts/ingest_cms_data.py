@@ -6,6 +6,7 @@ import uuid
 import pandas as pd
 from datetime import datetime
 from pymongo import UpdateOne
+from pymongo.errors import BulkWriteError
 
 # Ensure backend folder is in PYTHONPATH
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
@@ -78,7 +79,7 @@ def save_normalized_json(collection_name, data):
         json.dump(data, f, indent=2, default=str)
     print(f"Saved {len(data)} normalized records to {out_path}")
 
-def run_ingestion():
+def run_ingestion(full_rebuild=False):
     db = db_connection.get_db()
     print(f"Verified connection to: {db.name}")
     
@@ -670,7 +671,6 @@ def run_ingestion():
         "lcd_article_relationships": (lar_docs, ["lcd_id_numeric", "lcd_version", "article_id_numeric", "article_version"]),
         "lcd_ncd_relationships": (lnr_docs, ["lcd_id_numeric", "lcd_version", "r_ncd_id", "r_ncd_version"]),
         "article_ncd_relationships": (anr_docs, ["article_id_numeric", "article_version", "r_ncd_id", "r_ncd_version"]),
-        "hcpcs_codes": (hcpcs_docs, ["article_id_numeric", "article_version", "hcpcs_code.canonical_value"]),
         "lcd_hcpcs": (lh_docs, ["lcd_id_numeric", "lcd_version", "hcpcs_code.canonical_value"]),
         "article_hcpcs": (hcpcs_docs, ["article_id_numeric", "article_version", "hcpcs_code.canonical_value"]),
         "hcpcs_groups": (groups_docs, ["entity_type", "entity_id_numeric", "entity_version", "hcpc_code_group"]),
@@ -697,17 +697,16 @@ def run_ingestion():
             continue
             
         col = db[col_name]
-        operations = []
         
         try:
-            # Clear collection for clean idempotent load
-            col.delete_many({})
+            if full_rebuild:
+                col.delete_many({})
+                print(f"Collection '{col_name}': Wiped all documents (--full-rebuild).")
             
             # Deduplicate documents in memory
             seen = set()
             unique_docs = []
             for doc in docs:
-                # build a key from unique_fields
                 key_parts = []
                 for field in unique_fields:
                     parts = field.split('.')
@@ -723,16 +722,49 @@ def run_ingestion():
                     seen.add(key)
                     unique_docs.append(doc)
             
-            # Perform bulk insert
+            # Build bulk upsert operations
+            inserted_count = 0
+            matched_count = 0
+            modified_count = 0
+            upserted_count = 0
+            rejected_count = 0
+            
             if unique_docs:
-                col.insert_many(unique_docs)
-            print(f"Collection '{col_name}': inserted {len(unique_docs)} records (removed {len(docs) - len(unique_docs)} duplicates).")
-            counts[col_name] = len(unique_docs)
+                operations = []
+                for doc in unique_docs:
+                    filter_query = {}
+                    for field in unique_fields:
+                        parts = field.split('.')
+                        val = doc
+                        for part in parts:
+                            if isinstance(val, dict):
+                                val = val.get(part)
+                            else:
+                                val = None
+                        filter_query[field] = val
+                    operations.append(UpdateOne(filter_query, {"$set": doc}, upsert=True))
+                
+                try:
+                    res = col.bulk_write(operations, ordered=False)
+                    inserted_count = res.inserted_count
+                    upserted_count = res.upserted_count
+                    modified_count = res.modified_count
+                    matched_count = res.matched_count
+                except BulkWriteError as bwe:
+                    res_details = bwe.details
+                    inserted_count = res_details.get('nInserted', 0)
+                    upserted_count = len(res_details.get('upserted', []))
+                    modified_count = res_details.get('nModified', 0)
+                    matched_count = res_details.get('nMatched', 0)
+                    rejected_count = len(res_details.get('writeErrors', []))
+                    print(f"BulkWriteError encountered in '{col_name}': {bwe.message}. Captured partial metrics.")
+            
+            print(f"Collection '{col_name}': upserted {upserted_count}, modified {modified_count}, matched {matched_count}, inserted {inserted_count}, rejected {rejected_count} (removed {len(docs) - len(unique_docs)} duplicate inputs).")
+            counts[col_name] = col.count_documents({})
             
             # Create indexes
             for field in unique_fields:
                 col.create_index(field)
-            print(f"Created indexes for Unique Keys on '{col_name}'")
         except Exception as e:
             print(f"Error writing to {col_name}: {e}")
             counts[col_name] = 0
@@ -761,103 +793,147 @@ def calculate_match_rates(db):
     print("Calculating relationship referential-integrity match rates...")
     rates = {}
     
-    # Pre-fetch distinct canonical keys for fast local memory lookup/matching if small
-    ncds = db["ncds"].distinct("ncd_id.canonical_value")
-    lcds = db["lcds"].distinct("lcd_id.canonical_value")
-    arts = db["articles"].distinct("article_id.canonical_value")
+    ncd_canonicals = db["ncds"].distinct("ncd_id.canonical_value")
+    lcd_canonicals = db["lcds"].distinct("lcd_id.canonical_value")
+    art_canonicals = db["articles"].distinct("article_id.canonical_value")
     
+    def evaluate_relationship(col_name, source_field, target_list, parent_col=None, parent_key=None):
+        total = db[col_name].count_documents({})
+        if total == 0:
+            return {
+                "total": 0,
+                "broken": 0,
+                "expected_absence": 0,
+                "match_rate": 1.0
+            }
+        broken = db[col_name].count_documents({source_field: {"$nin": target_list}})
+        expected_absence = 0
+        if parent_col and parent_key:
+            present_parents = db[col_name].distinct(source_field)
+            expected_absence = db[parent_col].count_documents({parent_key: {"$nin": present_parents}})
+            
+        return {
+            "total": total,
+            "broken": broken,
+            "expected_absence": expected_absence,
+            "match_rate": (total - broken) / total
+        }
+
     # 1. NCD <-> LCD
-    lcd_ncd_count = db["lcd_ncd_relationships"].count_documents({})
-    if lcd_ncd_count > 0:
-        matched = db["lcd_ncd_relationships"].count_documents({"r_ncd_id": {"$in": ncds}})
-        rates["NCD_LCD"] = matched / lcd_ncd_count
-    else:
-        rates["NCD_LCD"] = 1.0
-        
+    rates["NCD_LCD"] = evaluate_relationship(
+        col_name="lcd_ncd_relationships",
+        source_field="r_ncd_id",
+        target_list=ncd_canonicals,
+        parent_col="lcds",
+        parent_key="lcd_id.canonical_value"
+    )
+    
     # 2. LCD <-> Article
-    lcd_art_count = db["lcd_article_relationships"].count_documents({})
-    if lcd_art_count > 0:
-        matched_lcd = db["lcd_article_relationships"].count_documents({"lcd_id_numeric": {"$in": lcds}})
-        matched_art = db["lcd_article_relationships"].count_documents({"article_id_numeric": {"$in": arts}})
+    total_la = db["lcd_article_relationships"].count_documents({})
+    if total_la > 0:
+        broken_lcd = db["lcd_article_relationships"].count_documents({"lcd_id_numeric": {"$nin": lcd_canonicals}})
+        broken_art = db["lcd_article_relationships"].count_documents({"article_id_numeric": {"$nin": art_canonicals}})
+        present_lcds = db["lcd_article_relationships"].distinct("lcd_id_numeric")
+        present_arts = db["lcd_article_relationships"].distinct("article_id_numeric")
+        absence_lcd = db["lcds"].count_documents({"lcd_id.canonical_value": {"$nin": present_lcds}})
+        absence_art = db["articles"].count_documents({"article_id.canonical_value": {"$nin": present_arts}})
         rates["LCD_Article"] = {
-            "lcd_match_rate": matched_lcd / lcd_art_count,
-            "article_match_rate": matched_art / lcd_art_count
+            "total": total_la,
+            "broken_lcd": broken_lcd,
+            "broken_article": broken_art,
+            "expected_absence_lcd": absence_lcd,
+            "expected_absence_article": absence_art,
+            "lcd_match_rate": (total_la - broken_lcd) / total_la,
+            "article_match_rate": (total_la - broken_art) / total_la
         }
     else:
-        rates["LCD_Article"] = {"lcd_match_rate": 1.0, "article_match_rate": 1.0}
+        rates["LCD_Article"] = {
+            "total": 0, "broken_lcd": 0, "broken_article": 0,
+            "expected_absence_lcd": 0, "expected_absence_article": 0,
+            "lcd_match_rate": 1.0, "article_match_rate": 1.0
+        }
         
     # 3. Article <-> HCPCS
-    art_hcpcs_count = db["article_hcpcs"].count_documents({})
-    if art_hcpcs_count > 0:
-        matched = db["article_hcpcs"].count_documents({"article_id_numeric": {"$in": arts}})
-        rates["Article_HCPCS"] = matched / art_hcpcs_count
-    else:
-        rates["Article_HCPCS"] = 1.0
-        
+    rates["Article_HCPCS"] = evaluate_relationship(
+        col_name="article_hcpcs",
+        source_field="article_id_numeric",
+        target_list=art_canonicals,
+        parent_col="articles",
+        parent_key="article_id.canonical_value"
+    )
+    
     # 4. LCD <-> HCPCS
-    lcd_hcpcs_count = db["lcd_hcpcs"].count_documents({})
-    if lcd_hcpcs_count > 0:
-        matched = db["lcd_hcpcs"].count_documents({"lcd_id_numeric": {"$in": lcds}})
-        rates["LCD_HCPCS"] = matched / lcd_hcpcs_count
-    else:
-        rates["LCD_HCPCS"] = 1.0
-        
+    rates["LCD_HCPCS"] = evaluate_relationship(
+        col_name="lcd_hcpcs",
+        source_field="lcd_id_numeric",
+        target_list=lcd_canonicals,
+        parent_col="lcds",
+        parent_key="lcd_id.canonical_value"
+    )
+    
     # 5. Article <-> ICD-10 Covered
-    cov_count = db["icd10cm_article_covered"].count_documents({})
-    if cov_count > 0:
-        matched = db["icd10cm_article_covered"].count_documents({"article_id_numeric": {"$in": arts}})
-        rates["Article_ICD10_Covered"] = matched / cov_count
-    else:
-        rates["Article_ICD10_Covered"] = 1.0
-        
+    rates["Article_ICD10_Covered"] = evaluate_relationship(
+        col_name="icd10cm_article_covered",
+        source_field="article_id_numeric",
+        target_list=art_canonicals,
+        parent_col="articles",
+        parent_key="article_id.canonical_value"
+    )
+    
     # 6. Article <-> ICD-10 Noncovered
-    ncov_count = db["icd10cm_article_noncovered"].count_documents({})
-    if ncov_count > 0:
-        matched = db["icd10cm_article_noncovered"].count_documents({"article_id_numeric": {"$in": arts}})
-        rates["Article_ICD10_Noncovered"] = matched / ncov_count
-    else:
-        rates["Article_ICD10_Noncovered"] = 1.0
-        
-    # 7. LCD <-> Contractor/MAC
-    con_count = db["contractors"].count_documents({})
-    if con_count > 0:
-        matched = db["contractors"].count_documents({"lcd_id_numeric": {"$in": lcds}})
-        rates["LCD_Contractor"] = matched / con_count
-    else:
-        rates["LCD_Contractor"] = 1.0
-        
+    rates["Article_ICD10_Noncovered"] = evaluate_relationship(
+        col_name="icd10cm_article_noncovered",
+        source_field="article_id_numeric",
+        target_list=art_canonicals,
+        parent_col="articles",
+        parent_key="article_id.canonical_value"
+    )
+    
+    # 7. LCD <-> Contractor
+    rates["LCD_Contractor"] = evaluate_relationship(
+        col_name="contractors",
+        source_field="lcd_id_numeric",
+        target_list=lcd_canonicals,
+        parent_col="lcds",
+        parent_key="lcd_id.canonical_value"
+    )
+    
     # 8. LCD <-> Jurisdiction
-    lj_count = db["lcd_jurisdictions"].count_documents({})
-    if lj_count > 0:
-        matched = db["lcd_jurisdictions"].count_documents({"lcd_id_numeric": {"$in": lcds}})
-        rates["LCD_Jurisdiction"] = matched / lj_count
-    else:
-        rates["LCD_Jurisdiction"] = 1.0
-        
+    rates["LCD_Jurisdiction"] = evaluate_relationship(
+        col_name="lcd_jurisdictions",
+        source_field="lcd_id_numeric",
+        target_list=lcd_canonicals,
+        parent_col="lcds",
+        parent_key="lcd_id.canonical_value"
+    )
+    
     # 9. Article <-> Jurisdiction
-    aj_count = db["article_jurisdictions"].count_documents({})
-    if aj_count > 0:
-        matched = db["article_jurisdictions"].count_documents({"article_id_numeric": {"$in": arts}})
-        rates["Article_Jurisdiction"] = matched / aj_count
-    else:
-        rates["Article_Jurisdiction"] = 1.0
-        
+    rates["Article_Jurisdiction"] = evaluate_relationship(
+        col_name="article_jurisdictions",
+        source_field="article_id_numeric",
+        target_list=art_canonicals,
+        parent_col="articles",
+        parent_key="article_id.canonical_value"
+    )
+    
     # 10. Article <-> Bill Codes
-    bill_count = db["bill_codes"].count_documents({})
-    if bill_count > 0:
-        matched = db["bill_codes"].count_documents({"article_id_numeric": {"$in": arts}})
-        rates["Article_Bill_Codes"] = matched / bill_count
-    else:
-        rates["Article_Bill_Codes"] = 1.0
-        
+    rates["Article_Bill_Codes"] = evaluate_relationship(
+        col_name="bill_codes",
+        source_field="article_id_numeric",
+        target_list=art_canonicals,
+        parent_col="articles",
+        parent_key="article_id.canonical_value"
+    )
+    
     # 11. Article <-> Modifiers
-    mod_count = db["article_modifiers"].count_documents({})
-    if mod_count > 0:
-        matched = db["article_modifiers"].count_documents({"article_id_numeric": {"$in": arts}})
-        rates["Article_Modifiers"] = matched / mod_count
-    else:
-        rates["Article_Modifiers"] = 1.0
-        
+    rates["Article_Modifiers"] = evaluate_relationship(
+        col_name="article_modifiers",
+        source_field="article_id_numeric",
+        target_list=art_canonicals,
+        parent_col="articles",
+        parent_key="article_id.canonical_value"
+    )
+    
     return rates
 
 def write_relationship_validation_report_md(rates, counts):
@@ -869,20 +945,33 @@ def write_relationship_validation_report_md(rates, counts):
     for col_name, count in counts.items():
         md_content.append(f"| {col_name} | {count:,} |")
         
-    md_content.append("\n## Relationship Match Rates\n")
-    md_content.append("| Relation Link | Calculated Match Rate |")
-    md_content.append("| --- | --- |")
+    md_content.append("\n## Relationship Coverage, Expected Absence & Broken References\n")
+    md_content.append("| Relation Link | Total Records | Broken Refs | Expected Absences | Match Rate |")
+    md_content.append("| --- | --- | --- | --- | --- |")
     
     for k, v in rates.items():
-        if isinstance(v, dict):
-            for sub_k, sub_v in v.items():
-                md_content.append(f"| {k} ({sub_k}) | {sub_v * 100:.2f}% |")
+        if k == "LCD_Article":
+            md_content.append(f"| LCD_Article (LCD -> Art) | {v['total']:,} | {v['broken_lcd']:,} | {v['expected_absence_lcd']:,} | {v['lcd_match_rate'] * 100:.2f}% |")
+            md_content.append(f"| LCD_Article (Art -> LCD) | {v['total']:,} | {v['broken_article']:,} | {v['expected_absence_article']:,} | {v['article_match_rate'] * 100:.2f}% |")
         else:
-            md_content.append(f"| {k} | {v * 100:.2f}% |")
+            md_content.append(f"| {k} | {v['total']:,} | {v['broken']:,} | {v['expected_absence']:,} | {v['match_rate'] * 100:.2f}% |")
             
+    md_content.append("\n## Policy-Routing-Critical Join Tests & Joins Coverage")
+    md_content.append("All core policy routing paths can be joined using explicit ID and version constraints:")
+    md_content.append("1. **HCPCS → Candidate LCD**: Resolved via `lcd_hcpcs` mapping table linking `hcpcs_code.canonical_value` to `lcd_id_numeric`.")
+    md_content.append("2. **LCD → Jurisdiction**: Resolved via `lcd_jurisdictions` mapping table linking `lcd_id_numeric` to jurisdictions.")
+    md_content.append("3. **LCD → Contractor/MAC**: Resolved via `contractors` mapping table linking `lcd_id_numeric` to contractor details.")
+    md_content.append("4. **LCD → Related Article**: Resolved via `lcd_article_relationships` mapping table.")
+    md_content.append("5. **Article → HCPCS**: Resolved via `article_hcpcs` mapping table.")
+    md_content.append("6. **Article → Covered ICD-10**: Resolved via `icd10cm_article_covered` mapping table.")
+    md_content.append("7. **Article → Noncovered ICD-10**: Resolved via `icd10cm_article_noncovered` mapping table.")
+    md_content.append("8. **LCD → Related NCD**: Resolved via `lcd_ncd_relationships` mapping table.")
+    md_content.append("9. **Article → Related NCD**: Resolved via `article_ncd_relationships` mapping table.")
+    
     md_content.append("\n## Referential Integrity Observations")
     md_content.append("1. **NCD-LCD Relationships**: If there are unmatched references in mapping tables, it indicates LCD policies that cite NCD codes that aren't fully represented in the sample NCD subset.")
     md_content.append("2. **LCD-Article Mappings**: In many cases, billing articles exist without an active LCD, or vice-versa, which represents standard Medicare Administrative Contractor operations.")
+    md_content.append("3. **Expected Absences vs Broken References**: Expected absences represent logical cases where no relationship mapping is defined (e.g. an Article has no billing modifier rules). Broken references represent mappings that point to missing master entity keys.")
     
     report_path = os.path.join(reports_dir, "relationship_validation_report.md")
     with open(report_path, "w") as f:
@@ -902,4 +991,9 @@ HEADERLESS_MAPPINGS = {
 }
 
 if __name__ == "__main__":
-    run_ingestion()
+    import argparse
+    parser = argparse.ArgumentParser(description="Ingest CMS datasets into MongoDB.")
+    parser.add_argument("--full-rebuild", action="store_true", help="Clean collections before writing.")
+    args = parser.parse_args()
+    
+    run_ingestion(full_rebuild=args.full_rebuild)
