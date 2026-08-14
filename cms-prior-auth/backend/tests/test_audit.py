@@ -2,13 +2,17 @@ import pytest
 from app.core.normalize import (
     normalize_ncd_id,
     normalize_lcd_id,
+    normalize_lcd_id_numeric,
     normalize_article_id,
+    normalize_article_id_numeric,
     normalize_hcpcs_code,
     normalize_icd10_code,
+    normalize_icd10_code_numeric,
     normalize_modifier_code,
     normalize_revenue_code,
     normalize_bill_type_code,
-    normalize_date
+    normalize_date,
+    build_provenance_field
 )
 from scripts.audit_cms_datasets import detect_file_info
 
@@ -18,16 +22,30 @@ def test_ncd_normalization():
     assert normalize_ncd_id(None) == ""
 
 def test_lcd_normalization():
-    assert normalize_lcd_id("L40330") == "40330"
-    assert normalize_lcd_id("40330") == "40330"
-    assert normalize_lcd_id(" l40330 ") == "40330"
+    # Retains prefix
+    assert normalize_lcd_id("L40330") == "L40330"
+    assert normalize_lcd_id("40330") == "L40330"
+    assert normalize_lcd_id(" l40330 ") == "L40330"
     assert normalize_lcd_id(None) == ""
+    
+    # Numeric extraction
+    assert normalize_lcd_id_numeric("L40330") == "40330"
+    assert normalize_lcd_id_numeric("40330") == "40330"
+    assert normalize_lcd_id_numeric(" l40330 ") == "40330"
+    assert normalize_lcd_id_numeric(None) == ""
 
 def test_article_normalization():
-    assert normalize_article_id("A58679") == "58679"
-    assert normalize_article_id("58679") == "58679"
-    assert normalize_article_id(" a58679 ") == "58679"
+    # Retains prefix
+    assert normalize_article_id("A58679") == "A58679"
+    assert normalize_article_id("58679") == "A58679"
+    assert normalize_article_id(" a58679 ") == "A58679"
     assert normalize_article_id(None) == ""
+    
+    # Numeric extraction
+    assert normalize_article_id_numeric("A58679") == "58679"
+    assert normalize_article_id_numeric("58679") == "58679"
+    assert normalize_article_id_numeric(" a58679 ") == "58679"
+    assert normalize_article_id_numeric(None) == ""
 
 def test_hcpcs_normalization():
     assert normalize_hcpcs_code("81202") == "81202"
@@ -36,10 +54,19 @@ def test_hcpcs_normalization():
     assert normalize_hcpcs_code(None) == ""
 
 def test_icd10_normalization():
-    assert normalize_icd10_code("C00.0") == "C000"
-    assert normalize_icd10_code(" N17.0 ") == "N170"
-    assert normalize_icd10_code("GZ2ZZZZ") == "GZ2ZZZZ"
+    # Dotted/display format
+    assert normalize_icd10_code("C00.0") == "C00.0"
+    assert normalize_icd10_code("C000") == "C00.0"
+    assert normalize_icd10_code(" N17.0 ") == "N17.0"
+    assert normalize_icd10_code("N170") == "N17.0"
+    assert normalize_icd10_code("GZ2ZZZZ") == "GZ2ZZZZ"  # PCS code doesn't get dotted
     assert normalize_icd10_code(None) == ""
+    
+    # Flat format
+    assert normalize_icd10_code_numeric("C00.0") == "C000"
+    assert normalize_icd10_code_numeric(" N17.0 ") == "N170"
+    assert normalize_icd10_code_numeric("GZ2ZZZZ") == "GZ2ZZZZ"
+    assert normalize_icd10_code_numeric(None) == ""
 
 def test_modifier_normalization():
     assert normalize_modifier_code("59") == "59"
@@ -72,3 +99,9 @@ def test_format_detection():
     assert detect_file_info("lcd_master_excel_safe.csv.xlsx", "/dummy/path.xlsx")["format"] == "Excel"
     # CSV ending in xls
     assert detect_file_info("cms_article_jurisdiction.csv.xls", "/dummy/path.csv.xls")["format"] == "CSV"
+
+def test_build_provenance_field():
+    pf = build_provenance_field("l40330 ", "40330", "L40330")
+    assert pf["source_value"] == "l40330 "
+    assert pf["canonical_value"] == "40330"
+    assert pf["display_value"] == "L40330"

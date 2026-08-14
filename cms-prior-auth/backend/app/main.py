@@ -1,4 +1,5 @@
 from fastapi import FastAPI
+from app.db.connection import db_connection
 
 app = FastAPI(
     title="CMS Prior Authorization Decision-Support System",
@@ -12,3 +13,8 @@ def health_check():
         "status": "healthy",
         "service": "cms-prior-auth-backend"
     }
+
+@app.get("/health/db")
+def db_health_check():
+    health = db_connection.check_health()
+    return health
