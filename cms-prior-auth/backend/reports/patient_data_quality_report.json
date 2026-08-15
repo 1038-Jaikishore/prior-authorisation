@@ -1,0 +1,320 @@
+{
+  "allergies.csv": {
+    "duplicate_count": 0,
+    "null_counts": {
+      "allergy_id": 0,
+      "patient_id": 0,
+      "allergen_type": 0,
+      "allergen_name": 0,
+      "reaction_severity": 0,
+      "onset_date": 0,
+      "active_status": 0,
+      "conflict_alert_flag": 0
+    },
+    "completeness_score": 1.0
+  },
+  "authorization_requests.csv": {
+    "duplicate_count": 0,
+    "null_counts": {
+      "request_id": 0,
+      "patient_id": 0,
+      "provider_id": 0,
+      "requested_procedure_code": 0,
+      "diagnosis_code": 0,
+      "clinical_indication": 0,
+      "medical_necessity": 0,
+      "provider_justification": 0,
+      "urgency": 0,
+      "requested_quantity": 0,
+      "requested_duration_days": 0,
+      "request_date": 0,
+      "status": 0,
+      "previous_treatment_info": 0,
+      "supporting_evidence_url": 0,
+      "ai_reasoning": 12
+    },
+    "completeness_score": 0.985
+  },
+  "care_plans.csv": {
+    "duplicate_count": 0,
+    "null_counts": {
+      "plan_id": 0,
+      "patient_id": 0,
+      "provider_id": 0,
+      "current_treatment_plan": 0,
+      "planned_procedures": 0,
+      "treatment_goals": 0,
+      "start_date": 0,
+      "end_date": 0,
+      "treatments_attempted": 13,
+      "status": 0
+    },
+    "completeness_score": 0.9675
+  },
+  "claims.csv": {
+    "duplicate_count": 0,
+    "null_counts": {
+      "claim_id": 0,
+      "patient_id": 0,
+      "provider_id": 0,
+      "procedure_code": 0,
+      "diagnosis_code": 0,
+      "claim_status": 0,
+      "treatment_date": 0,
+      "service_type": 0,
+      "treatment_name": 0,
+      "amount_billed": 0,
+      "amount_paid": 0,
+      "treatment_frequency": 0,
+      "step_therapy_verified": 31,
+      "previous_auth_history": 32,
+      "duplicate_service_flag": 0
+    },
+    "completeness_score": 0.958
+  },
+  "clinical_assessments.csv": {
+    "duplicate_count": 0,
+    "null_counts": {
+      "assessment_id": 0,
+      "patient_id": 0,
+      "assessment_date": 0,
+      "assessment_type": 0,
+      "score": 0,
+      "severity_level": 4,
+      "threshold_met": 0,
+      "progression_trend": 12
+    },
+    "completeness_score": 0.9666666666666667
+  },
+  "conditions.csv": {
+    "duplicate_count": 0,
+    "null_counts": {
+      "condition_id": 0,
+      "patient_id": 0,
+      "diagnosis_code": 0,
+      "diagnosis_name": 0,
+      "onset_date": 0,
+      "resolution_date": 45,
+      "condition_type": 0,
+      "relevant_to_procedure_flag": 0
+    },
+    "completeness_score": 0.9296875
+  },
+  "coverage.csv": {
+    "duplicate_count": 0,
+    "null_counts": {
+      "patient_id": 0,
+      "plan_id": 0,
+      "insurance_company": 0,
+      "plan_type": 0,
+      "effective_date": 0,
+      "expiry_date": 0,
+      "is_active": 0,
+      "requires_prior_auth": 0,
+      "benefits_summary": 0,
+      "covered_services": 0,
+      "copay_amount": 0,
+      "deductible": 0
+    },
+    "completeness_score": 1.0
+  },
+  "diagnostic_results.csv": {
+    "duplicate_count": 0,
+    "null_counts": {
+      "result_id": 0,
+      "patient_id": 0,
+      "test_name": 0,
+      "test_date": 0,
+      "result_value": 0,
+      "reference_range": 0,
+      "abnormal_flag": 0,
+      "evidence_for_medical_necessity": 0
+    },
+    "completeness_score": 1.0
+  },
+  "encounters.csv": {
+    "duplicate_count": 0,
+    "null_counts": {
+      "encounter_id": 0,
+      "patient_id": 0,
+      "provider_id": 0,
+      "encounter_date": 0,
+      "encounter_type": 0,
+      "primary_diagnosis_code": 0,
+      "discharge_status": 0,
+      "follow_up_required": 0,
+      "recent_hospitalization_flag": 0
+    },
+    "completeness_score": 1.0
+  },
+  "family_history.csv": {
+    "duplicate_count": 0,
+    "null_counts": {
+      "history_id": 0,
+      "patient_id": 0,
+      "family_member_relation": 0,
+      "condition": 0,
+      "age_of_onset": 0,
+      "genetic_risk_indicator": 0
+    },
+    "completeness_score": 1.0
+  },
+  "functional_status.csv": {
+    "duplicate_count": 0,
+    "null_counts": {
+      "status_id": 0,
+      "patient_id": 0,
+      "assessment_date": 0,
+      "physical_functional_status": 0,
+      "mental_functional_status": 0,
+      "quality_of_life_score": 0,
+      "deterioration_detected": 0,
+      "pre_post_treatment_flag": 0,
+      "rehab_support_needed": 0
+    },
+    "completeness_score": 1.0
+  },
+  "immunizations.csv": {
+    "duplicate_count": 0,
+    "null_counts": {
+      "immunization_id": 0,
+      "patient_id": 0,
+      "vaccine_name": 0,
+      "dose_number": 0,
+      "date_administered": 0,
+      "next_due_date": 10,
+      "status": 0
+    },
+    "completeness_score": 0.9761904761904762
+  },
+  "medical_equipment.csv": {
+    "duplicate_count": 0,
+    "null_counts": {
+      "equipment_id": 0,
+      "patient_id": 0,
+      "equipment_type": 0,
+      "date_issued": 0,
+      "expected_replacement_date": 0,
+      "current_status": 0,
+      "usage_frequency": 0,
+      "duplicate_request_flag": 0
+    },
+    "completeness_score": 1.0
+  },
+  "medications.csv": {
+    "duplicate_count": 0,
+    "null_counts": {
+      "medication_id": 0,
+      "patient_id": 0,
+      "medication_name": 0,
+      "dosage": 0,
+      "start_date": 0,
+      "end_date": 48,
+      "status": 0,
+      "step_therapy_requirement_met": 0
+    },
+    "completeness_score": 0.94
+  },
+  "patients.csv": {
+    "duplicate_count": 0,
+    "null_counts": {
+      "patient_id": 0,
+      "first_name": 0,
+      "last_name": 0,
+      "dob": 0,
+      "age": 0,
+      "gender": 0,
+      "insurance_plan": 0,
+      "member_id": 0,
+      "summary_card_text": 0
+    },
+    "completeness_score": 1.0
+  },
+  "procedures.csv": {
+    "duplicate_count": 0,
+    "null_counts": {
+      "procedure_record_id": 0,
+      "patient_id": 0,
+      "provider_id": 0,
+      "procedure_code": 0,
+      "procedure_name": 0,
+      "procedure_date": 0,
+      "outcome": 0,
+      "related_to_current_request": 0
+    },
+    "completeness_score": 1.0
+  },
+  "providers.csv": {
+    "duplicate_count": 0,
+    "null_counts": {
+      "provider_id": 0,
+      "first_name": 0,
+      "last_name": 0,
+      "specialty": 0,
+      "facility_name": 0,
+      "network_status": 0,
+      "npi": 0,
+      "contact_number": 0,
+      "referral_required": 0
+    },
+    "completeness_score": 1.0
+  },
+  "referrals.csv": {
+    "duplicate_count": 0,
+    "null_counts": {
+      "referral_id": 0,
+      "patient_id": 0,
+      "referring_provider_id": 0,
+      "specialist_provider_id": 0,
+      "specialty_required": 0,
+      "referral_date": 0,
+      "expiration_date": 0,
+      "referral_status": 0,
+      "authorization_status": 0
+    },
+    "completeness_score": 1.0
+  },
+  "social_history.csv": {
+    "duplicate_count": 0,
+    "null_counts": {
+      "social_history_id": 0,
+      "patient_id": 0,
+      "smoking_status": 0,
+      "alcohol_history": 10,
+      "substance_history": 26,
+      "lifestyle_factors": 0,
+      "social_risk_factors": 9,
+      "clinical_assessment_context": 0
+    },
+    "completeness_score": 0.8125
+  },
+  "surgeries.csv": {
+    "duplicate_count": 0,
+    "null_counts": {
+      "surgery_id": 0,
+      "patient_id": 0,
+      "provider_id": 0,
+      "surgery_type": 0,
+      "surgery_date": 0,
+      "surgical_outcome": 0,
+      "related_interventions": 28,
+      "necessity_evaluation_support": 0
+    },
+    "completeness_score": 0.9299999999999999
+  },
+  "vital_signs.csv": {
+    "duplicate_count": 0,
+    "null_counts": {
+      "vital_id": 0,
+      "patient_id": 0,
+      "date_recorded": 0,
+      "vital_type": 0,
+      "value": 0,
+      "unit": 0,
+      "abnormal_flag": 0,
+      "severity_indicator": 0,
+      "trend": 0
+    },
+    "completeness_score": 1.0
+  }
+}

@@ -1,7 +1,9 @@
 from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
 from app.db.connection import db_connection
 from app.api.policy import router as policy_router
 from app.api.policy_rag import router as policy_rag_router
+from app.api.prior_auth import router as prior_auth_router
 
 app = FastAPI(
     title="CMS Prior Authorization Decision-Support System",
@@ -9,8 +11,23 @@ app = FastAPI(
     version="0.1.0"
 )
 
+# Configure dev CORS
+origins = [
+    "http://localhost:5173",
+    "http://127.0.0.1:5173",
+]
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
 app.include_router(policy_router)
 app.include_router(policy_rag_router)
+app.include_router(prior_auth_router)
 
 @app.get("/health")
 def health_check():
