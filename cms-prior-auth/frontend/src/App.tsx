@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 
 interface RequestItem {
   request_id: string;
@@ -46,6 +46,8 @@ export default function App() {
 
   const handleSelectRequest = (reqId: string, list: RequestItem[] = requests) => {
     setSelectedRequestId(reqId);
+    setIntakeData(null);
+    setError(null);
     const found = list.find((r) => r.request_id === reqId);
     if (found) {
       setSelectedRequest(found);

@@ -88,6 +88,15 @@ class PriorAuthorizationIntakeService:
             output = []
             for r in records:
                 r["_id"] = str(r["_id"])
+                
+                # Strip precomputed outcome/leakage fields
+                for leakage_f in [
+                    "ai_reasoning", "threshold_met", "step_therapy_requirement_met",
+                    "necessity_evaluation_support", "duplicate_request_flag",
+                    "duplicate_service_flag", "status", "claim_status", "authorization_status"
+                ]:
+                    r.pop(leakage_f, None)
+                    
                 output.append(r)
                 
                 # Capture provenance
@@ -308,20 +317,22 @@ class PriorAuthorizationIntakeService:
         for a in routing_response.related_articles:
             document_versions[a["article_id"]] = a.get("article_version")
             
-        # Retrieve chunks (with cosign fallback or Atlas search)
+        # Retrieve chunks (restricted to resolved policy scope only)
         scope_has_records = any(policy_scope.values())
-        unrestricted_flag = not scope_has_records
         
-        if unrestricted_flag:
-            warnings.append("Resolved policy scope is empty. Executing unrestricted/debug retrieval.")
-            
-        retrieval_res = PolicyRetrievalService.retrieve_policy_chunks(
-            query=f"Coverage requirements, indications, and limitations for service {hcpcs_code} and diagnosis {first_diag}",
-            policy_scope=policy_scope,
-            document_versions=document_versions,
-            top_k=8,
-            unrestricted=unrestricted_flag
-        )
+        if not scope_has_records:
+            retrieval_res = {
+                "results": [],
+                "warnings": ["Skipped vector search retrieval because no matching CMS policies were resolved by the routing engine."]
+            }
+        else:
+            retrieval_res = PolicyRetrievalService.retrieve_policy_chunks(
+                query=f"Coverage requirements, indications, and limitations for service {hcpcs_code} and diagnosis {first_diag}",
+                policy_scope=policy_scope,
+                document_versions=document_versions,
+                top_k=8,
+                unrestricted=False
+            )
         
         # Map final results
         warnings.extend(retrieval_res["warnings"])

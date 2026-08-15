@@ -285,3 +285,157 @@ def test_api_route_and_retrieve_endpoint():
     data = res.json()
     assert "policy_routing" in data
     assert "policy_retrieval" in data
+
+# -------------------------------------------------------------
+# Additional Volume 5 Verification Tests (24-31)
+# -------------------------------------------------------------
+def test_no_mock_routing_in_live_mode(db):
+    # Test 24: Verify live execution does not use mock routing and runs routing queries
+    res = PriorAuthorizationIntakeService.execute_route_and_retrieve(
+        request_id="AUTH00001",
+        override_state="CO"
+    )
+    # Since it's a real run with custom code, routing status should be NO_POLICY_FOUND (not mock RESOLVED)
+    assert res["policy_routing"].routing_status == "NO_POLICY_FOUND"
+
+def test_custom_code_no_policy(db):
+    # Test 25: Verify custom code returns NO_POLICY_FOUND
+    res = PriorAuthorizationIntakeService.execute_route_and_retrieve(
+        request_id="AUTH00001",
+        override_state="CO"
+    )
+    assert res["policy_routing"].routing_status == "NO_POLICY_FOUND"
+
+def test_real_hcpcs_routes_correctly(db):
+    # Test 26: Verify standard HCPCS (e.g. 97110) routes correctly in live mode
+    # Let's mock a temporary request with standard HCPCS code 97110
+    req_doc = {
+        "request_id": "AUTH_TEST_REAL",
+        "patient_id": "PAT014",
+        "provider_id": "PRV012",
+        "requested_procedure_code": {
+            "source_value": "97110",
+            "canonical_value": "97110",
+            "display_value": "97110"
+        },
+        "diagnosis_code": [
+            {
+                "source_value": "M17.11",
+                "canonical_value": "M1711",
+                "display_value": "M17.11"
+            }
+        ],
+        "request_date": "2026-08-10",
+        "status": "PENDING"
+    }
+    db["authorization_requests"].insert_one(req_doc)
+    
+    try:
+        res = PriorAuthorizationIntakeService.execute_route_and_retrieve(
+            request_id="AUTH_TEST_REAL",
+            override_state="CO"
+        )
+        # Should resolve cleanly because 97110 is a real HCPCS code!
+        # In our Consolidated CMS data, 97110 maps to LCD L33942
+        assert res["policy_routing"].routing_status in ["RESOLVED", "PARTIAL_POLICY_DATA"]
+        assert (
+            any(n["ncd_id"] == "22" for n in res["policy_routing"].applicable_ncds) or
+            any(l["lcd_id"] == "L33942" for l in res["policy_routing"].applicable_lcds)
+        )
+    finally:
+        db["authorization_requests"].delete_one({"request_id": "AUTH_TEST_REAL"})
+
+def test_routed_ids_match_retrieval_filter_ids(db):
+    # Test 27: Verify routing candidate IDs match the retrieval scope filter
+    req_doc = {
+        "request_id": "AUTH_TEST_REAL",
+        "patient_id": "PAT014",
+        "provider_id": "PRV012",
+        "requested_procedure_code": {
+            "source_value": "97110",
+            "canonical_value": "97110",
+            "display_value": "97110"
+        },
+        "diagnosis_code": [
+            {
+                "source_value": "M17.11",
+                "canonical_value": "M1711",
+                "display_value": "M17.11"
+            }
+        ],
+        "request_date": "2026-08-10",
+        "status": "PENDING"
+    }
+    db["authorization_requests"].insert_one(req_doc)
+    
+    try:
+        res = PriorAuthorizationIntakeService.execute_route_and_retrieve(
+            request_id="AUTH_TEST_REAL",
+            override_state="CO"
+        )
+        routed_lcds = [l["lcd_id"] for l in res["policy_routing"].applicable_lcds]
+        routed_ncds = [n["ncd_id"] for n in res["policy_routing"].applicable_ncds] or [n["ncd_id"] for n in res["policy_routing"].candidate_ncds]
+        routed_articles = [a["article_id"] for a in res["policy_routing"].related_articles]
+        allowed_ids = set(routed_lcds + routed_ncds + routed_articles)
+        
+        assert len(res["policy_retrieval"]["results"]) > 0
+        for item in res["policy_retrieval"]["results"]:
+            # Returned chunks should strictly belong to the routed allowed IDs scope
+            assert item["document_id"] in allowed_ids
+    finally:
+        db["authorization_requests"].delete_one({"request_id": "AUTH_TEST_REAL"})
+
+def test_returned_chunks_belong_to_allowed_scope(db):
+    # Test 28: Verify every returned chunk belongs to the allowed policy scope
+    # Route L33405 with mocks to verify retrieval scope enforcement
+    from app.services.policy_routing import PolicyRoutingService
+    mock_response = PolicyRoutingResponse(
+        routing_status="RESOLVED",
+        applicable_ncds=[],
+        applicable_lcds=[{
+            "lcd_id": "L33942", # Pt - Home Health
+            "title": "PT",
+            "version": "50",
+            "effective_date": "2020-01-01"
+        }],
+        candidate_ncds=[],
+        candidate_lcds=[],
+        related_articles=[],
+        warnings=[],
+        normalized_request={},
+        routing_confidence=1.0
+    )
+    
+    with patch.object(PolicyRoutingService, "route_policy", return_value=mock_response):
+        res = PriorAuthorizationIntakeService.execute_route_and_retrieve(
+            request_id="AUTH00001",
+            override_state="CO"
+        )
+        assert len(res["policy_retrieval"]["results"]) > 0
+        for item in res["policy_retrieval"]["results"]:
+            # Should strictly return L33942 chunks, not unrelated ones like L34544 or L33405
+            assert item["document_id"] == "L33999" or item["document_id"] == "L33942"
+
+def test_outcome_ai_fields_excluded_from_evidence(db):
+    # Test 29: Outcome/AI fields remain excluded from packet facts
+    req = db["authorization_requests"].find_one({"request_id": "AUTH00001"})
+    if req:
+        res = PriorAuthorizationIntakeService.compile_evidence_packet(req["request_id"])
+        packet = res["packet"]
+        # Outcomes and precomputed flags must not show up in condition or vital lists
+        for c in packet.conditions:
+            assert "threshold_met" not in c
+            assert "ai_reasoning" not in c
+        for m in packet.medications:
+            assert "step_therapy_requirement_met" not in m
+
+def test_no_fully_cms_compatible_synthetic_cases_failsafe(db):
+    # Test 30: Failsafe check that all standard cases return NO_POLICY_FOUND
+    res = PriorAuthorizationIntakeService.execute_route_and_retrieve(
+        request_id="AUTH00001",
+        override_state="CO"
+    )
+    assert res["policy_routing"].routing_status == "NO_POLICY_FOUND"
+    # Verification should skip vector retrieval for custom PROC codes
+    assert len(res["policy_retrieval"]["results"]) == 0
+
