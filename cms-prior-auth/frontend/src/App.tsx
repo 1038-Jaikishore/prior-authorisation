@@ -26,7 +26,51 @@ export default function App() {
   const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
   const [intakeData, setIntakeData] = useState<any | null>(null);
+  const [evaluationData, setEvaluationData] = useState<any | null>(null);
+  const [decisionData, setDecisionData] = useState<any | null>(null);
   const [activeTab, setActiveTab] = useState<string>('evidence');
+
+  // Volume 8 Reviewer Workflow States
+  const [casesQueue, setCasesQueue] = useState<any[]>([]);
+  const [queueFilter, setQueueFilter] = useState<string>('ALL');
+  const [explanationData, setExplanationData] = useState<any | null>(null);
+  const [reviewHistory, setReviewHistory] = useState<any[]>([]);
+  const [auditEvents, setAuditEvents] = useState<any[]>([]);
+
+  // Reviewer Action Form States
+  const [reviewerId, setReviewerId] = useState<string>('demo_reviewer_1');
+  const [actionType, setActionType] = useState<string>('ACCEPT_RECOMMENDATION');
+  const [actionReason, setActionReason] = useState<string>('');
+  const [overrideDisp, setOverrideDisp] = useState<string>('APPROVE');
+  const [actionMessage, setActionMessage] = useState<string | null>(null);
+
+  const loadCasesQueue = () => {
+    fetch('http://localhost:8000/api/review/cases')
+      .then((res) => {
+        if (!res.ok) throw new Error("Failed to load requests from backend.");
+        return res.json();
+      })
+      .then((data) => {
+        setCasesQueue(data);
+      })
+      .catch((err) => console.error("Error loading case queue list:", err));
+  };
+
+  const fetchCaseDetails = async (reqId: string) => {
+    try {
+      const caseRes = await fetch(`http://localhost:8000/api/review/cases/${reqId}`);
+      if (caseRes.ok) {
+        const caseVal = await caseRes.json();
+        setEvaluationData(caseVal.evaluation_bundle);
+        setDecisionData(caseVal.decision_support_result);
+        setExplanationData(caseVal.decision_explanation);
+        setReviewHistory(caseVal.review_history || []);
+        setAuditEvents(caseVal.audit_events || []);
+      }
+    } catch (err: any) {
+      console.error("Failed to load case review context details: ", err);
+    }
+  };
 
   // Load request list on mount
   useEffect(() => {
@@ -42,19 +86,64 @@ export default function App() {
         }
       })
       .catch((err) => setError(err.message));
+      
+    loadCasesQueue();
   }, []);
 
   const handleSelectRequest = (reqId: string, list: RequestItem[] = requests) => {
     setSelectedRequestId(reqId);
     setIntakeData(null);
+    setEvaluationData(null);
+    setDecisionData(null);
+    setExplanationData(null);
+    setReviewHistory([]);
+    setAuditEvents([]);
+    setActionReason('');
+    setActionMessage(null);
     setError(null);
     const found = list.find((r) => r.request_id === reqId);
     if (found) {
       setSelectedRequest(found);
       setOverrideDate(found.request_date);
-      // Attempt to auto-detect state from provider/encounters in ingestion if needed
-      // Colorado CO is default, allow manual change
       setOverrideState('CO');
+      
+      // Auto-load details if request is selected
+      fetchCaseDetails(reqId);
+    }
+  };
+
+  const handleActionSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!selectedRequestId) return;
+    setActionMessage(null);
+    setError(null);
+    
+    try {
+      const params = new URLSearchParams({
+        action: actionType,
+        reason: actionReason,
+        reviewer_id: reviewerId
+      });
+      if (actionType === 'OVERRIDE_RECOMMENDATION') {
+        params.append('intended_disposition', overrideDisp);
+      }
+      
+      const res = await fetch(`http://localhost:8000/api/review/cases/${selectedRequestId}/action?${params.toString()}`, {
+        method: 'POST'
+      });
+      if (!res.ok) {
+        const detail = await res.json();
+        throw new Error(detail.detail || "Failed to submit reviewer action.");
+      }
+      
+      setActionMessage("✓ Reviewer action submitted and logged in audit timeline successfully.");
+      setActionReason('');
+      
+      // Reload queue and history
+      loadCasesQueue();
+      await fetchCaseDetails(selectedRequestId);
+    } catch (err: any) {
+      setError(err.message);
     }
   };
 
@@ -63,6 +152,8 @@ export default function App() {
     setLoading(true);
     setError(null);
     setIntakeData(null);
+    setEvaluationData(null);
+    setDecisionData(null);
 
     const url = `http://localhost:8000/api/prior-auth/${selectedRequestId}/route-and-retrieve?override_state=${overrideState}&override_date=${overrideDate}`;
     
@@ -74,11 +165,44 @@ export default function App() {
       .then((data) => {
         setIntakeData(data);
         setLoading(false);
+        setActiveTab('evidence');
       })
       .catch((err) => {
         setError(err.message);
         setLoading(false);
       });
+  };
+
+  const handleEvaluate = async () => {
+    if (!selectedRequestId) return;
+    setLoading(true);
+    setError(null);
+    setEvaluationData(null);
+    setDecisionData(null);
+    setIntakeData(null);
+
+    try {
+      const intakeRes = await fetch(`http://localhost:8000/api/prior-auth/${selectedRequestId}/route-and-retrieve?override_state=${overrideState}&override_date=${overrideDate}`, { method: 'POST' });
+      if (!intakeRes.ok) throw new Error("Intake compilation & policy routing failed.");
+      const intakeVal = await intakeRes.json();
+      setIntakeData(intakeVal);
+
+      const evalRes = await fetch(`http://localhost:8000/api/prior-auth/${selectedRequestId}/evaluate?override_state=${overrideState}&override_date=${overrideDate}`, { method: 'POST' });
+      if (!evalRes.ok) throw new Error("Policy requirement clinical evaluation failed.");
+      const evalVal = await evalRes.json();
+      setEvaluationData(evalVal);
+
+      const decisionRes = await fetch(`http://localhost:8000/api/prior-auth/${selectedRequestId}/decision-support`, { method: 'POST' });
+      if (!decisionRes.ok) throw new Error("Prior authorization decision support computation failed.");
+      const decisionVal = await decisionRes.json();
+      setDecisionData(decisionVal);
+      
+      setLoading(false);
+      setActiveTab('decision');
+    } catch (err: any) {
+      setError(err.message);
+      setLoading(false);
+    }
   };
 
   return (
@@ -166,13 +290,104 @@ export default function App() {
                 className="btn-primary"
                 onClick={handleRouteRetrieve}
                 disabled={loading}
-                style={{ marginTop: '12px' }}
+                style={{ marginTop: '12px', width: '100%' }}
               >
                 {loading ? <span className="spinner"></span> : null}
                 Compile Evidence & Route Policy
               </button>
+              
+              <button
+                className="btn-primary"
+                onClick={handleEvaluate}
+                disabled={loading}
+                style={{ 
+                  marginTop: '10px', 
+                  width: '100%', 
+                  background: 'linear-gradient(135deg, #6366f1 0%, #4f46e5 100%)',
+                  boxShadow: '0 4px 12px rgba(79, 70, 229, 0.2)' 
+                }}
+              >
+                {loading ? <span className="spinner"></span> : null}
+                Run Policy Evaluation Engine
+              </button>
             </div>
           )}
+
+          {/* Case Review Queue Section */}
+          <div style={{ marginTop: '20px', borderTop: '1px solid var(--border-color)', paddingTop: '16px' }}>
+            <h3 style={{ fontSize: '14px', margin: '0 0 10px 0', color: 'var(--text-primary)' }}>Case Review Queue</h3>
+            
+            <div className="form-group" style={{ marginBottom: '12px' }}>
+              <label className="form-label" style={{ fontSize: '11px' }}>Filter Disposition</label>
+              <select
+                className="form-control"
+                style={{ fontSize: '12px', padding: '6px' }}
+                value={queueFilter}
+                onChange={(e) => setQueueFilter(e.target.value)}
+              >
+                <option value="ALL">All Recommendations</option>
+                <option value="APPROVE">Approve</option>
+                <option value="DENY">Deny</option>
+                <option value="PEND">Pend</option>
+                <option value="NURSE_REVIEW">Nurse Review</option>
+                <option value="DECISION_SUPPORT_UNAVAILABLE">Decision Support N/A</option>
+              </select>
+            </div>
+
+            <div style={{ maxHeight: '320px', overflowY: 'auto', display: 'flex', flexDirection: 'column', gap: '8px', paddingRight: '4px' }}>
+              {(() => {
+                const filtered = casesQueue.filter((c: any) => queueFilter === 'ALL' || c.current_recommendation === queueFilter);
+                if (filtered.length === 0) {
+                  return <div style={{ fontSize: '12px', color: 'var(--text-secondary)', textAlign: 'center', padding: '12px' }}>No cases found.</div>;
+                }
+                return filtered.map((c: any) => {
+                  const statusColors: any = {
+                    APPROVE: '#10B981',
+                    DENY: '#EF4444',
+                    PEND: '#F59E0B',
+                    NURSE_REVIEW: '#8B5CF6',
+                    DECISION_SUPPORT_UNAVAILABLE: '#9CA3AF',
+                    AWAITING_INTAKE: '#6B7280'
+                  };
+                  const badgeColor = statusColors[c.current_recommendation] || '#fff';
+                  const isSelected = c.authorization_id === selectedRequestId;
+                  return (
+                    <div
+                      key={c.authorization_id}
+                      onClick={() => handleSelectRequest(c.authorization_id)}
+                      style={{
+                        background: isSelected ? 'rgba(99, 102, 241, 0.08)' : 'rgba(255,255,255,0.01)',
+                        border: isSelected ? '1px solid #6366f1' : '1px solid var(--border-color)',
+                        padding: '10px',
+                        borderRadius: '6px',
+                        cursor: 'pointer',
+                        transition: 'all 0.2s ease',
+                        display: 'flex',
+                        flexDirection: 'column',
+                        gap: '4px'
+                      }}
+                    >
+                      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                        <span style={{ fontSize: '12px', fontWeight: 'bold', color: isSelected ? '#818cf8' : 'var(--text-primary)' }}>
+                          {c.authorization_id}
+                        </span>
+                        <span className="badge" style={{ fontSize: '10px', padding: '2px 6px', background: `${badgeColor}15`, color: badgeColor, border: `1px solid ${badgeColor}30` }}>
+                          {c.current_recommendation.replace('_', ' ')}
+                        </span>
+                      </div>
+                      <div style={{ fontSize: '12px', color: 'var(--text-secondary)' }}>
+                        Patient: <strong>{c.patient_name}</strong>
+                      </div>
+                      <div style={{ fontSize: '11px', color: 'rgba(255,255,255,0.3)', display: 'flex', justifyContent: 'space-between' }}>
+                        <span>HCPCS: <code>{c.requested_service}</code></span>
+                        <span>Last Updated: {c.last_updated ? new Date(c.last_updated).toLocaleDateString() : 'N/A'}</span>
+                      </div>
+                    </div>
+                  );
+                });
+              })()}
+            </div>
+          </div>
         </aside>
 
         {/* Right Dashboard Panel */}
@@ -232,12 +447,57 @@ export default function App() {
                 >
                   Retrieved Policy Snippets (RAG)
                 </button>
+                {evaluationData && (
+                  <>
+                    <button
+                      className={`tab-btn ${activeTab === 'evaluation' ? 'active' : ''}`}
+                      onClick={() => setActiveTab('evaluation')}
+                      style={{ borderBottomColor: activeTab === 'evaluation' ? '#6366f1' : 'transparent', color: activeTab === 'evaluation' ? '#818cf8' : 'var(--text-secondary)' }}
+                    >
+                      💡 Requirements Evaluation
+                    </button>
+                    <button
+                      className={`tab-btn ${activeTab === 'validation' ? 'active' : ''}`}
+                      onClick={() => setActiveTab('validation')}
+                      style={{ borderBottomColor: activeTab === 'validation' ? '#6366f1' : 'transparent', color: activeTab === 'validation' ? '#818cf8' : 'var(--text-secondary)' }}
+                    >
+                      🛡️ Coding Validation
+                    </button>
+                  </>
+                )}
+                {decisionData && (
+                  <button
+                    className={`tab-btn ${activeTab === 'decision' ? 'active' : ''}`}
+                    onClick={() => setActiveTab('decision')}
+                    style={{ borderBottomColor: activeTab === 'decision' ? '#10b981' : 'transparent', color: activeTab === 'decision' ? '#34d399' : 'var(--text-secondary)' }}
+                  >
+                    ⚖️ Decision Support
+                  </button>
+                )}
+                {explanationData && (
+                  <button
+                    className={`tab-btn ${activeTab === 'explanation' ? 'active' : ''}`}
+                    onClick={() => setActiveTab('explanation')}
+                    style={{ borderBottomColor: activeTab === 'explanation' ? '#8b5cf6' : 'transparent', color: activeTab === 'explanation' ? '#a78bfa' : 'var(--text-secondary)' }}
+                  >
+                    📝 Reviewer Explanation & Action
+                  </button>
+                )}
                 <button
                   className={`tab-btn ${activeTab === 'provenance' ? 'active' : ''}`}
                   onClick={() => setActiveTab('provenance')}
                 >
                   Audit Trace & Provenance
                 </button>
+                {auditEvents.length > 0 && (
+                  <button
+                    className={`tab-btn ${activeTab === 'audit_trail' ? 'active' : ''}`}
+                    onClick={() => setActiveTab('audit_trail')}
+                    style={{ borderBottomColor: activeTab === 'audit_trail' ? '#3b82f6' : 'transparent', color: activeTab === 'audit_trail' ? '#60a5fa' : 'var(--text-secondary)' }}
+                  >
+                    📋 Workflow Audit Trail
+                  </button>
+                )}
               </div>
 
               {/* Tab 1: Clinical Evidence Packet */}
@@ -471,6 +731,521 @@ export default function App() {
                   ) : (
                     <p style={{ fontSize: '13px', color: 'var(--text-secondary)' }}>No matching text snippets resolved from search index.</p>
                   )}
+                </div>
+              )}
+
+              {/* Tab: Policy Requirement Evaluation */}
+              {activeTab === 'evaluation' && evaluationData && (
+                <div>
+                  <h3 style={{ fontSize: '16px', marginBottom: '12px' }}>Clinical Policy Requirement Matching</h3>
+                  
+                  {/* Summary Stats */}
+                  <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '16px', marginBottom: '24px' }}>
+                    <div style={{ background: 'rgba(34, 197, 94, 0.1)', padding: '12px', borderRadius: '8px', border: '1px solid rgba(34, 197, 94, 0.2)', textAlign: 'center' }}>
+                      <div style={{ fontSize: '20px', fontWeight: 'bold', color: '#4ADE80' }}>{evaluationData.summary.met}</div>
+                      <div style={{ fontSize: '12px', color: 'var(--text-secondary)' }}>MET</div>
+                    </div>
+                    <div style={{ background: 'rgba(239, 68, 68, 0.1)', padding: '12px', borderRadius: '8px', border: '1px solid rgba(239, 68, 68, 0.2)', textAlign: 'center' }}>
+                      <div style={{ fontSize: '20px', fontWeight: 'bold', color: '#F87171' }}>{evaluationData.summary.not_met}</div>
+                      <div style={{ fontSize: '12px', color: 'var(--text-secondary)' }}>NOT MET</div>
+                    </div>
+                    <div style={{ background: 'rgba(245, 158, 11, 0.1)', padding: '12px', borderRadius: '8px', border: '1px solid rgba(245, 158, 11, 0.2)', textAlign: 'center' }}>
+                      <div style={{ fontSize: '20px', fontWeight: 'bold', color: '#FBBF24' }}>{evaluationData.summary.unclear}</div>
+                      <div style={{ fontSize: '12px', color: 'var(--text-secondary)' }}>UNCLEAR</div>
+                    </div>
+                    <div style={{ background: 'rgba(156, 163, 175, 0.1)', padding: '12px', borderRadius: '8px', border: '1px solid rgba(156, 163, 175, 0.2)', textAlign: 'center' }}>
+                      <div style={{ fontSize: '20px', fontWeight: 'bold', color: '#9CA3AF' }}>{evaluationData.summary.not_applicable}</div>
+                      <div style={{ fontSize: '12px', color: 'var(--text-secondary)' }}>N/A</div>
+                    </div>
+                  </div>
+
+                  {/* Requirements List */}
+                  <table className="evidence-table">
+                    <thead>
+                      <tr>
+                        <th>Requirement Criteria</th>
+                        <th style={{ width: '120px' }}>Status</th>
+                        <th>Evidence / Rationale</th>
+                        <th style={{ width: '180px' }}>Citation & Source</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {evaluationData.requirement_evaluations.map((ev: any, idx: number) => {
+                        const statusColors: any = {
+                          MET: { bg: 'rgba(34, 197, 94, 0.1)', color: '#4ADE80' },
+                          NOT_MET: { bg: 'rgba(239, 68, 68, 0.1)', color: '#F87171' },
+                          UNCLEAR: { bg: 'rgba(245, 158, 11, 0.1)', color: '#FBBF24' },
+                          NOT_APPLICABLE: { bg: 'rgba(156, 163, 175, 0.1)', color: '#9CA3AF' }
+                        };
+                        const col = statusColors[ev.status] || { bg: 'rgba(0,0,0,0.1)', color: '#fff' };
+                        return (
+                          <tr key={idx}>
+                            <td>
+                              <div style={{ fontWeight: 500, fontSize: '13px' }}>{ev.policy_requirement.requirement_text}</div>
+                              <div style={{ fontSize: '11px', color: 'var(--text-secondary)', marginTop: '4px' }}>
+                                Type: <code style={{ color: '#818cf8' }}>{ev.policy_requirement.requirement_type}</code> | Role: <strong>{ev.policy_requirement.policy_role}</strong>
+                              </div>
+                            </td>
+                            <td>
+                              <span className="badge" style={{ background: col.bg, color: col.color, display: 'inline-block', width: '100%', textAlign: 'center' }}>
+                                {ev.status}
+                              </span>
+                            </td>
+                            <td style={{ fontSize: '13px' }}>
+                              <div>{ev.rationale}</div>
+                              {ev.matching_evidence.length > 0 && (
+                                <div style={{ marginTop: '6px', fontSize: '11px', color: '#38BDF8' }}>
+                                  Matched facts: {ev.matching_evidence.map((m: any) => `${m.display_value} (${m.value})`).join(', ')}
+                                </div>
+                              )}
+                              {ev.missing_information.length > 0 && (
+                                <div style={{ marginTop: '6px', fontSize: '11px', color: '#FBBF24' }}>
+                                  Missing: {ev.missing_information.join('; ')}
+                                </div>
+                              )}
+                            </td>
+                            <td style={{ fontSize: '11px' }}>
+                              <div>Policy Chunk: <code>{ev.policy_citation.split(':').slice(-2).join(':')}</code></div>
+                              {ev.patient_provenance.length > 0 && (
+                                <div style={{ color: 'var(--text-secondary)', marginTop: '4px' }}>
+                                  Patient Ref: <code>{ev.patient_provenance[0].collection}/{ev.patient_provenance[0].record_id.slice(-8)}</code>
+                                </div>
+                              )}
+                            </td>
+                          </tr>
+                        );
+                      })}
+                    </tbody>
+                  </table>
+
+                  {/* Missing Information Highlight */}
+                  {evaluationData.missing_information.length > 0 && (
+                    <div style={{ marginTop: '24px', background: 'rgba(245, 158, 11, 0.05)', border: '1px solid rgba(245, 158, 11, 0.1)', padding: '16px', borderRadius: '8px' }}>
+                      <h4 style={{ color: '#FBBF24', margin: '0 0 8px 0', fontSize: '14px' }}>⚠️ Missing Clinical Information Gaps</h4>
+                      <ul style={{ margin: 0, paddingLeft: '20px', fontSize: '13px', display: 'flex', flexDirection: 'column', gap: '6px' }}>
+                        {evaluationData.missing_information.map((info: string, i: number) => (
+                          <li key={i}>{info}</li>
+                        ))}
+                      </ul>
+                    </div>
+                  )}
+                </div>
+              )}
+
+              {/* Tab: Coding & Administrative Validations */}
+              {activeTab === 'validation' && evaluationData && (
+                <div>
+                  <h3 style={{ fontSize: '16px', marginBottom: '16px' }}>Deterministic Code & Administrative Validation</h3>
+                  <table className="evidence-table">
+                    <thead>
+                      <tr>
+                        <th>Validator Rule</th>
+                        <th style={{ width: '120px' }}>Status</th>
+                        <th>Subject Checked</th>
+                        <th>Matched Policy Document</th>
+                        <th>Validation Reason / Details</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {[...evaluationData.coding_validations, ...evaluationData.administrative_validations].map((val: any, idx: number) => {
+                        const statusColors: any = {
+                          PASS: { bg: 'rgba(34, 197, 94, 0.1)', color: '#4ADE80' },
+                          FAIL: { bg: 'rgba(239, 68, 68, 0.1)', color: '#F87171' },
+                          WARNING: { bg: 'rgba(245, 158, 11, 0.1)', color: '#FBBF24' },
+                          UNKNOWN: { bg: 'rgba(156, 163, 175, 0.1)', color: '#9CA3AF' },
+                          NOT_EVALUATED: { bg: 'rgba(156, 163, 175, 0.1)', color: '#9CA3AF' }
+                        };
+                        const col = statusColors[val.status] || { bg: 'rgba(0,0,0,0.1)', color: '#fff' };
+                        return (
+                          <tr key={idx}>
+                            <td><strong>{val.validator}</strong></td>
+                            <td>
+                              <span className="badge" style={{ background: col.bg, color: col.color, display: 'inline-block', width: '100%', textAlign: 'center' }}>
+                                {val.status}
+                              </span>
+                            </td>
+                            <td><code>{val.subject}</code></td>
+                            <td>{val.policy_document ? <code>{val.policy_document}</code> : 'N/A'}</td>
+                            <td style={{ fontSize: '13px' }}>{val.reason}</td>
+                          </tr>
+                        );
+                      })}
+                    </tbody>
+                  </table>
+                </div>
+              )}
+
+              {/* Tab: Decision Support */}
+              {activeTab === 'decision' && decisionData && (
+                <div>
+                  {/* Recommended Disposition Card */}
+                  {(() => {
+                    const disp = decisionData.recommended_disposition;
+                    const dispColors: any = {
+                      APPROVE: { bg: 'rgba(16, 185, 129, 0.1)', border: '#10B981', text: '#34D399' },
+                      DENY: { bg: 'rgba(239, 68, 68, 0.1)', border: '#EF4444', text: '#F87171' },
+                      PEND: { bg: 'rgba(245, 158, 11, 0.1)', border: '#F59E0B', text: '#FBBF24' },
+                      NURSE_REVIEW: { bg: 'rgba(139, 92, 246, 0.1)', border: '#8B5CF6', text: '#A78BFA' },
+                      DECISION_SUPPORT_UNAVAILABLE: { bg: 'rgba(156, 163, 175, 0.1)', border: '#9CA3AF', text: '#D1D5DB' }
+                    };
+                    const col = dispColors[disp] || { bg: 'rgba(0,0,0,0.1)', border: '#fff', text: '#fff' };
+                    return (
+                      <div style={{
+                        background: col.bg,
+                        border: `1px solid ${col.border}`,
+                        padding: '20px',
+                        borderRadius: '8px',
+                        marginBottom: '24px'
+                      }}>
+                        <div style={{ fontSize: '13px', textTransform: 'uppercase', letterSpacing: '0.05em', color: 'var(--text-secondary)' }}>
+                          Decision Support Recommendation
+                        </div>
+                        <h2 style={{ fontSize: '28px', margin: '4px 0', color: col.text }}>
+                          {disp.replace('_', ' ')}
+                        </h2>
+                        <div style={{ fontSize: '13px', marginTop: '6px', color: 'var(--text-secondary)', display: 'flex', gap: '16px' }}>
+                          <div><strong>Certainty:</strong> <span style={{ color: '#fff' }}>{decisionData.decision_certainty}</span></div>
+                          <div><strong>Requires Human Review:</strong> <span style={{ color: '#fff' }}>{decisionData.requires_human_review ? 'YES' : 'NO'}</span></div>
+                          <div><strong>Rule Version:</strong> <code>{decisionData.rule_version}</code></div>
+                        </div>
+                        <p style={{ margin: '12px 0 0 0', fontSize: '12px', color: 'rgba(255,255,255,0.4)', fontStyle: 'italic' }}>
+                          ⚠ Decision-Support Helper recommendation based on documented CMS criteria. This is not an irreversible autonomous determination.
+                        </p>
+                      </div>
+                    );
+                  })()}
+
+                  {/* Why this recommendation section */}
+                  <div style={{
+                    background: 'rgba(255,255,255,0.01)',
+                    border: '1px solid var(--border-color)',
+                    padding: '20px',
+                    borderRadius: '8px',
+                    marginBottom: '24px'
+                  }}>
+                    <h3 style={{ fontSize: '15px', margin: '0 0 12px 0' }}>Why this recommendation?</h3>
+                    <div style={{ display: 'flex', flexDirection: 'column', gap: '8px', fontSize: '13px' }}>
+                      {decisionData.reason_codes.includes('PA_ALL_MANDATORY_CRITERIA_MET') && (
+                        <div style={{ color: '#34D399' }}>✓ All mandatory CMS clinical and administrative requirements are fully met.</div>
+                      )}
+                      {decisionData.reason_codes.includes('PA_MANDATORY_CRITERION_UNCLEAR') && (
+                        <div style={{ color: '#FBBF24' }}>⚠ A mandatory coverage criterion cannot currently be verified because patient clinical documentation is missing or unclear.</div>
+                      )}
+                      {decisionData.reason_codes.includes('PA_MANDATORY_CRITERION_NOT_MET') && (
+                        <div style={{ color: '#F87171' }}>✗ A mandatory coverage criterion was explicitly evaluated as unsatisfied by documented patient clinical evidence.</div>
+                      )}
+                      {decisionData.reason_codes.includes('PA_CODING_BLOCKING_FAILURE') && (
+                        <div style={{ color: '#F87171' }}>✗ A deterministic coding check failed (such as non-covered diagnosis, service code mismatch, or expired dates).</div>
+                      )}
+                      {decisionData.reason_codes.includes('PA_POLICY_UNCERTAIN') && (
+                        <div style={{ color: '#A78BFA' }}>⚬ Policy applicability is uncertain due to missing geography state codes or multiple conflicting LCD coverage rules.</div>
+                      )}
+                      {decisionData.reason_codes.includes('PA_POLICY_UNAVAILABLE') && (
+                        <div style={{ color: '#9CA3AF' }}>⚬ Custom synthetic code request detected. Automated decision mapping is unavailable.</div>
+                      )}
+
+                      <div style={{ marginTop: '8px', borderTop: '1px solid var(--border-color)', paddingTop: '8px' }}>
+                        <strong>Decision Reason Codes:</strong> {decisionData.reason_codes.map((c: string) => <code key={c} style={{ marginLeft: '6px' }}>{c}</code>)}
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Missing Information requests */}
+                  {decisionData.missing_information.length > 0 && (
+                    <div style={{ marginBottom: '24px' }}>
+                      <h3 style={{ fontSize: '15px', margin: '0 0 12px 0', color: '#FBBF24' }}>📋 Information Needed (Missing Documentation Requests)</h3>
+                      <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
+                        {decisionData.missing_information.map((req: any, i: number) => (
+                          <div key={i} style={{
+                            background: 'rgba(245, 158, 11, 0.05)',
+                            border: '1px solid rgba(245, 158, 11, 0.2)',
+                            padding: '16px',
+                            borderRadius: '8px'
+                          }}>
+                            <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '12px', marginBottom: '6px' }}>
+                              <span style={{ color: '#FBBF24', fontWeight: 'bold' }}>Priority: {req.priority}</span>
+                              <span style={{ color: 'var(--text-secondary)' }}>Type: {req.request_type}</span>
+                            </div>
+                            <p style={{ margin: '0 0 10px 0', fontSize: '13px', fontWeight: '500' }}>{req.description}</p>
+                            {req.policy_citation && (
+                              <div style={{ fontSize: '12px', color: 'var(--text-secondary)' }}>
+                                <strong>Source Policy Citation:</strong> <code>{req.policy_citation}</code>
+                              </div>
+                            )}
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  )}
+
+                  {/* Decision Factors */}
+                  <h3 style={{ fontSize: '15px', margin: '24px 0 12px 0' }}>Decisive Coverage Factors</h3>
+                  <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
+                    {decisionData.decision_factors.map((fac: any, i: number) => {
+                      const effectStyles: any = {
+                        SUPPORTS_APPROVAL: { label: 'Supports Approval', border: 'rgba(16, 185, 129, 0.2)', bg: 'rgba(16, 185, 129, 0.02)', color: '#34D399' },
+                        BLOCKING_FAILURE: { label: 'Blocking Failure', border: 'rgba(239, 68, 68, 0.2)', bg: 'rgba(239, 68, 68, 0.02)', color: '#F87171' },
+                        BLOCKING_MISSING_INFORMATION: { label: 'Missing Documentation', border: 'rgba(245, 158, 11, 0.2)', bg: 'rgba(245, 158, 11, 0.02)', color: '#FBBF24' },
+                        NON_BLOCKING_WARNING: { label: 'Non-Blocking Warning', border: 'rgba(245, 158, 11, 0.2)', bg: 'rgba(245, 158, 11, 0.02)', color: '#FBBF24' },
+                        REQUIRES_HUMAN_REVIEW: { label: 'Manual Review Required', border: 'rgba(139, 92, 246, 0.2)', bg: 'rgba(139, 92, 246, 0.02)', color: '#A78BFA' },
+                        INFORMATIONAL: { label: 'Informational', border: 'var(--border-color)', bg: 'rgba(255,255,255,0.01)', color: 'var(--text-secondary)' }
+                      };
+                      const est = effectStyles[fac.effect] || { label: fac.effect, border: 'var(--border-color)', bg: 'none', color: '#fff' };
+                      return (
+                        <div key={i} style={{
+                          background: est.bg,
+                          border: `1px solid ${est.border}`,
+                          padding: '16px',
+                          borderRadius: '8px'
+                        }}>
+                          <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '8px' }}>
+                            <strong style={{ fontSize: '13px' }}>{fac.factor_id}</strong>
+                            <span style={{ fontSize: '11px', textTransform: 'uppercase', color: est.color, fontWeight: 'bold' }}>
+                              {est.label}
+                            </span>
+                          </div>
+                          <p style={{ margin: '0 0 10px 0', fontSize: '13px' }}>{fac.description}</p>
+                          <div style={{ display: 'flex', gap: '20px', fontSize: '12px', color: 'var(--text-secondary)' }}>
+                            {fac.policy_citation && (
+                              <div><strong>Citation:</strong> <code>{fac.policy_citation}</code></div>
+                            )}
+                            {fac.patient_provenance && fac.patient_provenance.length > 0 && (
+                              <div>
+                                <strong>Provenance:</strong> {fac.patient_provenance.map((p: any, idx: number) => (
+                                  <span key={idx} style={{ marginLeft: '4px' }}><code>{p.collection} ({p.record_id})</code></span>
+                                ))}
+                              </div>
+                            )}
+                          </div>
+                        </div>
+                      );
+                    })}
+                  </div>
+
+                  {/* Audit Metadata */}
+                  <div style={{ marginTop: '30px', paddingTop: '16px', borderTop: '1px solid var(--border-color)', fontSize: '11px', color: 'rgba(255,255,255,0.3)', display: 'flex', justifyContent: 'space-between' }}>
+                    <div><strong>Decision ID:</strong> <code>{decisionData.decision_id}</code></div>
+                    <div><strong>Evaluation ID:</strong> <code>{decisionData.evaluation_id}</code></div>
+                    <div><strong>Timestamp:</strong> {decisionData.created_at}</div>
+                  </div>
+                </div>
+              )}
+
+              {/* Tab: Reviewer Explanation & Action */}
+              {activeTab === 'explanation' && explanationData && (
+                <div>
+                  <h3 style={{ fontSize: '16px', marginBottom: '16px', color: '#a78bfa' }}>📝 Reviewer Case Synthesis & Explanation</h3>
+                  
+                  {/* Synthesis Summary */}
+                  <div style={{ background: 'rgba(139, 92, 246, 0.05)', border: '1px solid rgba(139, 92, 246, 0.2)', padding: '16px', borderRadius: '8px', marginBottom: '20px' }}>
+                    <h4 style={{ margin: '0 0 8px 0', fontSize: '13px', textTransform: 'uppercase', color: '#a78bfa' }}>Synthesis Summary</h4>
+                    <p style={{ margin: '0', fontSize: '14px', lineHeight: '1.5' }}>{explanationData.summary}</p>
+                  </div>
+
+                  <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '20px', marginBottom: '20px' }}>
+                    {/* Why this recommendation list */}
+                    <div style={{ background: 'rgba(255,255,255,0.01)', border: '1px solid var(--border-color)', padding: '16px', borderRadius: '8px' }}>
+                      <h4 style={{ margin: '0 0 10px 0', fontSize: '13px', color: 'var(--text-secondary)' }}>Why this recommendation</h4>
+                      <ul style={{ margin: '0', paddingLeft: '20px', fontSize: '13px', display: 'flex', flexDirection: 'column', gap: '6px' }}>
+                        {explanationData.why.map((w: string, idx: number) => <li key={idx}>{w}</li>)}
+                      </ul>
+                    </div>
+                    {/* Policy summary list */}
+                    <div style={{ background: 'rgba(255,255,255,0.01)', border: '1px solid var(--border-color)', padding: '16px', borderRadius: '8px' }}>
+                      <h4 style={{ margin: '0 0 10px 0', fontSize: '13px', color: 'var(--text-secondary)' }}>CMS Policy Sources</h4>
+                      <ul style={{ margin: '0', paddingLeft: '20px', fontSize: '13px', display: 'flex', flexDirection: 'column', gap: '6px' }}>
+                        {explanationData.policy_summary.map((p: string, idx: number) => <li key={idx}>{p}</li>)}
+                      </ul>
+                    </div>
+                  </div>
+
+                  <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '20px', marginBottom: '24px' }}>
+                    {/* Satisfied list */}
+                    <div style={{ background: 'rgba(255,255,255,0.01)', border: '1px solid var(--border-color)', padding: '16px', borderRadius: '8px' }}>
+                      <h4 style={{ margin: '0 0 10px 0', fontSize: '13px', color: '#34D399' }}>✓ Satisfied Criteria</h4>
+                      <ul style={{ margin: '0', paddingLeft: '20px', fontSize: '13px', display: 'flex', flexDirection: 'column', gap: '6px' }}>
+                        {explanationData.satisfied_requirements.map((s: string, idx: number) => <li key={idx} style={{ color: '#a7f3d0' }}>{s}</li>)}
+                      </ul>
+                    </div>
+                    {/* Unresolved / failed list */}
+                    <div style={{ background: 'rgba(255,255,255,0.01)', border: '1px solid var(--border-color)', padding: '16px', borderRadius: '8px' }}>
+                      <h4 style={{ margin: '0 0 10px 0', fontSize: '13px', color: '#F87171' }}>✗ Unresolved / Failed Criteria</h4>
+                      <ul style={{ margin: '0', paddingLeft: '20px', fontSize: '13px', display: 'flex', flexDirection: 'column', gap: '6px' }}>
+                        {explanationData.blocking_requirements.length > 0 ? (
+                          explanationData.blocking_requirements.map((b: string, idx: number) => <li key={idx} style={{ color: '#fca5a5' }}>{b}</li>)
+                        ) : (
+                          <li style={{ color: 'var(--text-secondary)' }}>No failed criteria or blocking requirements identified.</li>
+                        )}
+                      </ul>
+                    </div>
+                  </div>
+
+                  {/* Information needed */}
+                  {explanationData.missing_information.length > 0 && (
+                    <div style={{ background: 'rgba(245, 158, 11, 0.02)', border: '1px solid rgba(245, 158, 11, 0.1)', padding: '16px', borderRadius: '8px', marginBottom: '24px' }}>
+                      <h4 style={{ margin: '0 0 10px 0', fontSize: '13px', color: '#FBBF24' }}>📋 Information Needed</h4>
+                      <ul style={{ margin: '0', paddingLeft: '20px', fontSize: '13px', display: 'flex', flexDirection: 'column', gap: '6px' }}>
+                        {explanationData.missing_information.map((m: string, idx: number) => <li key={idx} style={{ color: '#fef3c7' }}>{m}</li>)}
+                      </ul>
+                    </div>
+                  )}
+
+                  {/* Human Reviewer Action Form */}
+                  <div style={{ background: 'rgba(255,255,255,0.02)', border: '1px solid var(--border-color)', padding: '20px', borderRadius: '8px', marginBottom: '24px' }}>
+                    <h3 style={{ fontSize: '15px', margin: '0 0 16px 0', color: 'var(--text-primary)' }}>✍ Submit Human Reviewer Action</h3>
+                    
+                    {actionMessage && (
+                      <div style={{ background: 'rgba(16, 185, 129, 0.1)', border: '1px solid rgba(16, 185, 129, 0.2)', color: '#34D399', padding: '12px', borderRadius: '6px', marginBottom: '16px', fontSize: '13px' }}>
+                        {actionMessage}
+                      </div>
+                    )}
+
+                    <form onSubmit={handleActionSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
+                      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '20px' }}>
+                        <div className="form-group">
+                          <label className="form-label" style={{ fontSize: '12px' }}>Reviewer Identity</label>
+                          <input
+                            type="text"
+                            className="form-control"
+                            required
+                            value={reviewerId}
+                            onChange={(e) => setReviewerId(e.target.value)}
+                          />
+                        </div>
+                        <div className="form-group">
+                          <label className="form-label" style={{ fontSize: '12px' }}>Workflow Action</label>
+                          <select
+                            className="form-control"
+                            value={actionType}
+                            onChange={(e) => setActionType(e.target.value)}
+                          >
+                            <option value="ACCEPT_RECOMMENDATION">Accept Recommendation</option>
+                            <option value="REQUEST_MORE_INFORMATION">Request More Information</option>
+                            <option value="ESCALATE">Escalate</option>
+                            <option value="OVERRIDE_RECOMMENDATION">Override Recommendation</option>
+                          </select>
+                        </div>
+                      </div>
+
+                      {actionType === 'OVERRIDE_RECOMMENDATION' && (
+                        <div className="form-group">
+                          <label className="form-label" style={{ fontSize: '12px', color: '#F87171' }}>
+                            Intended Reviewer Disposition (Override)
+                          </label>
+                          <select
+                            className="form-control"
+                            value={overrideDisp}
+                            onChange={(e) => setOverrideDisp(e.target.value)}
+                          >
+                            <option value="APPROVE">Approve</option>
+                            <option value="DENY">Deny</option>
+                            <option value="PEND">Pend</option>
+                            <option value="NURSE_REVIEW">Nurse Review</option>
+                          </select>
+                          <p style={{ margin: '6px 0 0 0', fontSize: '11px', color: 'rgba(255,255,255,0.4)', fontStyle: 'italic' }}>
+                            ⚠ The original system recommendation will remain preserved in the audit history.
+                          </p>
+                        </div>
+                      )}
+
+                      <div className="form-group">
+                        <label className="form-label" style={{ fontSize: '12px' }}>Justification / Reason Description</label>
+                        <textarea
+                          className="form-control"
+                          rows={3}
+                          required
+                          placeholder="Provide detailed clinical or administrative rationale statement for this action..."
+                          value={actionReason}
+                          onChange={(e) => setActionReason(e.target.value)}
+                        />
+                      </div>
+
+                      <button type="submit" className="btn-primary" style={{ alignSelf: 'start', padding: '10px 24px' }}>
+                        Submit Action Log
+                      </button>
+                    </form>
+                  </div>
+
+                  {/* Review History */}
+                  <div>
+                    <h3 style={{ fontSize: '15px', margin: '24px 0 12px 0' }}>📝 Review History Logs</h3>
+                    {reviewHistory.length > 0 ? (
+                      <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
+                        {reviewHistory.map((h: any, idx: number) => (
+                          <div key={idx} style={{ background: 'rgba(255,255,255,0.01)', border: '1px solid var(--border-color)', padding: '14px', borderRadius: '8px' }}>
+                            <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '12px', marginBottom: '6px', color: 'var(--text-secondary)' }}>
+                              <span><strong>Reviewer:</strong> {h.reviewer_id}</span>
+                              <span>{new Date(h.timestamp).toLocaleString()}</span>
+                            </div>
+                            <div style={{ fontSize: '13px', fontWeight: 'bold', marginBottom: '4px', color: h.action === 'OVERRIDE_RECOMMENDATION' ? '#F87171' : 'var(--text-primary)' }}>
+                              {h.action.replace('_', ' ')} {h.intended_disposition ? `➔ ${h.intended_disposition}` : ''}
+                            </div>
+                            <p style={{ margin: '0', fontSize: '13px', color: 'rgba(255,255,255,0.7)' }}>{h.reason}</p>
+                          </div>
+                        ))}
+                      </div>
+                    ) : (
+                      <p style={{ fontSize: '13px', color: 'var(--text-secondary)' }}>No reviewer actions logged yet for this request.</p>
+                    )}
+                  </div>
+
+                  {/* Generated By Details */}
+                  <div style={{ marginTop: '30px', paddingTop: '16px', borderTop: '1px solid var(--border-color)', fontSize: '11px', color: 'rgba(255,255,255,0.25)', display: 'flex', justifyContent: 'space-between' }}>
+                    <div><strong>Synthesis Provider:</strong> <code>{explanationData.generated_by?.provider || 'deterministic'}</code></div>
+                    <div><strong>Model:</strong> <code>{explanationData.generated_by?.model || 'rule_engine'}</code></div>
+                    <div><strong>Prompt Version:</strong> <code>{explanationData.generated_by?.prompt_version || 'v1'}</code></div>
+                  </div>
+                </div>
+              )}
+
+              {/* Tab: Workflow Audit Trail */}
+              {activeTab === 'audit_trail' && (
+                <div>
+                  <h3 style={{ fontSize: '16px', marginBottom: '16px', color: '#60a5fa' }}>📋 Workflow Audit Trail Timeline</h3>
+                  <div style={{ display: 'flex', flexDirection: 'column', gap: '16px', position: 'relative', paddingLeft: '24px', borderLeft: '2px solid var(--border-color)' }}>
+                    {auditEvents.map((evt: any, idx: number) => {
+                      const eventColors: any = {
+                        REQUEST_CREATED: '#60A5FA',
+                        EVIDENCE_PACKET_BUILT: '#34D399',
+                        POLICY_ROUTED: '#818CF8',
+                        POLICY_RETRIEVED: '#FB7185',
+                        EVALUATION_CREATED: '#A78BFA',
+                        DECISION_SUPPORT_CREATED: '#FBBF24',
+                        EXPLANATION_GENERATED: '#A78BFA',
+                        REVIEWER_ACTION_RECORDED: '#34D399',
+                        RECOMMENDATION_OVERRIDDEN: '#F87171'
+                      };
+                      const dotColor = eventColors[evt.event_type] || '#fff';
+                      return (
+                        <div key={idx} style={{ position: 'relative', marginBottom: '4px' }}>
+                          <div style={{
+                            position: 'absolute',
+                            left: '-31px',
+                            top: '4px',
+                            width: '12px',
+                            height: '12px',
+                            borderRadius: '50%',
+                            background: dotColor,
+                            border: '3px solid #0f172a'
+                          }} />
+                          <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '12px', color: 'var(--text-secondary)', marginBottom: '4px' }}>
+                            <span><strong>Event:</strong> <code style={{ color: dotColor }}>{evt.event_type}</code></span>
+                            <span>{new Date(evt.timestamp).toLocaleString()}</span>
+                          </div>
+                          <div style={{ fontSize: '13px', background: 'rgba(255,255,255,0.01)', border: '1px solid var(--border-color)', padding: '10px 14px', borderRadius: '6px' }}>
+                            <div style={{ fontSize: '12px', marginBottom: '4px' }}>
+                              <strong>Actor:</strong> <code>{evt.actor_id} ({evt.actor_type})</code> | <strong>Event ID:</strong> <code>{evt.event_id}</code>
+                            </div>
+                            {evt.metadata && Object.keys(evt.metadata).length > 0 && (
+                              <pre style={{ margin: '6px 0 0 0', padding: '6px', background: 'rgba(0,0,0,0.2)', borderRadius: '4px', fontSize: '11px', overflowX: 'auto', color: 'rgba(255,255,255,0.6)' }}>
+                                {JSON.stringify(evt.metadata, null, 2)}
+                              </pre>
+                            )}
+                          </div>
+                        </div>
+                      );
+                    })}
+                  </div>
                 </div>
               )}
 

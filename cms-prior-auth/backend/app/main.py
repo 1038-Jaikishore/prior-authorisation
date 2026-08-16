@@ -4,6 +4,9 @@ from app.db.connection import db_connection
 from app.api.policy import router as policy_router
 from app.api.policy_rag import router as policy_rag_router
 from app.api.prior_auth import router as prior_auth_router
+from app.api.evaluation import router as evaluation_router
+from app.api.decision import router as decision_router
+from app.api.review import router as review_router
 
 app = FastAPI(
     title="CMS Prior Authorization Decision-Support System",
@@ -28,6 +31,9 @@ app.add_middleware(
 app.include_router(policy_router)
 app.include_router(policy_rag_router)
 app.include_router(prior_auth_router)
+app.include_router(evaluation_router)
+app.include_router(decision_router)
+app.include_router(review_router)
 
 @app.get("/health")
 def health_check():

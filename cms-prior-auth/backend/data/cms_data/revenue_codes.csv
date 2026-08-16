@@ -1,0 +1,356 @@
+57071,36,Other Imaging Services - Other Imaging Services,05/29/2026,N,0409,15
+57071,36,Emergency Room - General Classification,05/29/2026,N,0450,15
+57071,36,Clinic - General Classification,05/29/2026,X,0510,15
+57071,36,Clinic - Chronic Pain Center,05/29/2026,Y,0511,15
+57071,36,Clinic - Dental Clinic,05/29/2026,Y,0512,15
+57071,36,Clinic - Psychiatric Clinic,05/29/2026,Y,0513,15
+57071,36,Clinic - OB-GYN Clinic,05/29/2026,Y,0514,15
+57071,36,Clinic - Pediatric Clinic,05/29/2026,Y,0515,15
+57071,36,Clinic - Urgent Care Clinic,05/29/2026,Y,0516,15
+57071,36,Clinic - Family Practice Clinic,05/29/2026,Y,0517,15
+57071,36,Clinic - Other Clinic,05/29/2026,Z,0519,15
+57071,36,Freestanding Clinic - General Classification,05/29/2026,X,0520,15
+57071,36,Freestanding Clinic - Clinic Visit by Member to RHC/FQHC,05/29/2026,Y,0521,15
+57071,36,Freestanding Clinic - Home Visit by RHC/FQHC Practitioner,05/29/2026,Y,0522,15
+57071,36,Freestanding Clinic - Family Practice Clinic,05/29/2026,Y,0523,15
+57071,36,Freestanding Clinic - Visit by RHC/FQHC Practitioner to a Member in a SNF or Skilled Swing Bed in a Covered Part A Stay,05/29/2026,Y,0524,15
+57071,36,Freestanding Clinic - Visit by RHC/FQHC Practitioner to a Member in a SNF (not in a Covered Part A Stay) or NF or ICF MR or Other Residential Facility,05/29/2026,Y,0525,15
+57071,36,Freestanding Clinic - Urgent Care Clinic,05/29/2026,Y,0526,15
+57071,36,Freestanding Clinic - Visiting Nurse Service(s) to a Member's Home when in a Home Health Shortage Area,05/29/2026,Y,0527,15
+57071,36,Freestanding Clinic - Visit by RHC/FQHC Practitioner to Other non-RHC/FQHC site (e.g. Scene of Accident),05/29/2026,Y,0528,15
+57071,36,Freestanding Clinic - Other Freestanding Clinic,05/29/2026,Z,0529,15
+57071,36,Specialty Services - Treatment Room,05/29/2026,N,0761,15
+57071,36,Professional Fees - Ophthalmology,05/29/2026,N,0962,15
+57069,25,Radiology - Diagnostic - General Classification,05/22/2026,X,0320,15
+57069,25,Radiology - Diagnostic - Angiocardiography,05/22/2026,Y,0321,15
+57069,25,Radiology - Diagnostic - Arthrography,05/22/2026,Y,0322,15
+57069,25,Radiology - Diagnostic - Arteriography,05/22/2026,Y,0323,15
+57069,25,Radiology - Diagnostic - Chest X-Ray,05/22/2026,Y,0324,15
+57069,25,Radiology - Diagnostic - Other Radiology - Diagnostic,05/22/2026,Z,0329,15
+57069,25,Other Imaging Services - General Classification,05/22/2026,X,0400,15
+57069,25,Other Imaging Services - Diagnostic Mammography,05/22/2026,Y,0401,15
+57069,25,Other Imaging Services - Ultrasound,05/22/2026,Y,0402,15
+57069,25,Other Imaging Services - Screening Mammography,05/22/2026,Y,0403,15
+57069,25,Other Imaging Services - Positron Emission Tomography,05/22/2026,Y,0404,15
+57069,25,Other Imaging Services - Other Imaging Services,05/22/2026,Z,0409,15
+57069,25,Freestanding Clinic - General Classification,05/22/2026,X,0520,15
+57069,25,Freestanding Clinic - Clinic Visit by Member to RHC/FQHC,05/22/2026,Y,0521,15
+57069,25,Freestanding Clinic - Home Visit by RHC/FQHC Practitioner,05/22/2026,Y,0522,15
+57069,25,Freestanding Clinic - Family Practice Clinic,05/22/2026,Y,0523,15
+57069,25,Freestanding Clinic - Visit by RHC/FQHC Practitioner to a Member in a SNF or Skilled Swing Bed in a Covered Part A Stay,05/22/2026,Y,0524,15
+57069,25,Freestanding Clinic - Visit by RHC/FQHC Practitioner to a Member in a SNF (not in a Covered Part A Stay) or NF or ICF MR or Other Residential Facility,05/22/2026,Y,0525,15
+57069,25,Freestanding Clinic - Urgent Care Clinic,05/22/2026,Y,0526,15
+57069,25,Freestanding Clinic - Visiting Nurse Service(s) to a Member's Home when in a Home Health Shortage Area,05/22/2026,Y,0527,15
+57069,25,Freestanding Clinic - Visit by RHC/FQHC Practitioner to Other non-RHC/FQHC site (e.g. Scene of Accident),05/22/2026,Y,0528,15
+57069,25,Freestanding Clinic - Other Freestanding Clinic,05/22/2026,Z,0529,15
+57069,25,Other Diagnostic Services - General Classification,05/22/2026,X,0920,15
+57069,25,Other Diagnostic Services - Peripheral Vascular Lab,05/22/2026,Y,0921,15
+57069,25,Other Diagnostic Services - Electromyogram,05/22/2026,Y,0922,15
+57069,25,Other Diagnostic Services - Pap Smear,05/22/2026,Y,0923,15
+57069,25,Other Diagnostic Services - Allergy Test,05/22/2026,Y,0924,15
+57069,25,Other Diagnostic Services - Pregnancy Test,05/22/2026,Y,0925,15
+57069,25,Other Diagnostic Services - Other Diagnostic Service,05/22/2026,Z,0929,15
+57069,25,Professional Fees - General Classification,05/22/2026,X,0960,15
+57069,25,Professional Fees - Psychiatric,05/22/2026,Y,0961,15
+57069,25,Professional Fees - Ophthalmology,05/22/2026,Y,0962,15
+57069,25,Professional Fees - Anesthesiologist (MD),05/22/2026,Y,0963,15
+57069,25,Professional Fees - Anesthetist (CRNA),05/22/2026,Y,0964,15
+57069,25,Professional Fees - Other Professional Fee,05/22/2026,Z,0969,15
+57284,14,Operating Room Services - General Classification,05/22/2026,N,0360,15
+57284,14,Operating Room Services - Minor Surgery,05/22/2026,N,0361,15
+57284,14,Ambulatory Surgical Care - General Classification,05/22/2026,N,0490,15
+57284,14,Clinic - General Classification,05/22/2026,N,0510,15
+57284,14,Clinic - Other Clinic,05/22/2026,N,0519,15
+57284,14,Freestanding Clinic - General Classification,05/22/2026,N,0520,15
+57284,14,Specialty Services - Other Specialty Services,05/22/2026,N,0769,15
+57065,32,Behavioral Health Treatment/Services - General Classification,05/29/2026,N,0900,15
+57065,32,Behavioral Health Treatment/Services - Electroshock Treatment,05/29/2026,N,0901,15
+57065,32,Behavioral Health Treatment/Services - Individual Therapy,05/29/2026,N,0914,15
+57065,32,Behavioral Health Treatment/Services - Group Therapy,05/29/2026,N,0915,15
+57065,32,Behavioral Health Treatment/Services - Family Therapy,05/29/2026,N,0916,15
+57065,32,Behavioral Health Treatment/Services - Testing,05/29/2026,N,0918,15
+58477,22,Radiology - Diagnostic - General Classification,05/21/2026,X,0320,15
+58477,22,Radiology - Diagnostic - Angiocardiography,05/21/2026,Y,0321,15
+58477,22,Radiology - Diagnostic - Arthrography,05/21/2026,Y,0322,15
+58477,22,Radiology - Diagnostic - Arteriography,05/21/2026,Y,0323,15
+58477,22,Radiology - Diagnostic - Chest X-Ray,05/21/2026,Y,0324,15
+58477,22,Radiology - Diagnostic - Other Radiology - Diagnostic,05/21/2026,Z,0329,15
+58477,22,Operating Room Services - General Classification,05/21/2026,X,0360,15
+58477,22,Operating Room Services - Minor Surgery,05/21/2026,Y,0361,15
+58477,22,Operating Room Services - Organ Transplant - Other than Kidney,05/21/2026,Y,0362,15
+58477,22,Operating Room Services - Kidney Transplant,05/21/2026,Y,0367,15
+58477,22,Operating Room Services - Other OR Services,05/21/2026,Z,0369,15
+58477,22,Emergency Room - General Classification,05/21/2026,X,0450,15
+58477,22,Emergency Room - EMTALA Emergency Medical Screening Services,05/21/2026,Y,0451,15
+58477,22,Emergency Room - ER Beyond EMTALA Screening,05/21/2026,Y,0452,15
+58477,22,Emergency Room - Urgent Care,05/21/2026,Y,0456,15
+58477,22,Emergency Room - Other Emergency Room,05/21/2026,Z,0459,15
+58477,22,Ambulatory Surgical Care - General Classification,05/21/2026,X,0490,15
+58477,22,Ambulatory Surgical Care - Other Ambulatory Surgical Care,05/21/2026,Z,0499,15
+58477,22,Clinic - General Classification,05/21/2026,X,0510,15
+58477,22,Clinic - Chronic Pain Center,05/21/2026,Y,0511,15
+58477,22,Clinic - Dental Clinic,05/21/2026,Y,0512,15
+58477,22,Clinic - Psychiatric Clinic,05/21/2026,Y,0513,15
+58477,22,Clinic - OB-GYN Clinic,05/21/2026,Y,0514,15
+58477,22,Clinic - Pediatric Clinic,05/21/2026,Y,0515,15
+58477,22,Clinic - Urgent Care Clinic,05/21/2026,Y,0516,15
+58477,22,Clinic - Family Practice Clinic,05/21/2026,Y,0517,15
+58477,22,Clinic - Other Clinic,05/21/2026,Z,0519,15
+58477,22,Freestanding Clinic - General Classification,05/21/2026,X,0520,15
+58477,22,Freestanding Clinic - Clinic Visit by Member to RHC/FQHC,05/21/2026,Y,0521,15
+58477,22,Freestanding Clinic - Home Visit by RHC/FQHC Practitioner,05/21/2026,Y,0522,15
+58477,22,Freestanding Clinic - Family Practice Clinic,05/21/2026,Y,0523,15
+58477,22,Freestanding Clinic - Visit by RHC/FQHC Practitioner to a Member in a SNF or Skilled Swing Bed in a Covered Part A Stay,05/21/2026,Y,0524,15
+58477,22,Freestanding Clinic - Visit by RHC/FQHC Practitioner to a Member in a SNF (not in a Covered Part A Stay) or NF or ICF MR or Other Residential Facility,05/21/2026,Y,0525,15
+58477,22,Freestanding Clinic - Urgent Care Clinic,05/21/2026,Y,0526,15
+58477,22,Freestanding Clinic - Visiting Nurse Service(s) to a Member's Home when in a Home Health Shortage Area,05/21/2026,Y,0527,15
+58477,22,Freestanding Clinic - Visit by RHC/FQHC Practitioner to Other non-RHC/FQHC site (e.g. Scene of Accident),05/21/2026,Y,0528,15
+58477,22,Freestanding Clinic - Other Freestanding Clinic,05/21/2026,Z,0529,15
+58477,22,Specialty Services - General Classification,05/21/2026,X,0760,15
+58477,22,Specialty Services - Treatment Room,05/21/2026,Y,0761,15
+58477,22,Specialty Services - Observation Hours,05/21/2026,Y,0762,15
+58477,22,Specialty Services - Other Specialty Services,05/21/2026,Z,0769,15
+59664,17,Radiology - Diagnostic - General Classification,05/21/2026,X,0320,15
+59664,17,Radiology - Diagnostic - Angiocardiography,05/21/2026,Y,0321,15
+59664,17,Radiology - Diagnostic - Arthrography,05/21/2026,Y,0322,15
+59664,17,Radiology - Diagnostic - Arteriography,05/21/2026,Y,0323,15
+59664,17,Radiology - Diagnostic - Chest X-Ray,05/21/2026,Y,0324,15
+59664,17,Radiology - Diagnostic - Other Radiology - Diagnostic,05/21/2026,Z,0329,15
+59664,17,Operating Room Services - General Classification,05/21/2026,X,0360,15
+59664,17,Operating Room Services - Minor Surgery,05/21/2026,Y,0361,15
+59664,17,Operating Room Services - Organ Transplant - Other than Kidney,05/21/2026,Y,0362,15
+59664,17,Operating Room Services - Kidney Transplant,05/21/2026,Y,0367,15
+59664,17,Operating Room Services - Other OR Services,05/21/2026,Z,0369,15
+57067,34,Physical Therapy - General Classification,05/29/2026,N,0420,15
+57067,34,Physical Therapy - Visit,05/29/2026,N,0421,15
+57067,34,Physical Therapy - Evaluation or Re-evaluation,05/29/2026,N,0424,15
+57067,34,Physical Therapy - Other Physical Therapy,05/29/2026,N,0429,15
+57067,34,Occupational Therapy - General Classification,05/29/2026,N,0430,15
+57067,34,Occupational Therapy - Visit,05/29/2026,N,0431,15
+57067,34,Occupational Therapy - Evaluation or Reevaluation,05/29/2026,N,0434,15
+57067,34,Occupational Therapy - Other Occupational Therapy,05/29/2026,N,0439,15
+article_id,article_version,description,last_updated,range,revenue_code_id,revenue_code_version
+58565,52,Medical/Surgical Supplies and Devices - General Classification,08/04/2026,X,0270,15
+58565,52,Medical/Surgical Supplies and Devices - Non-sterile Supply,08/04/2026,Y,0271,15
+58565,52,Medical/Surgical Supplies and Devices - Sterile Supply,08/04/2026,Y,0272,15
+58565,52,Medical/Surgical Supplies and Devices - Take Home Supplies,08/04/2026,Y,0273,15
+58565,52,Medical/Surgical Supplies and Devices - Prosthetic/Orthotic Devices,08/04/2026,Y,0274,15
+58565,52,Medical/Surgical Supplies and Devices - Pacemaker,08/04/2026,Y,0275,15
+58565,52,Medical/Surgical Supplies and Devices - Intraocular Lens,08/04/2026,Y,0276,15
+58565,52,Medical/Surgical Supplies and Devices - Oxygen - Take Home,08/04/2026,Y,0277,15
+58565,52,Medical/Surgical Supplies and Devices - Other Implant,08/04/2026,Y,0278,15
+58565,52,Medical/Surgical Supplies and Devices - Other Supplies/Devices,08/04/2026,Z,0279,15
+58565,52,Operating Room Services - General Classification,08/04/2026,X,0360,15
+58565,52,Operating Room Services - Minor Surgery,08/04/2026,Y,0361,15
+58565,52,Operating Room Services - Organ Transplant - Other than Kidney,08/04/2026,Y,0362,15
+58565,52,Operating Room Services - Kidney Transplant,08/04/2026,Y,0367,15
+58565,52,Operating Room Services - Other OR Services,08/04/2026,Z,0369,15
+58565,52,Physical Therapy - General Classification,08/04/2026,X,0420,15
+58565,52,Physical Therapy - Visit,08/04/2026,Y,0421,15
+58565,52,Physical Therapy - Hourly,08/04/2026,Y,0422,15
+58565,52,Physical Therapy - Group,08/04/2026,Y,0423,15
+58565,52,Physical Therapy - Evaluation or Re-evaluation,08/04/2026,Y,0424,15
+58565,52,Physical Therapy - Other Physical Therapy,08/04/2026,Z,0429,15
+58565,52,Occupational Therapy - General Classification,08/04/2026,X,0430,15
+58565,52,Occupational Therapy - Visit,08/04/2026,Y,0431,15
+58565,52,Occupational Therapy - Hourly,08/04/2026,Y,0432,15
+58565,52,Occupational Therapy - Group,08/04/2026,Y,0433,15
+58565,52,Occupational Therapy - Evaluation or Reevaluation,08/04/2026,Y,0434,15
+58565,52,Occupational Therapy - Other Occupational Therapy,08/04/2026,Z,0439,15
+58565,52,Speech-Language Pathology - General Classification,08/04/2026,X,0440,15
+58565,52,Speech-Language Pathology - Visit,08/04/2026,Y,0441,15
+58565,52,Speech-Language Pathology - Hourly,08/04/2026,Y,0442,15
+58565,52,Speech-Language Pathology - Group,08/04/2026,Y,0443,15
+58565,52,Speech-Language Pathology - Evaluation or Reevaluation,08/04/2026,Y,0444,15
+58565,52,Speech-Language Pathology - Other Speech Therapy,08/04/2026,Z,0449,15
+58565,52,Emergency Room - General Classification,08/04/2026,X,0450,15
+58565,52,Emergency Room - EMTALA Emergency Medical Screening Services,08/04/2026,Y,0451,15
+58565,52,Emergency Room - ER Beyond EMTALA Screening,08/04/2026,Y,0452,15
+58565,52,Emergency Room - Urgent Care,08/04/2026,Y,0456,15
+58565,52,Emergency Room - Other Emergency Room,08/04/2026,Z,0459,15
+58565,52,Ambulatory Surgical Care - General Classification,08/04/2026,X,0490,15
+58565,52,Ambulatory Surgical Care - Other Ambulatory Surgical Care,08/04/2026,Z,0499,15
+58565,52,Clinic - General Classification,08/04/2026,X,0510,15
+58565,52,Clinic - Chronic Pain Center,08/04/2026,Y,0511,15
+58565,52,Clinic - Dental Clinic,08/04/2026,Y,0512,15
+58565,52,Clinic - Psychiatric Clinic,08/04/2026,Y,0513,15
+58565,52,Clinic - OB-GYN Clinic,08/04/2026,Y,0514,15
+58565,52,Clinic - Pediatric Clinic,08/04/2026,Y,0515,15
+58565,52,Clinic - Urgent Care Clinic,08/04/2026,Y,0516,15
+58565,52,Clinic - Family Practice Clinic,08/04/2026,Y,0517,15
+58565,52,Clinic - Other Clinic,08/04/2026,Z,0519,15
+58565,52,Freestanding Clinic - General Classification,08/04/2026,X,0520,15
+58565,52,Freestanding Clinic - Clinic Visit by Member to RHC/FQHC,08/04/2026,Y,0521,15
+58565,52,Freestanding Clinic - Home Visit by RHC/FQHC Practitioner,08/04/2026,Y,0522,15
+58565,52,Freestanding Clinic - Family Practice Clinic,08/04/2026,Y,0523,15
+58565,52,Freestanding Clinic - Visit by RHC/FQHC Practitioner to a Member in a SNF or Skilled Swing Bed in a Covered Part A Stay,08/04/2026,Y,0524,15
+58565,52,Freestanding Clinic - Visit by RHC/FQHC Practitioner to a Member in a SNF (not in a Covered Part A Stay) or NF or ICF MR or Other Residential Facility,08/04/2026,Y,0525,15
+58565,52,Freestanding Clinic - Urgent Care Clinic,08/04/2026,Y,0526,15
+58565,52,Freestanding Clinic - Visiting Nurse Service(s) to a Member's Home when in a Home Health Shortage Area,08/04/2026,Y,0527,15
+58565,52,Freestanding Clinic - Visit by RHC/FQHC Practitioner to Other non-RHC/FQHC site (e.g. Scene of Accident),08/04/2026,Y,0528,15
+58565,52,Freestanding Clinic - Other Freestanding Clinic,08/04/2026,Z,0529,15
+58565,52,Medical/Surgical Supplies and Devices - Surgical Dressings,08/04/2026,N,0623,15
+58565,52,Specialty Services - Treatment Room,08/04/2026,N,0761,15
+58565,52,Professional Fees - Physical Therapy,08/04/2026,N,0977,15
+58565,52,Professional Fees - Occupational Therapy,08/04/2026,N,0978,15
+58565,52,Professional Fees - Outpatient Services,08/04/2026,N,0982,15
+58565,52,Professional Fees - Clinic,08/04/2026,N,0983,15
+58350,24,Radiology - Diagnostic - General Classification,05/15/2026,X,0320,15
+58350,24,Radiology - Diagnostic - Angiocardiography,05/15/2026,Y,0321,15
+58350,24,Radiology - Diagnostic - Arthrography,05/15/2026,Y,0322,15
+58350,24,Radiology - Diagnostic - Arteriography,05/15/2026,Y,0323,15
+58350,24,Radiology - Diagnostic - Chest X-Ray,05/15/2026,Y,0324,15
+58350,24,Radiology - Diagnostic - Other Radiology - Diagnostic,05/15/2026,Z,0329,15
+58350,24,Operating Room Services - General Classification,05/15/2026,X,0360,15
+58350,24,Operating Room Services - Minor Surgery,05/15/2026,Y,0361,15
+58350,24,Operating Room Services - Organ Transplant - Other than Kidney,05/15/2026,Y,0362,15
+58350,24,Operating Room Services - Kidney Transplant,05/15/2026,Y,0367,15
+58350,24,Operating Room Services - Other OR Services,05/15/2026,Z,0369,15
+58350,24,Emergency Room - General Classification,05/15/2026,X,0450,15
+58350,24,Emergency Room - EMTALA Emergency Medical Screening Services,05/15/2026,Y,0451,15
+58350,24,Emergency Room - ER Beyond EMTALA Screening,05/15/2026,Y,0452,15
+58350,24,Emergency Room - Urgent Care,05/15/2026,Y,0456,15
+58350,24,Emergency Room - Other Emergency Room,05/15/2026,Z,0459,15
+58350,24,Ambulatory Surgical Care - General Classification,05/15/2026,X,0490,15
+58350,24,Ambulatory Surgical Care - Other Ambulatory Surgical Care,05/15/2026,Z,0499,15
+58350,24,Clinic - General Classification,05/15/2026,X,0510,15
+58350,24,Clinic - Chronic Pain Center,05/15/2026,Y,0511,15
+58350,24,Clinic - Dental Clinic,05/15/2026,Y,0512,15
+58350,24,Clinic - Psychiatric Clinic,05/15/2026,Y,0513,15
+58350,24,Clinic - OB-GYN Clinic,05/15/2026,Y,0514,15
+58350,24,Clinic - Pediatric Clinic,05/15/2026,Y,0515,15
+58350,24,Clinic - Urgent Care Clinic,05/15/2026,Y,0516,15
+58350,24,Clinic - Family Practice Clinic,05/15/2026,Y,0517,15
+58350,24,Clinic - Other Clinic,05/15/2026,Z,0519,15
+58350,24,Freestanding Clinic - General Classification,05/15/2026,X,0520,15
+58350,24,Freestanding Clinic - Clinic Visit by Member to RHC/FQHC,05/15/2026,Y,0521,15
+58350,24,Freestanding Clinic - Home Visit by RHC/FQHC Practitioner,05/15/2026,Y,0522,15
+58350,24,Freestanding Clinic - Family Practice Clinic,05/15/2026,Y,0523,15
+58350,24,Freestanding Clinic - Visit by RHC/FQHC Practitioner to a Member in a SNF or Skilled Swing Bed in a Covered Part A Stay,05/15/2026,Y,0524,15
+58350,24,Freestanding Clinic - Visit by RHC/FQHC Practitioner to a Member in a SNF (not in a Covered Part A Stay) or NF or ICF MR or Other Residential Facility,05/15/2026,Y,0525,15
+58350,24,Freestanding Clinic - Urgent Care Clinic,05/15/2026,Y,0526,15
+58350,24,Freestanding Clinic - Visiting Nurse Service(s) to a Member's Home when in a Home Health Shortage Area,05/15/2026,Y,0527,15
+58350,24,Freestanding Clinic - Visit by RHC/FQHC Practitioner to Other non-RHC/FQHC site (e.g. Scene of Accident),05/15/2026,Y,0528,15
+58350,24,Freestanding Clinic - Other Freestanding Clinic,05/15/2026,Z,0529,15
+58350,24,Specialty Services - General Classification,05/15/2026,X,0760,15
+58350,24,Specialty Services - Treatment Room,05/15/2026,Y,0761,15
+58350,24,Specialty Services - Observation Hours,05/15/2026,Y,0762,15
+58350,24,Specialty Services - Other Specialty Services,05/15/2026,Z,0769,15
+57326,42,Not Applicable,07/31/2026,N,99999,15
+58403,27,Radiology - Diagnostic - General Classification,05/12/2026,X,0320,15
+58403,27,Radiology - Diagnostic - Angiocardiography,05/12/2026,Y,0321,15
+58403,27,Radiology - Diagnostic - Arthrography,05/12/2026,Y,0322,15
+58403,27,Radiology - Diagnostic - Arteriography,05/12/2026,Y,0323,15
+58403,27,Radiology - Diagnostic - Chest X-Ray,05/12/2026,Y,0324,15
+58403,27,Radiology - Diagnostic - Other Radiology - Diagnostic,05/12/2026,Z,0329,15
+58403,27,Operating Room Services - General Classification,05/12/2026,X,0360,15
+58403,27,Operating Room Services - Minor Surgery,05/12/2026,Y,0361,15
+58403,27,Operating Room Services - Organ Transplant - Other than Kidney,05/12/2026,Y,0362,15
+58403,27,Operating Room Services - Kidney Transplant,05/12/2026,Y,0367,15
+58403,27,Operating Room Services - Other OR Services,05/12/2026,Z,0369,15
+58403,27,Emergency Room - General Classification,05/12/2026,X,0450,15
+58403,27,Emergency Room - EMTALA Emergency Medical Screening Services,05/12/2026,Y,0451,15
+58403,27,Emergency Room - ER Beyond EMTALA Screening,05/12/2026,Y,0452,15
+58403,27,Emergency Room - Urgent Care,05/12/2026,Y,0456,15
+58403,27,Emergency Room - Other Emergency Room,05/12/2026,Z,0459,15
+58403,27,Clinic - General Classification,05/12/2026,X,0510,15
+58403,27,Clinic - Chronic Pain Center,05/12/2026,Y,0511,15
+58403,27,Clinic - Dental Clinic,05/12/2026,Y,0512,15
+58403,27,Clinic - Psychiatric Clinic,05/12/2026,Y,0513,15
+58403,27,Clinic - OB-GYN Clinic,05/12/2026,Y,0514,15
+58403,27,Clinic - Pediatric Clinic,05/12/2026,Y,0515,15
+58403,27,Clinic - Urgent Care Clinic,05/12/2026,Y,0516,15
+58403,27,Clinic - Family Practice Clinic,05/12/2026,Y,0517,15
+58403,27,Clinic - Other Clinic,05/12/2026,Z,0519,15
+58403,27,Freestanding Clinic - General Classification,05/12/2026,X,0520,15
+58403,27,Freestanding Clinic - Clinic Visit by Member to RHC/FQHC,05/12/2026,Y,0521,15
+58403,27,Freestanding Clinic - Home Visit by RHC/FQHC Practitioner,05/12/2026,Y,0522,15
+58403,27,Freestanding Clinic - Family Practice Clinic,05/12/2026,Y,0523,15
+58403,27,Freestanding Clinic - Visit by RHC/FQHC Practitioner to a Member in a SNF or Skilled Swing Bed in a Covered Part A Stay,05/12/2026,Y,0524,15
+58403,27,Freestanding Clinic - Visit by RHC/FQHC Practitioner to a Member in a SNF (not in a Covered Part A Stay) or NF or ICF MR or Other Residential Facility,05/12/2026,Y,0525,15
+58403,27,Freestanding Clinic - Urgent Care Clinic,05/12/2026,Y,0526,15
+58403,27,Freestanding Clinic - Visiting Nurse Service(s) to a Member's Home when in a Home Health Shortage Area,05/12/2026,Y,0527,15
+58403,27,Freestanding Clinic - Visit by RHC/FQHC Practitioner to Other non-RHC/FQHC site (e.g. Scene of Accident),05/12/2026,Y,0528,15
+58403,27,Freestanding Clinic - Other Freestanding Clinic,05/12/2026,Z,0529,15
+58403,27,Specialty Services - General Classification,05/12/2026,X,0760,15
+58403,27,Specialty Services - Treatment Room,05/12/2026,Y,0761,15
+58403,27,Specialty Services - Observation Hours,05/12/2026,Y,0762,15
+58403,27,Specialty Services - Other Specialty Services,05/12/2026,Z,0769,15
+57064,15,Not Applicable,05/17/2026,N,99999,15
+56692,19,Emergency Room - Other Emergency Room,07/27/2026,N,0459,15
+56692,19,Clinic - General Classification,07/27/2026,N,0510,15
+56692,19,Clinic - Family Practice Clinic,07/27/2026,N,0517,15
+56692,19,Clinic - Other Clinic,07/27/2026,N,0519,15
+56692,19,Freestanding Clinic - General Classification,07/27/2026,X,0520,15
+56692,19,Freestanding Clinic - Clinic Visit by Member to RHC/FQHC,07/27/2026,Y,0521,15
+56692,19,Freestanding Clinic - Home Visit by RHC/FQHC Practitioner,07/27/2026,Y,0522,15
+56692,19,Freestanding Clinic - Family Practice Clinic,07/27/2026,Y,0523,15
+56692,19,Freestanding Clinic - Visit by RHC/FQHC Practitioner to a Member in a SNF or Skilled Swing Bed in a Covered Part A Stay,07/27/2026,Y,0524,15
+56692,19,Freestanding Clinic - Visit by RHC/FQHC Practitioner to a Member in a SNF (not in a Covered Part A Stay) or NF or ICF MR or Other Residential Facility,07/27/2026,Y,0525,15
+56692,19,Freestanding Clinic - Urgent Care Clinic,07/27/2026,Y,0526,15
+56692,19,Freestanding Clinic - Visiting Nurse Service(s) to a Member's Home when in a Home Health Shortage Area,07/27/2026,Y,0527,15
+56692,19,Freestanding Clinic - Visit by RHC/FQHC Practitioner to Other non-RHC/FQHC site (e.g. Scene of Accident),07/27/2026,Y,0528,15
+56692,19,Freestanding Clinic - Other Freestanding Clinic,07/27/2026,Z,0529,15
+56692,19,Specialty Services - Treatment Room,07/27/2026,N,0761,15
+56692,19,Other Diagnostic Services - General Classification,07/27/2026,N,0920,15
+56692,19,Other Diagnostic Services - Other Diagnostic Service,07/27/2026,N,0929,15
+56692,19,Professional Fees - General Classification,07/27/2026,N,0960,15
+56692,19,Professional Fees - Outpatient Services,07/27/2026,N,0982,15
+56692,19,Professional Fees - Clinic,07/27/2026,N,0983,15
+57204,45,Radiology - Diagnostic - General Classification,05/05/2026,X,0320,15
+57204,45,Radiology - Diagnostic - Angiocardiography,05/05/2026,Y,0321,15
+57204,45,Radiology - Diagnostic - Arthrography,05/05/2026,Y,0322,15
+57204,45,Radiology - Diagnostic - Arteriography,05/05/2026,Y,0323,15
+57204,45,Radiology - Diagnostic - Chest X-Ray,05/05/2026,Y,0324,15
+57204,45,Radiology - Diagnostic - Other Radiology - Diagnostic,05/05/2026,Z,0329,15
+57204,45,CT Scan - General Classification,05/05/2026,X,0350,15
+57204,45,CT Scan - Head Scan,05/05/2026,Y,0351,15
+57204,45,CT Scan - Body Scan,05/05/2026,Y,0352,15
+57204,45,CT Scan - CT - Other,05/05/2026,Z,0359,15
+57204,45,Other Imaging Services - General Classification,05/05/2026,X,0400,15
+57204,45,Other Imaging Services - Diagnostic Mammography,05/05/2026,Y,0401,15
+57204,45,Other Imaging Services - Ultrasound,05/05/2026,Y,0402,15
+57204,45,Other Imaging Services - Screening Mammography,05/05/2026,Y,0403,15
+57204,45,Other Imaging Services - Positron Emission Tomography,05/05/2026,Y,0404,15
+57204,45,Other Imaging Services - Other Imaging Services,05/05/2026,Z,0409,15
+57204,45,Magnetic Resonance Technology (MRT) - General Classification,05/05/2026,X,0610,15
+57204,45,Magnetic Resonance Technology (MRT) - MRI - Brain/Brainstem,05/05/2026,Y,0611,15
+57204,45,Magnetic Resonance Technology (MRT) - MRI - Spinal Cord/Spine,05/05/2026,Y,0612,15
+57204,45,Magnetic Resonance Technology (MRT) - MRI - Other,05/05/2026,Y,0614,15
+57204,45,Magnetic Resonance Technology (MRT) - MRA - Head and Neck,05/05/2026,Y,0615,15
+57204,45,Magnetic Resonance Technology (MRT) - MRA - Lower Extremities,05/05/2026,Y,0616,15
+57204,45,Magnetic Resonance Technology (MRT) - MRA - Other,05/05/2026,Y,0618,15
+57204,45,Magnetic Resonance Technology (MRT) - Other MRT,05/05/2026,Z,0619,15
+57040,26,Speech-Language Pathology - General Classification,07/27/2026,N,0440,15
+57040,26,Speech-Language Pathology - Evaluation or Reevaluation,07/27/2026,N,0444,15
+57040,26,Speech-Language Pathology - Other Speech Therapy,07/27/2026,N,0449,15
+56798,29,Laboratory - General Classification,07/27/2026,N,0300,15
+56798,29,Laboratory - Chemistry,07/27/2026,N,0301,15
+56798,29,Laboratory - Other Laboratory,07/27/2026,N,0309,15
+57193,31,Clinic - General Classification,07/27/2026,N,0510,15
+57193,31,Clinic - Family Practice Clinic,07/27/2026,N,0517,15
+57193,31,Other Therapeutic Services - General Classification,07/27/2026,N,0940,15
+57044,22,Operating Room Services - General Classification,07/27/2026,N,0360,15
+57044,22,Operating Room Services - Minor Surgery,07/27/2026,N,0361,15
+57044,22,Operating Room Services - Other OR Services,07/27/2026,N,0369,15
+57044,22,Emergency Room - Urgent Care,07/27/2026,N,0456,15
+57044,22,Ambulatory Surgical Care - General Classification,07/27/2026,N,0490,15
+57044,22,Ambulatory Surgical Care - Other Ambulatory Surgical Care,07/27/2026,N,0499,15
+57044,22,Clinic - General Classification,07/27/2026,N,0510,15
+57044,22,Clinic - Urgent Care Clinic,07/27/2026,N,0516,15
+57044,22,Freestanding Clinic - General Classification,07/27/2026,N,0520,15
+57044,22,Specialty Services - Treatment Room,07/27/2026,N,0761,15
+57044,22,Professional Fees - General Classification,07/27/2026,N,0960,15
+57044,22,Professional Fees - Other Professional Fee,07/27/2026,N,0969,15
+57044,22,Professional Fees - Operating Room,07/27/2026,N,0975,15
+57044,22,Professional Fees - Outpatient Services,07/27/2026,N,0982,15
+57044,22,Professional Fees - Clinic,07/27/2026,N,0983,15
+57311,35,Physical Therapy - General Classification,07/27/2026,X,0420,15
+57311,35,Physical Therapy - Visit,07/27/2026,Y,0421,15
+57311,35,Physical Therapy - Hourly,07/27/2026,Y,0422,15
+57311,35,Physical Therapy - Group,07/27/2026,Y,0423,15
+57311,35,Physical Therapy - Evaluation or Re-evaluation,07/27/2026,Y,0424,15
+57311,35,Physical Therapy - Other Physical Therapy,07/27/2026,Z,0429,15
+57307,38,Other Diagnostic Services - General Classification,04/29/2026,N,0920,15
+57307,38,Other Diagnostic Services - Electromyogram,04/29/2026,N,0922,15
+57307,38,Other Diagnostic Services - Other Diagnostic Service,04/29/2026,N,0929,15

@@ -1,0 +1,259 @@
+59723,10,Crisis Intervention,1,GZ2ZZZZ,9,01/27/2026,N,79419
+59723,10,"Individual Psychotherapy, Interactive",1,GZ50ZZZ,9,01/27/2026,N,79423
+59723,10,"Individual Psychotherapy, Behavioral",1,GZ51ZZZ,9,01/27/2026,N,79424
+59723,10,"Individual Psychotherapy, Cognitive",1,GZ52ZZZ,9,01/27/2026,N,79425
+59723,10,"Individual Psychotherapy, Interpersonal",1,GZ53ZZZ,9,01/27/2026,N,79426
+59723,10,"Individual Psychotherapy, Psychoanalysis",1,GZ54ZZZ,9,01/27/2026,N,79427
+59723,10,"Individual Psychotherapy, Psychodynamic",1,GZ55ZZZ,9,01/27/2026,N,79428
+59723,10,"Individual Psychotherapy, Supportive",1,GZ56ZZZ,9,01/27/2026,N,79429
+59723,10,"Individual Psychotherapy, Cognitive-Behavioral",1,GZ58ZZZ,9,01/27/2026,N,79430
+59723,10,"Individual Psychotherapy, Psychophysiological",1,GZ59ZZZ,9,01/27/2026,N,79431
+59723,10,Family Psychotherapy,1,GZ72ZZZ,9,01/27/2026,N,79437
+59723,10,Group Psychotherapy,1,GZHZZZZ,9,01/27/2026,N,79449
+59723,10,"Individual Psychotherapy for Substance Abuse Treatment, Cognitive",1,HZ50ZZZ,9,01/27/2026,N,79481
+59723,10,"Individual Psychotherapy for Substance Abuse Treatment, Behavioral",1,HZ51ZZZ,9,01/27/2026,N,79482
+59723,10,"Individual Psychotherapy for Substance Abuse Treatment, Cognitive-Behavioral",1,HZ52ZZZ,9,01/27/2026,N,79483
+59723,10,"Individual Psychotherapy for Substance Abuse Treatment, Interpersonal",1,HZ54ZZZ,9,01/27/2026,N,79485
+59723,10,"Individual Psychotherapy for Substance Abuse Treatment, Interactive",1,HZ55ZZZ,9,01/27/2026,N,79486
+59723,10,"Individual Psychotherapy for Substance Abuse Treatment, Psychoeducation",1,HZ56ZZZ,9,01/27/2026,N,79487
+59723,10,"Individual Psychotherapy for Substance Abuse Treatment, Motivational Enhancement",1,HZ57ZZZ,9,01/27/2026,N,79488
+59723,10,"Individual Psychotherapy for Substance Abuse Treatment, Confrontational",1,HZ58ZZZ,9,01/27/2026,N,79489
+59723,10,"Individual Psychotherapy for Substance Abuse Treatment, Supportive",1,HZ59ZZZ,9,01/27/2026,N,79490
+59723,10,"Individual Psychotherapy for Substance Abuse Treatment, Psychoanalysis",1,HZ5BZZZ,9,01/27/2026,N,79491
+article_id,article_version,description,icd10_pcs_code_group,icd10_pcs_code_id,icd10_pcs_code_version,last_updated,range,sort_order
+59311,10,"Transfusion of Allogeneic Related Bone Marrow into Peripheral Vein, Percutaneous Approach",1,30233G2,7,09/18/2024,N,70162
+59311,10,"Transfusion of Allogeneic Unrelated Bone Marrow into Peripheral Vein, Percutaneous Approach",1,30233G3,7,09/18/2024,N,70163
+59311,10,"Transfusion of Allogeneic Related T-cell Depleted Hematopoietic Stem Cells into Peripheral Vein, Percutaneous Approach",1,30233U2,7,09/18/2024,N,70187
+59311,10,"Transfusion of Allogeneic Unrelated T-cell Depleted Hematopoietic Stem Cells into Peripheral Vein, Percutaneous Approach",1,30233U3,7,09/18/2024,N,70188
+59311,10,"Transfusion of Allogeneic Related Hematopoietic Stem Cells into Peripheral Vein, Percutaneous Approach",1,30233Y2,7,09/18/2024,N,70199
+59311,10,"Transfusion of Allogeneic Unrelated Hematopoietic Stem Cells into Peripheral Vein, Percutaneous Approach",1,30233Y3,7,09/18/2024,N,70200
+59311,10,"Transfusion of Allogeneic Related Bone Marrow into Central Vein, Percutaneous Approach",1,30243G2,7,09/18/2024,N,70206
+59311,10,"Transfusion of Allogeneic Unrelated Bone Marrow into Central Vein, Percutaneous Approach",1,30243G3,7,09/18/2024,N,70207
+59311,10,"Transfusion of Allogeneic Related T-cell Depleted Hematopoietic Stem Cells into Central Vein, Percutaneous Approach",1,30243U2,7,09/18/2024,N,70231
+59311,10,"Transfusion of Allogeneic Unrelated T-cell Depleted Hematopoietic Stem Cells into Central Vein, Percutaneous Approach",1,30243U3,7,09/18/2024,N,70232
+57765,26,"Removal of Synthetic Substitute from Right Hip Joint, Open Approach",1,0SP90JZ,10,06/18/2026,N,57251
+57765,26,"Removal of Synthetic Substitute from Left Hip Joint, Open Approach",1,0SPB0JZ,10,06/18/2026,N,57285
+57765,26,"Replacement of Right Hip Joint with Metal Synthetic Substitute, Cemented, Open Approach",1,0SR9019,10,06/18/2026,N,57806
+57765,26,"Replacement of Right Hip Joint with Metal Synthetic Substitute, Uncemented, Open Approach",1,0SR901A,10,06/18/2026,N,57807
+57765,26,"Replacement of Right Hip Joint with Metal Synthetic Substitute, Open Approach",1,0SR901Z,10,06/18/2026,N,57808
+57765,26,"Replacement of Right Hip Joint with Metal on Polyethylene Synthetic Substitute, Cemented, Open Approach",1,0SR9029,10,06/18/2026,N,57809
+57765,26,"Replacement of Right Hip Joint with Metal on Polyethylene Synthetic Substitute, Uncemented, Open Approach",1,0SR902A,10,06/18/2026,N,57810
+57765,26,"Replacement of Right Hip Joint with Metal on Polyethylene Synthetic Substitute, Open Approach",1,0SR902Z,10,06/18/2026,N,57811
+57765,26,"Replacement of Right Hip Joint with Ceramic Synthetic Substitute, Cemented, Open Approach",1,0SR9039,10,06/18/2026,N,57812
+57765,26,"Replacement of Right Hip Joint with Ceramic Synthetic Substitute, Uncemented, Open Approach",1,0SR903A,10,06/18/2026,N,57813
+57765,26,"Replacement of Right Hip Joint with Ceramic Synthetic Substitute, Open Approach",1,0SR903Z,10,06/18/2026,N,57814
+57765,26,"Replacement of Right Hip Joint with Ceramic on Polyethylene Synthetic Substitute, Cemented, Open Approach",1,0SR9049,10,06/18/2026,N,57815
+57765,26,"Replacement of Right Hip Joint with Ceramic on Polyethylene Synthetic Substitute, Uncemented, Open Approach",1,0SR904A,10,06/18/2026,N,57816
+57765,26,"Replacement of Right Hip Joint with Ceramic on Polyethylene Synthetic Substitute, Open Approach",1,0SR904Z,10,06/18/2026,N,57817
+57765,26,"Replacement of Right Hip Joint with Oxidized Zirconium on Polyethylene Synthetic Substitute, Cemented, Open Approach",1,0SR9069,10,06/18/2026,N,57818
+57765,26,"Replacement of Right Hip Joint with Oxidized Zirconium on Polyethylene Synthetic Substitute, Uncemented, Open Approach",1,0SR906A,10,06/18/2026,N,57819
+57765,26,"Replacement of Right Hip Joint with Oxidized Zirconium on Polyethylene Synthetic Substitute, Open Approach",1,0SR906Z,10,06/18/2026,N,57820
+57765,26,"Replacement of Right Hip Joint with Autologous Tissue Substitute, Open Approach",1,0SR907Z,10,06/18/2026,N,57821
+57765,26,"Replacement of Right Hip Joint with Articulating Spacer, Open Approach",1,0SR90EZ,10,06/18/2026,N,57822
+57765,26,"Replacement of Right Hip Joint with Synthetic Substitute, Cemented, Open Approach",1,0SR90J9,10,06/18/2026,N,57823
+57765,26,"Replacement of Right Hip Joint with Synthetic Substitute, Uncemented, Open Approach",1,0SR90JA,10,06/18/2026,N,57824
+57765,26,"Replacement of Right Hip Joint with Synthetic Substitute, Open Approach",1,0SR90JZ,10,06/18/2026,N,57825
+57765,26,"Replacement of Right Hip Joint with Nonautologous Tissue Substitute, Open Approach",1,0SR90KZ,10,06/18/2026,N,57826
+57765,26,"Replacement of Left Hip Joint with Metal Synthetic Substitute, Cemented, Open Approach",1,0SRB019,10,06/18/2026,N,57841
+57765,26,"Replacement of Left Hip Joint with Metal Synthetic Substitute, Uncemented, Open Approach",1,0SRB01A,10,06/18/2026,N,57842
+57765,26,"Replacement of Left Hip Joint with Metal Synthetic Substitute, Open Approach",1,0SRB01Z,10,06/18/2026,N,57843
+57765,26,"Replacement of Left Hip Joint with Metal on Polyethylene Synthetic Substitute, Cemented, Open Approach",1,0SRB029,10,06/18/2026,N,57844
+57765,26,"Replacement of Left Hip Joint with Metal on Polyethylene Synthetic Substitute, Uncemented, Open Approach",1,0SRB02A,10,06/18/2026,N,57845
+57765,26,"Replacement of Left Hip Joint with Metal on Polyethylene Synthetic Substitute, Open Approach",1,0SRB02Z,10,06/18/2026,N,57846
+57765,26,"Replacement of Left Hip Joint with Ceramic Synthetic Substitute, Cemented, Open Approach",1,0SRB039,10,06/18/2026,N,57847
+57765,26,"Replacement of Left Hip Joint with Ceramic Synthetic Substitute, Uncemented, Open Approach",1,0SRB03A,10,06/18/2026,N,57848
+57765,26,"Replacement of Left Hip Joint with Ceramic Synthetic Substitute, Open Approach",1,0SRB03Z,10,06/18/2026,N,57849
+57765,26,"Replacement of Left Hip Joint with Ceramic on Polyethylene Synthetic Substitute, Cemented, Open Approach",1,0SRB049,10,06/18/2026,N,57850
+57765,26,"Replacement of Left Hip Joint with Ceramic on Polyethylene Synthetic Substitute, Uncemented, Open Approach",1,0SRB04A,10,06/18/2026,N,57851
+57765,26,"Replacement of Left Hip Joint with Ceramic on Polyethylene Synthetic Substitute, Open Approach",1,0SRB04Z,10,06/18/2026,N,57852
+57765,26,"Replacement of Left Hip Joint with Oxidized Zirconium on Polyethylene Synthetic Substitute, Cemented, Open Approach",1,0SRB069,10,06/18/2026,N,57853
+57765,26,"Replacement of Left Hip Joint with Oxidized Zirconium on Polyethylene Synthetic Substitute, Uncemented, Open Approach",1,0SRB06A,10,06/18/2026,N,57854
+57765,26,"Replacement of Left Hip Joint with Oxidized Zirconium on Polyethylene Synthetic Substitute, Open Approach",1,0SRB06Z,10,06/18/2026,N,57855
+57765,26,"Replacement of Left Hip Joint with Autologous Tissue Substitute, Open Approach",1,0SRB07Z,10,06/18/2026,N,57856
+57765,26,"Replacement of Left Hip Joint with Articulating Spacer, Open Approach",1,0SRB0EZ,10,06/18/2026,N,57857
+57765,26,"Replacement of Left Hip Joint with Synthetic Substitute, Cemented, Open Approach",1,0SRB0J9,10,06/18/2026,N,57858
+57765,26,"Replacement of Left Hip Joint with Synthetic Substitute, Uncemented, Open Approach",1,0SRB0JA,10,06/18/2026,N,57859
+57765,26,"Replacement of Left Hip Joint with Synthetic Substitute, Open Approach",1,0SRB0JZ,10,06/18/2026,N,57860
+57765,26,"Replacement of Left Hip Joint with Nonautologous Tissue Substitute, Open Approach",1,0SRB0KZ,10,06/18/2026,N,57861
+57765,26,"Revision of Synthetic Substitute in Right Hip Joint, Open Approach",1,0SW90JZ,10,06/18/2026,N,58678
+57765,26,"Revision of Synthetic Substitute in Left Hip Joint, Open Approach",1,0SWB0JZ,10,06/18/2026,N,58716
+57765,26,"Removal of Synthetic Substitute from Right Knee Joint, Open Approach",2,0SPC0JZ,10,06/18/2026,N,57316
+57765,26,"Removal of Synthetic Substitute from Left Knee Joint, Open Approach",2,0SPD0JZ,10,06/18/2026,N,57358
+57765,26,"Replacement of Right Knee Joint with Oxidized Zirconium on Polyethylene Synthetic Substitute, Cemented, Open Approach",2,0SRC069,10,06/18/2026,N,57862
+57765,26,"Replacement of Right Knee Joint with Oxidized Zirconium on Polyethylene Synthetic Substitute, Uncemented, Open Approach",2,0SRC06A,10,06/18/2026,N,57863
+57765,26,"Replacement of Right Knee Joint with Oxidized Zirconium on Polyethylene Synthetic Substitute, Open Approach",2,0SRC06Z,10,06/18/2026,N,57864
+57765,26,"Replacement of Right Knee Joint with Autologous Tissue Substitute, Open Approach",2,0SRC07Z,10,06/18/2026,N,57867
+57765,26,"Replacement of Right Knee Joint with Articulating Spacer, Open Approach",2,0SRC0EZ,10,06/18/2026,N,57868
+57765,26,"Replacement of Right Knee Joint with Synthetic Substitute, Cemented, Open Approach",2,0SRC0J9,10,06/18/2026,N,57869
+57765,26,"Replacement of Right Knee Joint with Synthetic Substitute, Uncemented, Open Approach",2,0SRC0JA,10,06/18/2026,N,57870
+57765,26,"Replacement of Right Knee Joint with Synthetic Substitute, Open Approach",2,0SRC0JZ,10,06/18/2026,N,57871
+57765,26,"Replacement of Right Knee Joint with Lateral Unicondylar Synthetic Substitute, Cemented, Open Approach",2,0SRC0M9,10,06/18/2026,N,57878
+57765,26,"Replacement of Right Knee Joint with Lateral Unicondylar Synthetic Substitute, Uncemented, Open Approach",2,0SRC0MA,10,06/18/2026,N,57879
+57765,26,"Replacement of Right Knee Joint with Lateral Unicondylar Synthetic Substitute, Open Approach",2,0SRC0MZ,10,06/18/2026,N,57880
+57765,26,"Replacement of Right Knee Joint with Patellofemoral Synthetic Substitute, Cemented, Open Approach",2,0SRC0N9,10,06/18/2026,N,57881
+57765,26,"Replacement of Right Knee Joint with Patellofemoral Synthetic Substitute, Uncemented, Open Approach",2,0SRC0NA,10,06/18/2026,N,57882
+57765,26,"Replacement of Right Knee Joint with Patellofemoral Synthetic Substitute, Open Approach",2,0SRC0NZ,10,06/18/2026,N,57883
+57765,26,"Replacement of Left Knee Joint with Articulating Spacer, Open Approach",2,0SRD0EZ,10,06/18/2026,N,57890
+57765,26,"Replacement of Left Knee Joint with Lateral Unicondylar Synthetic Substitute, Cemented, Open Approach",2,0SRD0M9,10,06/18/2026,N,57900
+57765,26,"Replacement of Left Knee Joint with Lateral Unicondylar Synthetic Substitute, Uncemented, Open Approach",2,0SRD0MA,10,06/18/2026,N,57901
+57765,26,"Replacement of Left Knee Joint with Lateral Unicondylar Synthetic Substitute, Open Approach",2,0SRD0MZ,10,06/18/2026,N,57902
+57994,7,"Insertion of Defibrillator Lead into Coronary Vein, Percutaneous Approach",1,02H43KZ,6,11/16/2023,N,4803
+57994,7,"Insertion of Defibrillator Lead into Right Atrium, Open Approach",1,02H60KZ,6,11/16/2023,N,4821
+57994,7,"Insertion of Defibrillator Lead into Right Atrium, Percutaneous Approach",1,02H63KZ,6,11/16/2023,N,4830
+57994,7,"Insertion of Defibrillator Lead into Right Atrium, Percutaneous Endoscopic Approach",1,02H64KZ,6,11/16/2023,N,4839
+57994,7,"Insertion of Defibrillator Lead into Left Atrium, Open Approach",1,02H70KZ,6,11/16/2023,N,4848
+57994,7,"Insertion of Defibrillator Lead into Left Atrium, Percutaneous Approach",1,02H73KZ,6,11/16/2023,N,4857
+57994,7,"Insertion of Defibrillator Lead into Left Atrium, Percutaneous Endoscopic Approach",1,02H74KZ,6,11/16/2023,N,4866
+57994,7,"Insertion of Defibrillator Lead into Right Ventricle, Open Approach",1,02HK0KZ,6,11/16/2023,N,4890
+57994,7,"Insertion of Defibrillator Lead into Right Ventricle, Percutaneous Approach",1,02HK3KZ,6,11/16/2023,N,4899
+57994,7,"Insertion of Defibrillator Lead into Right Ventricle, Percutaneous Endoscopic Approach",1,02HK4KZ,6,11/16/2023,N,4908
+57994,7,"Insertion of Defibrillator Lead into Left Ventricle, Open Approach",1,02HL0KZ,6,11/16/2023,N,4917
+57994,7,"Insertion of Defibrillator Lead into Left Ventricle, Percutaneous Approach",1,02HL3KZ,6,11/16/2023,N,4926
+57994,7,"Insertion of Defibrillator Lead into Left Ventricle, Percutaneous Endoscopic Approach",1,02HL4KZ,6,11/16/2023,N,4935
+57994,7,"Removal of Cardiac Lead from Heart, Open Approach",1,02PA0MZ,6,11/16/2023,N,5261
+57994,7,"Removal of Cardiac Lead from Heart, Percutaneous Approach",1,02PA3MZ,6,11/16/2023,N,5275
+57994,7,"Removal of Cardiac Lead from Heart, Percutaneous Endoscopic Approach",1,02PA4MZ,6,11/16/2023,N,5289
+57994,7,"Insertion of Defibrillator Generator into Chest Subcutaneous Tissue and Fascia, Open Approach",1,0JH608Z,6,11/16/2023,N,37843
+57994,7,"Insertion of Cardiac Resynchronization Defibrillator Pulse Generator into Chest Subcutaneous Tissue and Fascia, Open Approach",1,0JH609Z,6,11/16/2023,N,37844
+57994,7,"Insertion of Subcutaneous Defibrillator Lead into Chest Subcutaneous Tissue and Fascia, Open Approach",1,0JH60FZ,6,11/16/2023,N,37850
+57994,7,"Insertion of Defibrillator Generator into Chest Subcutaneous Tissue and Fascia, Percutaneous Approach",1,0JH638Z,6,11/16/2023,N,37865
+57994,7,"Insertion of Cardiac Resynchronization Defibrillator Pulse Generator into Chest Subcutaneous Tissue and Fascia, Percutaneous Approach",1,0JH639Z,6,11/16/2023,N,37866
+57994,7,"Insertion of Subcutaneous Defibrillator Lead into Chest Subcutaneous Tissue and Fascia, Percutaneous Approach",1,0JH63FZ,6,11/16/2023,N,37872
+57994,7,"Insertion of Defibrillator Generator into Abdomen Subcutaneous Tissue and Fascia, Open Approach",1,0JH808Z,6,11/16/2023,N,37903
+57994,7,"Insertion of Cardiac Resynchronization Defibrillator Pulse Generator into Abdomen Subcutaneous Tissue and Fascia, Open Approach",1,0JH809Z,6,11/16/2023,N,37904
+57994,7,"Insertion of Defibrillator Generator into Abdomen Subcutaneous Tissue and Fascia, Percutaneous Approach",1,0JH838Z,6,11/16/2023,N,37924
+57994,7,"Insertion of Cardiac Resynchronization Defibrillator Pulse Generator into Abdomen Subcutaneous Tissue and Fascia, Percutaneous Approach",1,0JH839Z,6,11/16/2023,N,37925
+57994,7,"Removal of Subcutaneous Defibrillator Lead from Trunk Subcutaneous Tissue and Fascia, Open Approach",1,0JPT0FZ,6,11/16/2023,N,38164
+57994,7,"Removal of Cardiac Rhythm Related Device from Trunk Subcutaneous Tissue and Fascia, Open Approach",1,0JPT0PZ,6,11/16/2023,N,38170
+57994,7,"Removal of Subcutaneous Defibrillator Lead from Trunk Subcutaneous Tissue and Fascia, Percutaneous Approach",1,0JPT3FZ,6,11/16/2023,N,38180
+57994,7,"Removal of Cardiac Rhythm Related Device from Trunk Subcutaneous Tissue and Fascia, Percutaneous Approach",1,0JPT3PZ,6,11/16/2023,N,38186
+56340,32,"Insertion of Defibrillator Lead into Coronary Vein, Percutaneous Approach",1,02H43KZ,8,06/20/2025,N,4807
+56340,32,"Insertion of Defibrillator Lead into Right Atrium, Open Approach",1,02H60KZ,8,06/20/2025,N,4825
+56340,32,"Insertion of Defibrillator Lead into Right Atrium, Percutaneous Approach",1,02H63KZ,8,06/20/2025,N,4834
+56340,32,"Insertion of Defibrillator Lead into Right Atrium, Percutaneous Endoscopic Approach",1,02H64KZ,8,06/20/2025,N,4843
+56340,32,"Insertion of Defibrillator Lead into Left Atrium, Open Approach",1,02H70KZ,8,06/20/2025,N,4852
+56340,32,"Insertion of Defibrillator Lead into Left Atrium, Percutaneous Approach",1,02H73KZ,8,06/20/2025,N,4861
+56340,32,"Insertion of Defibrillator Lead into Left Atrium, Percutaneous Endoscopic Approach",1,02H74KZ,8,06/20/2025,N,4870
+56340,32,"Insertion of Defibrillator Lead into Right Ventricle, Open Approach",1,02HK0KZ,8,06/20/2025,N,4894
+56340,32,"Insertion of Defibrillator Lead into Right Ventricle, Percutaneous Approach",1,02HK3KZ,8,06/20/2025,N,4903
+56340,32,"Insertion of Defibrillator Lead into Right Ventricle, Percutaneous Endoscopic Approach",1,02HK4KZ,8,06/20/2025,N,4912
+56340,32,"Insertion of Defibrillator Lead into Left Ventricle, Open Approach",1,02HL0KZ,8,06/20/2025,N,4921
+56340,32,"Insertion of Defibrillator Lead into Left Ventricle, Percutaneous Approach",1,02HL3KZ,8,06/20/2025,N,4930
+56340,32,"Insertion of Defibrillator Lead into Left Ventricle, Percutaneous Endoscopic Approach",1,02HL4KZ,8,06/20/2025,N,4939
+56340,32,"Removal of Cardiac Lead from Heart, Open Approach",1,02PA0MZ,8,06/20/2025,N,5265
+56340,32,"Removal of Cardiac Lead from Heart, Percutaneous Approach",1,02PA3MZ,8,06/20/2025,N,5279
+56340,32,"Removal of Cardiac Lead from Heart, Percutaneous Endoscopic Approach",1,02PA4MZ,8,06/20/2025,N,5293
+56340,32,"Insertion of Defibrillator Generator into Chest Subcutaneous Tissue and Fascia, Open Approach",1,0JH608Z,8,06/20/2025,N,38144
+56340,32,"Insertion of Cardiac Resynchronization Defibrillator Pulse Generator into Chest Subcutaneous Tissue and Fascia, Open Approach",1,0JH609Z,8,06/20/2025,N,38145
+56340,32,"Insertion of Subcutaneous Defibrillator Lead into Chest Subcutaneous Tissue and Fascia, Open Approach",1,0JH60FZ,8,06/20/2025,N,38151
+56340,32,"Insertion of Defibrillator Generator into Chest Subcutaneous Tissue and Fascia, Percutaneous Approach",1,0JH638Z,8,06/20/2025,N,38166
+56340,32,"Insertion of Cardiac Resynchronization Defibrillator Pulse Generator into Chest Subcutaneous Tissue and Fascia, Percutaneous Approach",1,0JH639Z,8,06/20/2025,N,38167
+56340,32,"Insertion of Subcutaneous Defibrillator Lead into Chest Subcutaneous Tissue and Fascia, Percutaneous Approach",1,0JH63FZ,8,06/20/2025,N,38173
+56340,32,"Insertion of Defibrillator Generator into Abdomen Subcutaneous Tissue and Fascia, Open Approach",1,0JH808Z,8,06/20/2025,N,38204
+56340,32,"Insertion of Cardiac Resynchronization Defibrillator Pulse Generator into Abdomen Subcutaneous Tissue and Fascia, Open Approach",1,0JH809Z,8,06/20/2025,N,38205
+56340,32,"Insertion of Defibrillator Generator into Abdomen Subcutaneous Tissue and Fascia, Percutaneous Approach",1,0JH838Z,8,06/20/2025,N,38225
+56340,32,"Insertion of Cardiac Resynchronization Defibrillator Pulse Generator into Abdomen Subcutaneous Tissue and Fascia, Percutaneous Approach",1,0JH839Z,8,06/20/2025,N,38226
+56340,32,"Removal of Subcutaneous Defibrillator Lead from Trunk Subcutaneous Tissue and Fascia, Open Approach",1,0JPT0FZ,8,06/20/2025,N,38465
+56340,32,"Removal of Cardiac Rhythm Related Device from Trunk Subcutaneous Tissue and Fascia, Open Approach",1,0JPT0PZ,8,06/20/2025,N,38471
+56340,32,"Removal of Subcutaneous Defibrillator Lead from Trunk Subcutaneous Tissue and Fascia, Percutaneous Approach",1,0JPT3FZ,8,06/20/2025,N,38481
+56340,32,"Removal of Cardiac Rhythm Related Device from Trunk Subcutaneous Tissue and Fascia, Percutaneous Approach",1,0JPT3PZ,8,06/20/2025,N,38487
+56326,28,"Insertion of Defibrillator Lead into Coronary Vein, Percutaneous Approach",1,02H43KZ,4,02/22/2023,N,4803
+56326,28,"Insertion of Defibrillator Lead into Right Atrium, Open Approach",1,02H60KZ,4,02/22/2023,N,4821
+56326,28,"Insertion of Defibrillator Lead into Right Atrium, Percutaneous Approach",1,02H63KZ,4,02/22/2023,N,4830
+56326,28,"Insertion of Defibrillator Lead into Right Atrium, Percutaneous Endoscopic Approach",1,02H64KZ,4,02/22/2023,N,4839
+56326,28,"Insertion of Defibrillator Lead into Left Atrium, Open Approach",1,02H70KZ,4,02/22/2023,N,4848
+56326,28,"Insertion of Defibrillator Lead into Left Atrium, Percutaneous Approach",1,02H73KZ,4,02/22/2023,N,4857
+56326,28,"Insertion of Defibrillator Lead into Left Atrium, Percutaneous Endoscopic Approach",1,02H74KZ,4,02/22/2023,N,4866
+56326,28,"Insertion of Defibrillator Lead into Right Ventricle, Open Approach",1,02HK0KZ,4,02/22/2023,N,4890
+56326,28,"Insertion of Defibrillator Lead into Right Ventricle, Percutaneous Approach",1,02HK3KZ,4,02/22/2023,N,4899
+56326,28,"Insertion of Defibrillator Lead into Right Ventricle, Percutaneous Endoscopic Approach",1,02HK4KZ,4,02/22/2023,N,4908
+56326,28,"Insertion of Defibrillator Lead into Left Ventricle, Open Approach",1,02HL0KZ,4,02/22/2023,N,4917
+56326,28,"Insertion of Defibrillator Lead into Left Ventricle, Percutaneous Approach",1,02HL3KZ,4,02/22/2023,N,4926
+56326,28,"Insertion of Defibrillator Lead into Left Ventricle, Percutaneous Endoscopic Approach",1,02HL4KZ,4,02/22/2023,N,4935
+56326,28,"Removal of Cardiac Lead from Heart, Open Approach",1,02PA0MZ,4,02/22/2023,N,5259
+56326,28,"Removal of Cardiac Lead from Heart, Percutaneous Approach",1,02PA3MZ,4,02/22/2023,N,5273
+56326,28,"Removal of Cardiac Lead from Heart, Percutaneous Endoscopic Approach",1,02PA4MZ,4,02/22/2023,N,5287
+56326,28,"Insertion of Defibrillator Generator into Chest Subcutaneous Tissue and Fascia, Open Approach",1,0JH608Z,4,02/22/2023,N,37832
+56326,28,"Insertion of Cardiac Resynchronization Defibrillator Pulse Generator into Chest Subcutaneous Tissue and Fascia, Open Approach",1,0JH609Z,4,02/22/2023,N,37833
+56326,28,"Insertion of Subcutaneous Defibrillator Lead into Chest Subcutaneous Tissue and Fascia, Open Approach",1,0JH60FZ,4,02/22/2023,N,37839
+56326,28,"Insertion of Defibrillator Generator into Chest Subcutaneous Tissue and Fascia, Percutaneous Approach",1,0JH638Z,4,02/22/2023,N,37854
+56326,28,"Insertion of Cardiac Resynchronization Defibrillator Pulse Generator into Chest Subcutaneous Tissue and Fascia, Percutaneous Approach",1,0JH639Z,4,02/22/2023,N,37855
+56326,28,"Insertion of Subcutaneous Defibrillator Lead into Chest Subcutaneous Tissue and Fascia, Percutaneous Approach",1,0JH63FZ,4,02/22/2023,N,37861
+56326,28,"Insertion of Defibrillator Generator into Abdomen Subcutaneous Tissue and Fascia, Open Approach",1,0JH808Z,4,02/22/2023,N,37892
+56326,28,"Insertion of Cardiac Resynchronization Defibrillator Pulse Generator into Abdomen Subcutaneous Tissue and Fascia, Open Approach",1,0JH809Z,4,02/22/2023,N,37893
+56326,28,"Insertion of Defibrillator Generator into Abdomen Subcutaneous Tissue and Fascia, Percutaneous Approach",1,0JH838Z,4,02/22/2023,N,37913
+56326,28,"Insertion of Cardiac Resynchronization Defibrillator Pulse Generator into Abdomen Subcutaneous Tissue and Fascia, Percutaneous Approach",1,0JH839Z,4,02/22/2023,N,37914
+56326,28,"Removal of Subcutaneous Defibrillator Lead from Trunk Subcutaneous Tissue and Fascia, Open Approach",1,0JPT0FZ,4,02/22/2023,N,38153
+56326,28,"Removal of Cardiac Rhythm Related Device from Trunk Subcutaneous Tissue and Fascia, Open Approach",1,0JPT0PZ,4,02/22/2023,N,38159
+56326,28,"Removal of Subcutaneous Defibrillator Lead from Trunk Subcutaneous Tissue and Fascia, Percutaneous Approach",1,0JPT3FZ,4,02/22/2023,N,38169
+56326,28,"Removal of Cardiac Rhythm Related Device from Trunk Subcutaneous Tissue and Fascia, Percutaneous Approach",1,0JPT3PZ,4,02/22/2023,N,38175
+56343,14,"Insertion of Defibrillator Lead into Coronary Vein, Percutaneous Approach",1,02H43KZ,8,04/09/2025,N,4807
+56343,14,"Insertion of Defibrillator Lead into Right Atrium, Open Approach",1,02H60KZ,8,04/09/2025,N,4825
+56343,14,"Insertion of Defibrillator Lead into Right Atrium, Percutaneous Approach",1,02H63KZ,8,04/09/2025,N,4834
+56343,14,"Insertion of Defibrillator Lead into Right Atrium, Percutaneous Endoscopic Approach",1,02H64KZ,8,04/09/2025,N,4843
+56343,14,"Insertion of Defibrillator Lead into Left Atrium, Open Approach",1,02H70KZ,8,04/09/2025,N,4852
+56343,14,"Insertion of Defibrillator Lead into Left Atrium, Percutaneous Approach",1,02H73KZ,8,04/09/2025,N,4861
+56343,14,"Insertion of Defibrillator Lead into Left Atrium, Percutaneous Endoscopic Approach",1,02H74KZ,8,04/09/2025,N,4870
+56343,14,"Insertion of Defibrillator Lead into Right Ventricle, Open Approach",1,02HK0KZ,8,04/09/2025,N,4894
+56343,14,"Insertion of Defibrillator Lead into Right Ventricle, Percutaneous Approach",1,02HK3KZ,8,04/09/2025,N,4903
+56343,14,"Insertion of Defibrillator Lead into Right Ventricle, Percutaneous Endoscopic Approach",1,02HK4KZ,8,04/09/2025,N,4912
+56343,14,"Insertion of Defibrillator Lead into Left Ventricle, Open Approach",1,02HL0KZ,8,04/09/2025,N,4921
+56343,14,"Insertion of Defibrillator Lead into Left Ventricle, Percutaneous Approach",1,02HL3KZ,8,04/09/2025,N,4930
+56343,14,"Insertion of Defibrillator Lead into Left Ventricle, Percutaneous Endoscopic Approach",1,02HL4KZ,8,04/09/2025,N,4939
+56343,14,"Insertion of Defibrillator Generator into Chest Subcutaneous Tissue and Fascia, Open Approach",1,0JH608Z,8,04/09/2025,N,38144
+56343,14,"Insertion of Cardiac Resynchronization Defibrillator Pulse Generator into Chest Subcutaneous Tissue and Fascia, Open Approach",1,0JH609Z,8,04/09/2025,N,38145
+56343,14,"Insertion of Subcutaneous Defibrillator Lead into Chest Subcutaneous Tissue and Fascia, Open Approach",1,0JH60FZ,8,04/09/2025,N,38151
+56343,14,"Insertion of Defibrillator Generator into Chest Subcutaneous Tissue and Fascia, Percutaneous Approach",1,0JH638Z,8,04/09/2025,N,38166
+56343,14,"Insertion of Cardiac Resynchronization Defibrillator Pulse Generator into Chest Subcutaneous Tissue and Fascia, Percutaneous Approach",1,0JH639Z,8,04/09/2025,N,38167
+56343,14,"Insertion of Subcutaneous Defibrillator Lead into Chest Subcutaneous Tissue and Fascia, Percutaneous Approach",1,0JH63FZ,8,04/09/2025,N,38173
+56343,14,"Insertion of Defibrillator Generator into Abdomen Subcutaneous Tissue and Fascia, Open Approach",1,0JH808Z,8,04/09/2025,N,38204
+56343,14,"Insertion of Cardiac Resynchronization Defibrillator Pulse Generator into Abdomen Subcutaneous Tissue and Fascia, Open Approach",1,0JH809Z,8,04/09/2025,N,38205
+56343,14,"Insertion of Defibrillator Generator into Abdomen Subcutaneous Tissue and Fascia, Percutaneous Approach",1,0JH838Z,8,04/09/2025,N,38225
+56343,14,"Insertion of Cardiac Resynchronization Defibrillator Pulse Generator into Abdomen Subcutaneous Tissue and Fascia, Percutaneous Approach",1,0JH839Z,8,04/09/2025,N,38226
+56343,14,"Insertion of Defibrillator Lead into Mediastinum, Open Approach",1,0WHC0GZ,8,04/09/2025,N,65155
+56343,14,"Insertion of Defibrillator Lead into Mediastinum, Percutaneous Approach",1,0WHC3GZ,8,04/09/2025,N,65159
+56343,14,"Insertion of Defibrillator Lead into Mediastinum, Percutaneous Endoscopic Approach",1,0WHC4GZ,8,04/09/2025,N,65163
+56343,14,"Removal of Defibrillator Lead from Mediastinum, Open Approach",1,0WPC0GZ,8,04/09/2025,N,65617
+56343,14,"Removal of Defibrillator Lead from Mediastinum, Percutaneous Approach",1,0WPC3GZ,8,04/09/2025,N,65625
+56343,14,"Removal of Defibrillator Lead from Mediastinum, Percutaneous Endoscopic Approach",1,0WPC4GZ,8,04/09/2025,N,65633
+56343,14,"Removal of Defibrillator Lead from Mediastinum, External Approach",1,0WPCXGZ,8,04/09/2025,N,65641
+56343,14,"Revision of Defibrillator Lead in Mediastinum, Open Approach",1,0WWC0GZ,8,04/09/2025,N,66265
+56343,14,"Revision of Defibrillator Lead in Mediastinum, Percutaneous Approach",1,0WWC3GZ,8,04/09/2025,N,66273
+56343,14,"Revision of Defibrillator Lead in Mediastinum, Percutaneous Endoscopic Approach",1,0WWC4GZ,8,04/09/2025,N,66281
+56343,14,"Revision of Defibrillator Lead in Mediastinum, External Approach",1,0WWCXGZ,8,04/09/2025,N,66289
+59177,12,"Transfusion of Allogeneic Related Bone Marrow into Peripheral Vein, Percutaneous Approach",1,30233G2,7,09/25/2024,N,70162
+59177,12,"Transfusion of Allogeneic Unrelated Bone Marrow into Peripheral Vein, Percutaneous Approach",1,30233G3,7,09/25/2024,N,70163
+59177,12,"Transfusion of Allogeneic Related T-cell Depleted Hematopoietic Stem Cells into Peripheral Vein, Percutaneous Approach",1,30233U2,7,09/25/2024,N,70187
+59177,12,"Transfusion of Allogeneic Unrelated T-cell Depleted Hematopoietic Stem Cells into Peripheral Vein, Percutaneous Approach",1,30233U3,7,09/25/2024,N,70188
+59177,12,"Transfusion of Allogeneic Related Cord Blood Stem Cells into Peripheral Vein, Percutaneous Approach",1,30233X2,7,09/25/2024,N,70195
+59177,12,"Transfusion of Allogeneic Unrelated Cord Blood Stem Cells into Peripheral Vein, Percutaneous Approach",1,30233X3,7,09/25/2024,N,70196
+59177,12,"Transfusion of Allogeneic Related Hematopoietic Stem Cells into Peripheral Vein, Percutaneous Approach",1,30233Y2,7,09/25/2024,N,70199
+59177,12,"Transfusion of Allogeneic Unrelated Hematopoietic Stem Cells into Peripheral Vein, Percutaneous Approach",1,30233Y3,7,09/25/2024,N,70200
+59177,12,"Transfusion of Allogeneic Related Bone Marrow into Central Vein, Percutaneous Approach",1,30243G2,7,09/25/2024,N,70206
+59177,12,"Transfusion of Allogeneic Unrelated Bone Marrow into Central Vein, Percutaneous Approach",1,30243G3,7,09/25/2024,N,70207
+59177,12,"Transfusion of Allogeneic Related T-cell Depleted Hematopoietic Stem Cells into Central Vein, Percutaneous Approach",1,30243U2,7,09/25/2024,N,70231
+59177,12,"Transfusion of Allogeneic Unrelated T-cell Depleted Hematopoietic Stem Cells into Central Vein, Percutaneous Approach",1,30243U3,7,09/25/2024,N,70232
+59177,12,"Transfusion of Allogeneic Related Cord Blood Stem Cells into Central Vein, Percutaneous Approach",1,30243X2,7,09/25/2024,N,70239
+59177,12,"Transfusion of Allogeneic Unrelated Cord Blood Stem Cells into Central Vein, Percutaneous Approach",1,30243X3,7,09/25/2024,N,70240
+59177,12,"Transfusion of Allogeneic Related Hematopoietic Stem Cells into Central Vein, Percutaneous Approach",1,30243Y2,7,09/25/2024,N,70243
+59177,12,"Transfusion of Allogeneic Unrelated Hematopoietic Stem Cells into Central Vein, Percutaneous Approach",1,30243Y3,7,09/25/2024,N,70244
+59177,12,"Transfusion of Omidubicel into Peripheral Vein, Percutaneous Approach, New Technology Group 8",1,XW133C8,7,09/25/2024,N,79809
+59177,12,"Transfusion of Omidubicel into Central Vein, Percutaneous Approach, New Technology Group 8",1,XW143C8,7,09/25/2024,N,79819
+59175,11,"Transfusion of Allogeneic Related Bone Marrow into Peripheral Vein, Percutaneous Approach",1,30233G2,7,09/25/2024,N,70162
+59175,11,"Transfusion of Allogeneic Unrelated Bone Marrow into Peripheral Vein, Percutaneous Approach",1,30233G3,7,09/25/2024,N,70163
+59175,11,"Transfusion of Allogeneic Related T-cell Depleted Hematopoietic Stem Cells into Peripheral Vein, Percutaneous Approach",1,30233U2,7,09/25/2024,N,70187
+59175,11,"Transfusion of Allogeneic Unrelated T-cell Depleted Hematopoietic Stem Cells into Peripheral Vein, Percutaneous Approach",1,30233U3,7,09/25/2024,N,70188
+59175,11,"Transfusion of Allogeneic Related Cord Blood Stem Cells into Peripheral Vein, Percutaneous Approach",1,30233X2,7,09/25/2024,N,70195
+59175,11,"Transfusion of Allogeneic Unrelated Cord Blood Stem Cells into Peripheral Vein, Percutaneous Approach",1,30233X3,7,09/25/2024,N,70196
+59175,11,"Transfusion of Allogeneic Related Hematopoietic Stem Cells into Peripheral Vein, Percutaneous Approach",1,30233Y2,7,09/25/2024,N,70199
+59175,11,"Transfusion of Allogeneic Unrelated Hematopoietic Stem Cells into Peripheral Vein, Percutaneous Approach",1,30233Y3,7,09/25/2024,N,70200
+59175,11,"Transfusion of Allogeneic Related Bone Marrow into Central Vein, Percutaneous Approach",1,30243G2,7,09/25/2024,N,70206
+59175,11,"Transfusion of Allogeneic Unrelated Bone Marrow into Central Vein, Percutaneous Approach",1,30243G3,7,09/25/2024,N,70207
+59175,11,"Transfusion of Allogeneic Related T-cell Depleted Hematopoietic Stem Cells into Central Vein, Percutaneous Approach",1,30243U2,7,09/25/2024,N,70231
+59175,11,"Transfusion of Allogeneic Unrelated T-cell Depleted Hematopoietic Stem Cells into Central Vein, Percutaneous Approach",1,30243U3,7,09/25/2024,N,70232
+59175,11,"Transfusion of Allogeneic Related Cord Blood Stem Cells into Central Vein, Percutaneous Approach",1,30243X2,7,09/25/2024,N,70239
+59175,11,"Transfusion of Allogeneic Unrelated Cord Blood Stem Cells into Central Vein, Percutaneous Approach",1,30243X3,7,09/25/2024,N,70240
+59175,11,"Transfusion of Allogeneic Related Hematopoietic Stem Cells into Central Vein, Percutaneous Approach",1,30243Y2,7,09/25/2024,N,70243
+59175,11,"Transfusion of Allogeneic Unrelated Hematopoietic Stem Cells into Central Vein, Percutaneous Approach",1,30243Y3,7,09/25/2024,N,70244
+59175,11,"Transfusion of Omidubicel into Peripheral Vein, Percutaneous Approach, New Technology Group 8",1,XW133C8,7,09/25/2024,N,79809
+59175,11,"Transfusion of Omidubicel into Central Vein, Percutaneous Approach, New Technology Group 8",1,XW143C8,7,09/25/2024,N,79819

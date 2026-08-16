@@ -165,6 +165,14 @@ class PolicyRoutingService:
             if art_id not in candidate_article_ids:
                 candidate_article_ids.append(art_id)
                 
+        # Bridge Article candidate LCDs
+        if candidate_article_ids:
+            lar_docs = list(db["lcd_article_relationships"].find({"article_id_numeric": {"$in": candidate_article_ids}}))
+            for doc in lar_docs:
+                lcd_id = doc.get("lcd_id_numeric")
+                if lcd_id and lcd_id not in candidate_lcd_ids:
+                    candidate_lcd_ids.append(lcd_id)
+                
         add_trace("HCPCS_TO_CANDIDATES", norm_hcpcs, {"lcd_ids": candidate_lcd_ids, "article_ids": candidate_article_ids})
 
         # -------------------------------------------------------------
