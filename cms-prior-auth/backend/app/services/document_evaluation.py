@@ -10,6 +10,15 @@ from app.services.explanation import DecisionExplanationService
 from app.services.document_mapper import DocumentEvidenceMapper
 from app.services.audit import AuditLogService
 
+def clean_db_objects(val: Any) -> Any:
+    if isinstance(val, dict):
+        return {k: clean_db_objects(v) for k, v in val.items()}
+    elif isinstance(val, list):
+        return [clean_db_objects(x) for x in val]
+    elif type(val).__name__ == "ObjectId":
+        return str(val)
+    return val
+
 class DocumentPriorAuthEvaluationService:
     @classmethod
     def evaluate_document(
@@ -222,7 +231,7 @@ class DocumentPriorAuthEvaluationService:
                 "generated_by": {"provider": "deterministic", "model": "rule_engine"}
             }
             
-            return {
+            res_payload = {
                 "document": doc,
                 "authorization_request": auth_request_doc,
                 "clinical_evidence_packet": dump_model(route_ret["clinical_evidence_packet"]),
@@ -232,6 +241,7 @@ class DocumentPriorAuthEvaluationService:
                 "decision_support": decision,
                 "explanation": explanation
             }
+            return clean_db_objects(res_payload)
 
         # 7. Evaluate using Volume 6 Evaluation Service
         eval_bundle = PriorAuthorizationEvaluationService.evaluate_request(
@@ -265,16 +275,6 @@ class DocumentPriorAuthEvaluationService:
         explanation = DecisionExplanationService.generate_explanation(decision, eval_bundle)
         
         # 10. Clean ObjectIds for response
-        from bson import ObjectId
-        def clean_db_objects(val: Any) -> Any:
-            if isinstance(val, dict):
-                return {k: clean_db_objects(v) for k, v in val.items()}
-            elif isinstance(val, list):
-                return [clean_db_objects(x) for x in val]
-            elif type(val).__name__ == "ObjectId":
-                return str(val)
-            return val
-            
         res = {
             "document": doc,
             "authorization_request": auth_request_doc,

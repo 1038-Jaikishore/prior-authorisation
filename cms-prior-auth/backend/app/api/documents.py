@@ -112,6 +112,15 @@ def get_document_metadata(document_id: str):
     doc.pop("stored_filename", None)
     return doc
 
+def clean_db_objects(val: Any) -> Any:
+    if isinstance(val, dict):
+        return {k: clean_db_objects(v) for k, v in val.items()}
+    elif isinstance(val, list):
+        return [clean_db_objects(x) for x in val]
+    elif type(val).__name__ == "ObjectId":
+        return str(val)
+    return val
+
 @router.post("/api/documents/{document_id}/extract", response_model=Dict[str, Any])
 def extract_document_facts(document_id: str):
     """Triggers parsing and LLM structured extraction service for an uploaded document."""
@@ -188,9 +197,7 @@ def extract_document_facts(document_id: str):
         metadata={"document_id": document_id}
     )
     
-    if "_id" in extracted_dict:
-        extracted_dict["_id"] = str(extracted_dict["_id"])
-    return extracted_dict
+    return clean_db_objects(extracted_dict)
 
 @router.get("/api/documents/{document_id}/extraction", response_model=Dict[str, Any])
 def get_document_extraction(document_id: str):
@@ -200,8 +207,7 @@ def get_document_extraction(document_id: str):
     if not extraction:
         raise HTTPException(status_code=404, detail="Document extraction draft not found.")
         
-    extraction["_id"] = str(extraction["_id"])
-    return extraction
+    return clean_db_objects(extraction)
 
 @router.patch("/api/documents/{document_id}/extraction", response_model=Dict[str, Any])
 def edit_document_extraction(
@@ -221,7 +227,7 @@ def edit_document_extraction(
     new_version = current.get("version", 1) + 1
     
     for field_k, new_val in update_data.items():
-        if field_k in ["document_id", "version", "edit_history"]:
+        if field_k in ["_id", "document_id", "version", "edit_history"]:
             continue
         orig_val = current.get(field_k)
         if orig_val != new_val:
@@ -253,8 +259,7 @@ def edit_document_extraction(
     )
     
     updated_doc = db["document_extractions"].find_one({"document_id": document_id})
-    updated_doc["_id"] = str(updated_doc["_id"])
-    return updated_doc
+    return clean_db_objects(updated_doc)
 
 @router.post("/api/documents/{document_id}/confirm", response_model=Dict[str, Any])
 def confirm_document_extraction(
