@@ -1121,7 +1121,7 @@ export default function App() {
                     )}
 
                     {/* Control Buttons */}
-                    <div style={{ display: 'flex', gap: '12px', borderTop: '1px solid var(--border-color)', paddingTop: '20px' }}>
+                    <div style={{ display: 'flex', gap: '12px', borderTop: '1px solid var(--border-color)', paddingTop: '20px', alignItems: 'center' }}>
                       {extractedFacts.status !== 'CONFIRMED' ? (
                         <>
                           <button
@@ -1141,6 +1141,19 @@ export default function App() {
                             onClick={handleConfirmExtraction}
                           >
                             {confirming ? 'Confirming facts...' : '✓ Confirm & Lock Facts'}
+                          </button>
+                          <button
+                            type="button"
+                            className="btn-primary"
+                            disabled={confirming}
+                            style={{
+                              width: 'auto',
+                              background: 'linear-gradient(135deg, #8b5cf6 0%, #6d28d9 100%)',
+                              boxShadow: '0 4px 12px rgba(139, 92, 246, 0.2)'
+                            }}
+                            onClick={handleGeneratePriorAuth}
+                          >
+                            🚀 Run CMS Evaluation
                           </button>
                         </>
                       ) : (
