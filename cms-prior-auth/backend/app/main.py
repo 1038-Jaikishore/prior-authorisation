@@ -7,6 +7,7 @@ from app.api.prior_auth import router as prior_auth_router
 from app.api.evaluation import router as evaluation_router
 from app.api.decision import router as decision_router
 from app.api.review import router as review_router
+from app.api.documents import router as documents_router
 
 app = FastAPI(
     title="CMS Prior Authorization Decision-Support System",
@@ -34,6 +35,7 @@ app.include_router(prior_auth_router)
 app.include_router(evaluation_router)
 app.include_router(decision_router)
 app.include_router(review_router)
+app.include_router(documents_router)
 
 @app.get("/health")
 def health_check():

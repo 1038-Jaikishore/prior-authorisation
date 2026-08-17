@@ -10,12 +10,12 @@
 - **NCD Documents Indexed**: 15
 - **LCD Documents Indexed**: 25
 - **Articles Indexed**: 25
-- **Total Policy Sections Generated**: 167
-- **Total Chunks Generated**: 1126
-- **Average Chunks per Document**: 17.32
+- **Total Policy Sections Generated**: 165
+- **Total Chunks Generated**: 1118
+- **Average Chunks per Document**: 17.20
 
 ### Ingestion Performance & Results
-- **Chunks Inserted (New)**: 1126
+- **Chunks Inserted (New)**: 718
 - **Chunks Updated (Modified)**: 0
-- **Indexing Failures**: 0
-- **Total Indexing Duration**: 77.90 seconds
+- **Indexing Failures**: 400
+- **Total Indexing Duration**: 948.26 seconds

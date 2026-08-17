@@ -111,7 +111,17 @@ def route_and_retrieve(
         if hasattr(res["policy_routing"], "model_dump"):
             res["policy_routing"] = res["policy_routing"].model_dump()
             
-        return res
+        from bson import ObjectId
+        def clean_db_objects(val: Any) -> Any:
+            if isinstance(val, dict):
+                return {k: clean_db_objects(v) for k, v in val.items()}
+            elif isinstance(val, list):
+                return [clean_db_objects(x) for x in val]
+            elif isinstance(val, ObjectId):
+                return str(val)
+            return val
+            
+        return clean_db_objects(res)
     except ValueError as ve:
         raise HTTPException(status_code=404, detail=str(ve))
     except Exception as e:

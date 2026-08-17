@@ -6,7 +6,7 @@ from app.models.patient import ClinicalEvidencePacket, EvidenceProvenance, Patie
 from app.models.policy import PolicyRoutingRequest
 from app.services.policy_routing import PolicyRoutingService
 from app.services.policy_retrieval import PolicyRetrievalService
-
+from app.services.document_mapper import DocumentEvidenceMapper
 class PriorAuthorizationIntakeService:
     @staticmethod
     def get_authorization_request(request_id: str) -> Optional[Dict[str, Any]]:
@@ -74,6 +74,8 @@ class PriorAuthorizationIntakeService:
             elif "texas" in facility.lower() or " TX" in facility:
                 state_code = "TX"
             # Fall back to checking network status address if mapped
+        if not state_code:
+            state_code = req_doc.get("state_code")
             
         demographics["state_code"] = state_code
         
@@ -153,10 +155,61 @@ class PriorAuthorizationIntakeService:
                     source_field=field
                 ))
                 
+        # 5.5 Fetch Confirmed Documents and Merge facts using DocumentEvidenceMapper
+        confirmed_docs = list(db["patient_documents"].find({
+            "authorization_id": request_id,
+            "upload_status": "CONFIRMED"
+        }))
+        
+        # Prepare packet dictionary for mapping
+        packet_dict = {
+            "conditions": conditions,
+            "medications": medications,
+            "surgeries": surgeries,
+            "procedures": procedures,
+            "functional_status": functional_status,
+            "diagnostic_results": diagnostic_results,
+            "prior_treatments": [],
+            "clinical_text": clinical_text_blocks,
+            "provenance": provenance_list
+        }
+        
+        for doc_meta in confirmed_docs:
+            doc_id = doc_meta["document_id"]
+            ext = db["document_extractions"].find_one({"document_id": doc_id})
+            if not ext:
+                continue
+                
+            DocumentEvidenceMapper.map_document_to_evidence_packet(ext, packet_dict)
+            
+            # Conflict Detection: DOB Mismatch
+            ext_dob = ext.get("patient", {}).get("dob")
+            if ext_dob and pat_doc and pat_doc.get("dob") and ext_dob != pat_doc.get("dob"):
+                warnings.append(f"CONFLICTING_DOCUMENT_EVIDENCE: Structured DOB ({pat_doc.get('dob')}) conflicts with uploaded document DOB ({ext_dob}).")
+                
+            # Conflict Detection: Surgery Narrative vs Documented Surgery
+            doc_has_surgery = any(t.get("treatment_type") == "surgery" for t in ext.get("prior_treatments", []))
+            narratives_no_surg = "no surgery" in req_doc.get("previous_treatment_info", "").lower() or "no previous surgery" in req_doc.get("provider_justification", "").lower()
+            if doc_has_surgery and narratives_no_surg:
+                warnings.append("CONFLICTING_DOCUMENT_EVIDENCE: Narrative reports no previous surgeries, but uploaded document contains surgical history.")
+
+        # Re-assign referenced lists from mapped packet dict
+        conditions = packet_dict["conditions"]
+        medications = packet_dict["medications"]
+        surgeries = packet_dict["surgeries"]
+        procedures = packet_dict["procedures"]
+        functional_status = packet_dict["functional_status"]
+        diagnostic_results = packet_dict["diagnostic_results"]
+        clinical_text_blocks = packet_dict["clinical_text"]
+        provenance_list = packet_dict["provenance"]
+
         # 6. Prior Treatments compilation
-        # Combine clinical text descriptions and structured medication records
-        prior_treatments = []
+        # Combine clinical text descriptions and structured medication/surgery records
+        prior_treatments = packet_dict["prior_treatments"]
+        
         for med in medications:
+            if any(pt.get("name") == med.get("medication_name") and pt.get("treatment_type") == "medication" for pt in prior_treatments):
+                continue
             prior_treatments.append({
                 "treatment_type": "medication",
                 "name": med.get("medication_name"),
@@ -164,7 +217,10 @@ class PriorAuthorizationIntakeService:
                 "dosage": med.get("dosage"),
                 "start_date": med.get("start_date")
             })
+            
         for surg in surgeries:
+            if any(pt.get("name") == surg.get("surgery_type") and pt.get("treatment_type") == "surgery" for pt in prior_treatments):
+                continue
             prior_treatments.append({
                 "treatment_type": "surgery",
                 "name": surg.get("surgery_type"),
@@ -236,7 +292,8 @@ class PriorAuthorizationIntakeService:
         
         return {
             "packet": packet,
-            "provider": prov_doc
+            "provider": prov_doc,
+            "warnings": warnings
         }
 
     @classmethod
@@ -253,6 +310,7 @@ class PriorAuthorizationIntakeService:
         # 1. Compile ClinicalEvidencePacket
         comp_res = cls.compile_evidence_packet(request_id, override_state, override_date)
         packet = comp_res["packet"]
+        warnings.extend(comp_res.get("warnings", []))
         
         # 2. Geography validation check
         state_code = packet.demographics.get("state_code")

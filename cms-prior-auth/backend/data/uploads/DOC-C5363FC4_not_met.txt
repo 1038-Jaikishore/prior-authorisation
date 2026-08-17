@@ -1,0 +1,9 @@
+CLINICAL ASSESSMENT
+Patient: TXT NotMet Patient
+DOB: 1974-08-10
+Age: 52
+Requested HCPCS: 97110
+State: CO
+Diagnosis: M17.11
+Referral: referred for therapy services by a physician
+Prior treatment B failed after 1 months.

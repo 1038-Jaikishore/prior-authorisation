@@ -1,4 +1,5 @@
 import json
+import re
 import requests
 from abc import ABC, abstractmethod
 from typing import List, Dict, Any, Optional
@@ -24,6 +25,109 @@ class MockLLMProvider(LLMProvider):
         json_mode: bool = False, 
         temperature: float = 0.0
     ) -> str:
+        # Check if the prompt is for clinical document extraction
+        if "clinical_document_extraction_v1" in system_prompt or "extraction" in system_prompt.lower():
+            # Isolate the document text between page boundaries to avoid schema keyword clashes
+            matches = re.findall(r"--- START OF PAGE \d+ ---\n(.*?)\n--- END OF PAGE \d+ ---", user_prompt, re.DOTALL)
+            doc_text = "\n".join(matches).lower() if matches else user_prompt.lower()
+            
+            name = "John Doe"
+            dob = "1970-05-15"
+            age = 56
+            gender = "male"
+            cpt = "97110"
+            state = "CO"
+            icd = "M17.11"
+            icd_status = "DOCUMENTED"
+            failed_treatments = [{"treatment_type": "physical_therapy", "name": "Treatment B", "failed": True, "duration": "1 month"}]
+            referral = "referred for therapy services by a physician"
+            
+            if "notmet" in doc_text or "not_met" in doc_text or "age: 52" in doc_text or "age = 52" in doc_text:
+                name = "TXT NotMet Patient"
+                dob = "1974-08-10"
+                age = 52
+                cpt = "97110"
+                state = "CO"
+                icd = "M17.11"
+            elif "approve-like" in doc_text or "docx approve" in doc_text or "complete_approve" in doc_text or "conservative treatment b failed after 6" in doc_text:
+                name = "DOCX Approve Patient"
+                dob = "1954-03-20"
+                age = 72
+                cpt = "97110"
+                state = "CO"
+                icd = "M17.11"
+                failed_treatments = [{"treatment_type": "physical_therapy", "name": "Conservative treatment B", "failed": True, "duration": "6 months"}]
+            elif "absent fields" in doc_text or "absent" in doc_text:
+                name = "Missing Params Patient"
+                cpt = None
+                state = None
+                icd = "M17.11"
+            elif "approved" in doc_text or "leakage" in doc_text or "meets policy" in doc_text:
+                name = "Leakage Protected Patient"
+                cpt = "97110"
+                state = "CO"
+                icd = "M17.11"
+            elif "conflict" in doc_text or "dob: 1955" in doc_text:
+                name = "Conflicting Patient"
+                dob = "1955-03-20"
+                cpt = "97110"
+                state = "CO"
+                icd = "M17.11"
+            elif "osteoarthritis" in doc_text and "m17.11" not in doc_text:
+                icd = None
+                icd_status = "NOT_DOCUMENTED"
+                
+            return json.dumps({
+                "patient": {
+                    "name": name,
+                    "dob": dob,
+                    "age": age,
+                    "gender": gender
+                },
+                "requested_service": {
+                    "code": cpt,
+                    "code_system": "CPT",
+                    "description": "Therapeutic exercises" if cpt == "97110" else None
+                },
+                "diagnoses": [
+                    {
+                        "code": icd,
+                        "code_system": "ICD-10-CM",
+                        "description": "Osteoarthritis of knee" if icd else "Osteoarthritis of right knee",
+                        "code_status": icd_status
+                    }
+                ],
+                "prior_treatments": failed_treatments,
+                "diagnostic_results": [],
+                "clinical_indication": "Knee pain and stiffness",
+                "provider_justification": referral,
+                "provider": {
+                    "name": "Dr. Smith",
+                    "provider_type": "MD",
+                    "facility": "Denver Medical Center",
+                    "npi": "1234567890"
+                },
+                "geography": {
+                    "state": state,
+                    "zip": "80202"
+                },
+                "missing_fields": [],
+                "provenance_records": [
+                    {
+                        "fact_type": "requested_procedure_code",
+                        "value": cpt if cpt else "not_documented",
+                        "page_number": 1,
+                        "source_text": f"Requested therapy: {cpt}" if cpt else "Requested therapy"
+                    },
+                    {
+                        "fact_type": "diagnosis_code",
+                        "value": icd if icd else "Osteoarthritis",
+                        "page_number": 1,
+                        "source_text": "Diagnosis: Osteoarthritis right knee"
+                    }
+                ]
+            })
+
         # Check if the prompt is for requirement extraction
         if "extract" in system_prompt.lower() or "analyst" in system_prompt.lower():
             # Check keywords in user prompt to return appropriate mock requirements

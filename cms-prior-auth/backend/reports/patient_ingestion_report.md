@@ -1,8 +1,8 @@
 # Patient Ingestion Execution Report
 
-- **Ingestion Run ID**: `20260816_062921_08c79ed4`
+- **Ingestion Run ID**: `20260817_040045_8b5bac96`
 - **Full Rebuild Execution**: `False`
-- **Execution Timestamp**: `2026-08-16 06:29:32 UTC`
+- **Execution Timestamp**: `2026-08-17 04:00:58 UTC`
 
 ## Ingestion Results Summary Table
 

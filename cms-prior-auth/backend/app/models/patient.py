@@ -21,6 +21,12 @@ class EvidenceProvenance(BaseModel):
     source_collection: str = Field(..., description="MongoDB collection name or origin.")
     source_record_id: str = Field(..., description="Primary key or index of the source record.")
     source_field: str = Field(..., description="The specific field name within the source record.")
+    document_id: Optional[str] = Field(None, description="Source document key.")
+    page_number: Optional[int] = Field(None, description="Document page number.")
+    source_text: Optional[str] = Field(None, description="Clinical quote supporting this fact.")
+    extraction_method: Optional[str] = Field("LLM", description="Extraction method used.")
+    confirmation_status: Optional[str] = Field("CONFIRMED", description="Document confirmation status.")
+    reviewer_edits: Optional[List[Dict[str, Any]]] = Field(None, description="Manual edits recorded.")
 
 class ClinicalEvidencePacket(BaseModel):
     authorization_id: str = Field(..., description="Origin authorization request identifier.")

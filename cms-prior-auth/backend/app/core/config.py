@@ -12,6 +12,10 @@ class Settings(BaseSettings):
     embedding_api_key: str = ""
     embedding_dimensions: int = 1536
     
+    # Document Upload Configuration
+    max_upload_mb: int = 10
+    allowed_document_types: str = "pdf,docx,txt"
+    
     # Allow extra fields for LLM keys in future volumes
     model_config = SettingsConfigDict(
         env_file=".env",
