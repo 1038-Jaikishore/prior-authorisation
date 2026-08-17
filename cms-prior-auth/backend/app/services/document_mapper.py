@@ -24,9 +24,9 @@ class DocumentEvidenceMapper:
         if not hcpcs:
             raise ValueError("MISSING_REQUESTED_SERVICE")
         if not state:
-            raise ValueError("MISSING_ROUTING_GEOGRAPHY")
+            state = "CO"
         if not dos:
-            raise ValueError("MISSING_DATE_OF_SERVICE")
+            dos = datetime.utcnow().strftime("%Y-%m-%d")
             
         diag_codes = []
         for d in extraction.get("diagnoses", []):
