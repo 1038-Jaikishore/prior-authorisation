@@ -1,0 +1,35 @@
+{
+  "comment": "MongoDB Atlas Vector Search index definition for the policy_chunks collection.",
+  "name": "vector_index",
+  "type": "vectorSearch",
+  "definition": {
+    "fields": [
+      {
+        "type": "vector",
+        "path": "embedding",
+        "numDimensions": 1536,
+        "similarity": "cosine"
+      },
+      {
+        "type": "filter",
+        "path": "document_type"
+      },
+      {
+        "type": "filter",
+        "path": "document_id"
+      },
+      {
+        "type": "filter",
+        "path": "document_version"
+      },
+      {
+        "type": "filter",
+        "path": "status"
+      },
+      {
+        "type": "filter",
+        "path": "jurisdictions"
+      }
+    ]
+  }
+}

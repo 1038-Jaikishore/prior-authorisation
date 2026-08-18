@@ -1,0 +1,875 @@
+{
+  "allergies.csv": {
+    "row_count": 40,
+    "columns": {
+      "allergy_id": {
+        "type": "object",
+        "null_count": 0
+      },
+      "patient_id": {
+        "type": "object",
+        "null_count": 0
+      },
+      "allergen_type": {
+        "type": "object",
+        "null_count": 0
+      },
+      "allergen_name": {
+        "type": "object",
+        "null_count": 0
+      },
+      "reaction_severity": {
+        "type": "object",
+        "null_count": 0
+      },
+      "onset_date": {
+        "type": "object",
+        "null_count": 0
+      },
+      "active_status": {
+        "type": "object",
+        "null_count": 0
+      },
+      "conflict_alert_flag": {
+        "type": "bool",
+        "null_count": 0
+      }
+    }
+  },
+  "authorization_requests.csv": {
+    "row_count": 50,
+    "columns": {
+      "request_id": {
+        "type": "object",
+        "null_count": 0
+      },
+      "patient_id": {
+        "type": "object",
+        "null_count": 0
+      },
+      "provider_id": {
+        "type": "object",
+        "null_count": 0
+      },
+      "requested_procedure_code": {
+        "type": "object",
+        "null_count": 0
+      },
+      "diagnosis_code": {
+        "type": "object",
+        "null_count": 0
+      },
+      "clinical_indication": {
+        "type": "object",
+        "null_count": 0
+      },
+      "medical_necessity": {
+        "type": "object",
+        "null_count": 0
+      },
+      "provider_justification": {
+        "type": "object",
+        "null_count": 0
+      },
+      "urgency": {
+        "type": "object",
+        "null_count": 0
+      },
+      "requested_quantity": {
+        "type": "int64",
+        "null_count": 0
+      },
+      "requested_duration_days": {
+        "type": "int64",
+        "null_count": 0
+      },
+      "request_date": {
+        "type": "object",
+        "null_count": 0
+      },
+      "status": {
+        "type": "object",
+        "null_count": 0
+      },
+      "previous_treatment_info": {
+        "type": "object",
+        "null_count": 0
+      },
+      "supporting_evidence_url": {
+        "type": "object",
+        "null_count": 0
+      },
+      "ai_reasoning": {
+        "type": "object",
+        "null_count": 12
+      }
+    }
+  },
+  "care_plans.csv": {
+    "row_count": 40,
+    "columns": {
+      "plan_id": {
+        "type": "object",
+        "null_count": 0
+      },
+      "patient_id": {
+        "type": "object",
+        "null_count": 0
+      },
+      "provider_id": {
+        "type": "object",
+        "null_count": 0
+      },
+      "current_treatment_plan": {
+        "type": "object",
+        "null_count": 0
+      },
+      "planned_procedures": {
+        "type": "object",
+        "null_count": 0
+      },
+      "treatment_goals": {
+        "type": "object",
+        "null_count": 0
+      },
+      "start_date": {
+        "type": "object",
+        "null_count": 0
+      },
+      "end_date": {
+        "type": "object",
+        "null_count": 0
+      },
+      "treatments_attempted": {
+        "type": "object",
+        "null_count": 13
+      },
+      "status": {
+        "type": "object",
+        "null_count": 0
+      }
+    }
+  },
+  "claims.csv": {
+    "row_count": 100,
+    "columns": {
+      "claim_id": {
+        "type": "object",
+        "null_count": 0
+      },
+      "patient_id": {
+        "type": "object",
+        "null_count": 0
+      },
+      "provider_id": {
+        "type": "object",
+        "null_count": 0
+      },
+      "procedure_code": {
+        "type": "object",
+        "null_count": 0
+      },
+      "diagnosis_code": {
+        "type": "object",
+        "null_count": 0
+      },
+      "claim_status": {
+        "type": "object",
+        "null_count": 0
+      },
+      "treatment_date": {
+        "type": "object",
+        "null_count": 0
+      },
+      "service_type": {
+        "type": "object",
+        "null_count": 0
+      },
+      "treatment_name": {
+        "type": "object",
+        "null_count": 0
+      },
+      "amount_billed": {
+        "type": "float64",
+        "null_count": 0
+      },
+      "amount_paid": {
+        "type": "float64",
+        "null_count": 0
+      },
+      "treatment_frequency": {
+        "type": "int64",
+        "null_count": 0
+      },
+      "step_therapy_verified": {
+        "type": "object",
+        "null_count": 31
+      },
+      "previous_auth_history": {
+        "type": "object",
+        "null_count": 32
+      },
+      "duplicate_service_flag": {
+        "type": "bool",
+        "null_count": 0
+      }
+    }
+  },
+  "clinical_assessments.csv": {
+    "row_count": 60,
+    "columns": {
+      "assessment_id": {
+        "type": "object",
+        "null_count": 0
+      },
+      "patient_id": {
+        "type": "object",
+        "null_count": 0
+      },
+      "assessment_date": {
+        "type": "object",
+        "null_count": 0
+      },
+      "assessment_type": {
+        "type": "object",
+        "null_count": 0
+      },
+      "score": {
+        "type": "float64",
+        "null_count": 0
+      },
+      "severity_level": {
+        "type": "object",
+        "null_count": 4
+      },
+      "threshold_met": {
+        "type": "object",
+        "null_count": 0
+      },
+      "progression_trend": {
+        "type": "object",
+        "null_count": 12
+      }
+    }
+  },
+  "conditions.csv": {
+    "row_count": 80,
+    "columns": {
+      "condition_id": {
+        "type": "object",
+        "null_count": 0
+      },
+      "patient_id": {
+        "type": "object",
+        "null_count": 0
+      },
+      "diagnosis_code": {
+        "type": "object",
+        "null_count": 0
+      },
+      "diagnosis_name": {
+        "type": "object",
+        "null_count": 0
+      },
+      "onset_date": {
+        "type": "object",
+        "null_count": 0
+      },
+      "resolution_date": {
+        "type": "object",
+        "null_count": 45
+      },
+      "condition_type": {
+        "type": "object",
+        "null_count": 0
+      },
+      "relevant_to_procedure_flag": {
+        "type": "bool",
+        "null_count": 0
+      }
+    }
+  },
+  "coverage.csv": {
+    "row_count": 30,
+    "columns": {
+      "patient_id": {
+        "type": "object",
+        "null_count": 0
+      },
+      "plan_id": {
+        "type": "object",
+        "null_count": 0
+      },
+      "insurance_company": {
+        "type": "object",
+        "null_count": 0
+      },
+      "plan_type": {
+        "type": "object",
+        "null_count": 0
+      },
+      "effective_date": {
+        "type": "object",
+        "null_count": 0
+      },
+      "expiry_date": {
+        "type": "object",
+        "null_count": 0
+      },
+      "is_active": {
+        "type": "object",
+        "null_count": 0
+      },
+      "requires_prior_auth": {
+        "type": "object",
+        "null_count": 0
+      },
+      "benefits_summary": {
+        "type": "object",
+        "null_count": 0
+      },
+      "covered_services": {
+        "type": "object",
+        "null_count": 0
+      },
+      "copay_amount": {
+        "type": "int64",
+        "null_count": 0
+      },
+      "deductible": {
+        "type": "int64",
+        "null_count": 0
+      }
+    }
+  },
+  "diagnostic_results.csv": {
+    "row_count": 80,
+    "columns": {
+      "result_id": {
+        "type": "object",
+        "null_count": 0
+      },
+      "patient_id": {
+        "type": "object",
+        "null_count": 0
+      },
+      "test_name": {
+        "type": "object",
+        "null_count": 0
+      },
+      "test_date": {
+        "type": "object",
+        "null_count": 0
+      },
+      "result_value": {
+        "type": "object",
+        "null_count": 0
+      },
+      "reference_range": {
+        "type": "object",
+        "null_count": 0
+      },
+      "abnormal_flag": {
+        "type": "bool",
+        "null_count": 0
+      },
+      "evidence_for_medical_necessity": {
+        "type": "bool",
+        "null_count": 0
+      }
+    }
+  },
+  "encounters.csv": {
+    "row_count": 80,
+    "columns": {
+      "encounter_id": {
+        "type": "object",
+        "null_count": 0
+      },
+      "patient_id": {
+        "type": "object",
+        "null_count": 0
+      },
+      "provider_id": {
+        "type": "object",
+        "null_count": 0
+      },
+      "encounter_date": {
+        "type": "object",
+        "null_count": 0
+      },
+      "encounter_type": {
+        "type": "object",
+        "null_count": 0
+      },
+      "primary_diagnosis_code": {
+        "type": "object",
+        "null_count": 0
+      },
+      "discharge_status": {
+        "type": "object",
+        "null_count": 0
+      },
+      "follow_up_required": {
+        "type": "object",
+        "null_count": 0
+      },
+      "recent_hospitalization_flag": {
+        "type": "bool",
+        "null_count": 0
+      }
+    }
+  },
+  "family_history.csv": {
+    "row_count": 40,
+    "columns": {
+      "history_id": {
+        "type": "object",
+        "null_count": 0
+      },
+      "patient_id": {
+        "type": "object",
+        "null_count": 0
+      },
+      "family_member_relation": {
+        "type": "object",
+        "null_count": 0
+      },
+      "condition": {
+        "type": "object",
+        "null_count": 0
+      },
+      "age_of_onset": {
+        "type": "int64",
+        "null_count": 0
+      },
+      "genetic_risk_indicator": {
+        "type": "object",
+        "null_count": 0
+      }
+    }
+  },
+  "functional_status.csv": {
+    "row_count": 60,
+    "columns": {
+      "status_id": {
+        "type": "object",
+        "null_count": 0
+      },
+      "patient_id": {
+        "type": "object",
+        "null_count": 0
+      },
+      "assessment_date": {
+        "type": "object",
+        "null_count": 0
+      },
+      "physical_functional_status": {
+        "type": "object",
+        "null_count": 0
+      },
+      "mental_functional_status": {
+        "type": "object",
+        "null_count": 0
+      },
+      "quality_of_life_score": {
+        "type": "int64",
+        "null_count": 0
+      },
+      "deterioration_detected": {
+        "type": "bool",
+        "null_count": 0
+      },
+      "pre_post_treatment_flag": {
+        "type": "object",
+        "null_count": 0
+      },
+      "rehab_support_needed": {
+        "type": "bool",
+        "null_count": 0
+      }
+    }
+  },
+  "immunizations.csv": {
+    "row_count": 60,
+    "columns": {
+      "immunization_id": {
+        "type": "object",
+        "null_count": 0
+      },
+      "patient_id": {
+        "type": "object",
+        "null_count": 0
+      },
+      "vaccine_name": {
+        "type": "object",
+        "null_count": 0
+      },
+      "dose_number": {
+        "type": "int64",
+        "null_count": 0
+      },
+      "date_administered": {
+        "type": "object",
+        "null_count": 0
+      },
+      "next_due_date": {
+        "type": "object",
+        "null_count": 10
+      },
+      "status": {
+        "type": "object",
+        "null_count": 0
+      }
+    }
+  },
+  "medical_equipment.csv": {
+    "row_count": 40,
+    "columns": {
+      "equipment_id": {
+        "type": "object",
+        "null_count": 0
+      },
+      "patient_id": {
+        "type": "object",
+        "null_count": 0
+      },
+      "equipment_type": {
+        "type": "object",
+        "null_count": 0
+      },
+      "date_issued": {
+        "type": "object",
+        "null_count": 0
+      },
+      "expected_replacement_date": {
+        "type": "object",
+        "null_count": 0
+      },
+      "current_status": {
+        "type": "object",
+        "null_count": 0
+      },
+      "usage_frequency": {
+        "type": "object",
+        "null_count": 0
+      },
+      "duplicate_request_flag": {
+        "type": "bool",
+        "null_count": 0
+      }
+    }
+  },
+  "medications.csv": {
+    "row_count": 100,
+    "columns": {
+      "medication_id": {
+        "type": "object",
+        "null_count": 0
+      },
+      "patient_id": {
+        "type": "object",
+        "null_count": 0
+      },
+      "medication_name": {
+        "type": "object",
+        "null_count": 0
+      },
+      "dosage": {
+        "type": "object",
+        "null_count": 0
+      },
+      "start_date": {
+        "type": "object",
+        "null_count": 0
+      },
+      "end_date": {
+        "type": "object",
+        "null_count": 48
+      },
+      "status": {
+        "type": "object",
+        "null_count": 0
+      },
+      "step_therapy_requirement_met": {
+        "type": "bool",
+        "null_count": 0
+      }
+    }
+  },
+  "patients.csv": {
+    "row_count": 40,
+    "columns": {
+      "patient_id": {
+        "type": "object",
+        "null_count": 0
+      },
+      "first_name": {
+        "type": "object",
+        "null_count": 0
+      },
+      "last_name": {
+        "type": "object",
+        "null_count": 0
+      },
+      "dob": {
+        "type": "object",
+        "null_count": 0
+      },
+      "age": {
+        "type": "int64",
+        "null_count": 0
+      },
+      "gender": {
+        "type": "object",
+        "null_count": 0
+      },
+      "insurance_plan": {
+        "type": "object",
+        "null_count": 0
+      },
+      "member_id": {
+        "type": "object",
+        "null_count": 0
+      },
+      "summary_card_text": {
+        "type": "object",
+        "null_count": 0
+      }
+    }
+  },
+  "procedures.csv": {
+    "row_count": 60,
+    "columns": {
+      "procedure_record_id": {
+        "type": "object",
+        "null_count": 0
+      },
+      "patient_id": {
+        "type": "object",
+        "null_count": 0
+      },
+      "provider_id": {
+        "type": "object",
+        "null_count": 0
+      },
+      "procedure_code": {
+        "type": "object",
+        "null_count": 0
+      },
+      "procedure_name": {
+        "type": "object",
+        "null_count": 0
+      },
+      "procedure_date": {
+        "type": "object",
+        "null_count": 0
+      },
+      "outcome": {
+        "type": "object",
+        "null_count": 0
+      },
+      "related_to_current_request": {
+        "type": "bool",
+        "null_count": 0
+      }
+    }
+  },
+  "providers.csv": {
+    "row_count": 15,
+    "columns": {
+      "provider_id": {
+        "type": "object",
+        "null_count": 0
+      },
+      "first_name": {
+        "type": "object",
+        "null_count": 0
+      },
+      "last_name": {
+        "type": "object",
+        "null_count": 0
+      },
+      "specialty": {
+        "type": "object",
+        "null_count": 0
+      },
+      "facility_name": {
+        "type": "object",
+        "null_count": 0
+      },
+      "network_status": {
+        "type": "object",
+        "null_count": 0
+      },
+      "npi": {
+        "type": "int64",
+        "null_count": 0
+      },
+      "contact_number": {
+        "type": "object",
+        "null_count": 0
+      },
+      "referral_required": {
+        "type": "object",
+        "null_count": 0
+      }
+    }
+  },
+  "referrals.csv": {
+    "row_count": 50,
+    "columns": {
+      "referral_id": {
+        "type": "object",
+        "null_count": 0
+      },
+      "patient_id": {
+        "type": "object",
+        "null_count": 0
+      },
+      "referring_provider_id": {
+        "type": "object",
+        "null_count": 0
+      },
+      "specialist_provider_id": {
+        "type": "object",
+        "null_count": 0
+      },
+      "specialty_required": {
+        "type": "object",
+        "null_count": 0
+      },
+      "referral_date": {
+        "type": "object",
+        "null_count": 0
+      },
+      "expiration_date": {
+        "type": "object",
+        "null_count": 0
+      },
+      "referral_status": {
+        "type": "object",
+        "null_count": 0
+      },
+      "authorization_status": {
+        "type": "object",
+        "null_count": 0
+      }
+    }
+  },
+  "social_history.csv": {
+    "row_count": 30,
+    "columns": {
+      "social_history_id": {
+        "type": "object",
+        "null_count": 0
+      },
+      "patient_id": {
+        "type": "object",
+        "null_count": 0
+      },
+      "smoking_status": {
+        "type": "object",
+        "null_count": 0
+      },
+      "alcohol_history": {
+        "type": "object",
+        "null_count": 10
+      },
+      "substance_history": {
+        "type": "object",
+        "null_count": 26
+      },
+      "lifestyle_factors": {
+        "type": "object",
+        "null_count": 0
+      },
+      "social_risk_factors": {
+        "type": "object",
+        "null_count": 9
+      },
+      "clinical_assessment_context": {
+        "type": "object",
+        "null_count": 0
+      }
+    }
+  },
+  "surgeries.csv": {
+    "row_count": 50,
+    "columns": {
+      "surgery_id": {
+        "type": "object",
+        "null_count": 0
+      },
+      "patient_id": {
+        "type": "object",
+        "null_count": 0
+      },
+      "provider_id": {
+        "type": "object",
+        "null_count": 0
+      },
+      "surgery_type": {
+        "type": "object",
+        "null_count": 0
+      },
+      "surgery_date": {
+        "type": "object",
+        "null_count": 0
+      },
+      "surgical_outcome": {
+        "type": "object",
+        "null_count": 0
+      },
+      "related_interventions": {
+        "type": "object",
+        "null_count": 28
+      },
+      "necessity_evaluation_support": {
+        "type": "object",
+        "null_count": 0
+      }
+    }
+  },
+  "vital_signs.csv": {
+    "row_count": 100,
+    "columns": {
+      "vital_id": {
+        "type": "object",
+        "null_count": 0
+      },
+      "patient_id": {
+        "type": "object",
+        "null_count": 0
+      },
+      "date_recorded": {
+        "type": "object",
+        "null_count": 0
+      },
+      "vital_type": {
+        "type": "object",
+        "null_count": 0
+      },
+      "value": {
+        "type": "object",
+        "null_count": 0
+      },
+      "unit": {
+        "type": "object",
+        "null_count": 0
+      },
+      "abnormal_flag": {
+        "type": "bool",
+        "null_count": 0
+      },
+      "severity_indicator": {
+        "type": "object",
+        "null_count": 0
+      },
+      "trend": {
+        "type": "object",
+        "null_count": 0
+      }
+    }
+  }
+}

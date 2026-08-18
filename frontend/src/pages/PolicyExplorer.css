@@ -1,0 +1,121 @@
+.policy-explorer {
+  padding: 1rem;
+}
+
+.search-section {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.search-input-group {
+  display: flex;
+  flex: 1;
+  min-width: 300px;
+  background: rgba(0, 0, 0, 0.2);
+  border: 1px solid var(--border-glass);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.policy-type-select {
+  background: rgba(255, 255, 255, 0.05);
+  border: none;
+  border-right: 1px solid var(--border-glass);
+  color: var(--text);
+  padding: 0.75rem 1rem;
+  font-weight: 600;
+  outline: none;
+  cursor: pointer;
+}
+
+.policy-type-select option {
+  background: var(--bg-dark);
+  color: var(--text);
+}
+
+.policy-id-input {
+  flex: 1;
+  background: transparent;
+  border: none;
+  color: var(--text);
+  padding: 0.75rem 1rem;
+  outline: none;
+  font-family: monospace;
+  font-size: 1rem;
+}
+
+.policy-id-input::placeholder {
+  color: rgba(255, 255, 255, 0.3);
+}
+
+.search-btn {
+  padding: 0.75rem 2rem;
+  height: 100%;
+}
+
+.result-card {
+  animation: fade-in 0.3s ease-out forwards;
+}
+
+.meta-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+  padding: 1.5rem;
+  background: rgba(0, 0, 0, 0.15);
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.meta-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.meta-label {
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  color: var(--text-subtle);
+  letter-spacing: 0.5px;
+}
+
+.meta-value {
+  font-weight: 600;
+  font-size: 1.1rem;
+}
+
+.json-view {
+  background: rgba(0, 0, 0, 0.4) !important;
+  border-radius: 8px;
+  padding: 1.5rem;
+  border: 1px solid var(--border-glass);
+  max-height: 500px;
+  overflow-y: auto;
+}
+
+.json-view pre {
+  margin: 0;
+  color: #a0aec0;
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+
+.json-key { color: #81e6d9; }
+.json-string { color: #fbd38d; }
+.json-number { color: #feb2b2; }
+.json-boolean { color: #c3ddfd; }
+.json-null { color: #718096; }
+
+.error-card {
+  border-color: rgba(231, 76, 60, 0.3);
+  background: rgba(231, 76, 60, 0.05);
+}
+
+.empty-state {
+  text-align: center;
+  padding: 4rem 2rem;
+}

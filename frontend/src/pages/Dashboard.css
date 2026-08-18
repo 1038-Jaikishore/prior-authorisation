@@ -1,0 +1,132 @@
+.dashboard-header {
+  margin-bottom: 24px;
+}
+
+.dashboard-header h1 {
+  font-size: 1.5rem;
+  margin-bottom: 4px;
+  color: var(--text-primary);
+}
+
+.new-auth-btn {
+  font-size: 1rem;
+  padding: 10px 20px;
+}
+
+.align-start { align-items: flex-start; }
+.p-6 { padding: 32px; }
+.mb-2 { margin-bottom: 8px; }
+.mb-4 { margin-bottom: 16px; }
+.mb-6 { margin-bottom: 24px; }
+.mt-4 { margin-top: 16px; }
+.mt-6 { margin-top: 24px; }
+.flex { display: flex; align-items: center; }
+.flex-between { display: flex; justify-content: space-between; align-items: center; }
+.gap-2 { gap: 8px; }
+.gap-4 { gap: 16px; }
+
+/* Chart Layout */
+.chart-layout {
+  display: flex;
+  align-items: center;
+  gap: 60px;
+}
+
+/* CSS Donut Chart */
+.mock-donut-chart {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  background: conic-gradient(
+    var(--status-approve) 0% 40%,
+    var(--status-deny) 40% 60%,
+    var(--status-pend) 60% 80%,
+    var(--status-review) 80% 100%
+  );
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: inset 0 0 0 4px white; /* Create gaps between segments */
+}
+
+/* Add gaps between sections using pseudo elements if needed, but inset shadow works for simple look */
+/* Actually conic-gradient doesn't easily support gaps. We'll rely on the solid look which is fine for mockup */
+
+.donut-hole {
+  width: 140px;
+  height: 140px;
+  background-color: var(--bg-card);
+  border-radius: 50%;
+  z-index: 2;
+}
+
+/* Chart Legend */
+.chart-legend {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  flex: 1;
+}
+
+.legend-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--text-primary);
+}
+
+.legend-label {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 4px;
+}
+.dot-approve { background: var(--status-approve); }
+.dot-deny { background: var(--status-deny); }
+.dot-pend { background: var(--status-pend); }
+.dot-review { background: var(--status-review); }
+
+.legend-stats {
+  display: flex;
+  gap: 32px;
+  align-items: center;
+}
+
+.legend-stats .count {
+  font-weight: 600;
+}
+
+.legend-stats .pct {
+  color: var(--text-secondary);
+  font-weight: 400;
+  min-width: 40px;
+  text-align: right;
+}
+
+/* Health Grid */
+.health-grid {
+  display: flex;
+  gap: 40px;
+}
+.health-stat {
+  display: flex;
+  flex-direction: column;
+}
+.health-val {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 4px;
+}
+.health-lbl {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+}

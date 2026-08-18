@@ -1,0 +1,499 @@
+{
+  "CMS_HCPCS_Code_Groups_All_Articles.csv": {
+    "duplicate_rows": 0,
+    "malformed_rows": 0,
+    "html_markup_present": true,
+    "accidental_headers": false,
+    "null_counts": {
+      "article_id": 0,
+      "article_version": 0,
+      "hcpc_code_group": 0,
+      "paragraph": 630,
+      "last_updated": 0
+    }
+  },
+  "CMS_HCPCS_Modifier_Groups_All_Articles.csv": {
+    "duplicate_rows": 0,
+    "malformed_rows": 0,
+    "html_markup_present": true,
+    "accidental_headers": false,
+    "null_counts": {
+      "article_id": 0,
+      "article_version": 0,
+      "hcpc_modifier_group": 0,
+      "paragraph": 902,
+      "last_updated": 0
+    }
+  },
+  "CMS_HCPCS_Modifiers_All_Articles.csv": {
+    "duplicate_rows": 0,
+    "malformed_rows": 0,
+    "html_markup_present": false,
+    "accidental_headers": false,
+    "null_counts": {
+      "article_id": 0,
+      "article_version": 0,
+      "hcpc_modifier_code_id": 0,
+      "hcpc_modifier_code_version": 0,
+      "hcpc_modifier_group": 0,
+      "description": 0,
+      "last_updated": 0
+    }
+  },
+  "CMS_HCPC_code.csv": {
+    "duplicate_rows": 0,
+    "malformed_rows": 0,
+    "html_markup_present": false,
+    "accidental_headers": false,
+    "null_counts": {
+      "article_id": 0,
+      "article_version": 0,
+      "hcpc_code_id": 0,
+      "hcpc_code_version": 0,
+      "hcpc_code_group": 0,
+      "long_description": 0,
+      "short_description": 0,
+      "range": 0,
+      "last_updated": 0
+    }
+  },
+  "CMS_LCD_HCPCS_All_LCDs (1).csv": {
+    "duplicate_rows": 0,
+    "malformed_rows": 0,
+    "html_markup_present": true,
+    "accidental_headers": false,
+    "null_counts": {
+      "lcd_id": 0,
+      "lcd_version": 0,
+      "hcpc_code_id": 0,
+      "hcpc_code_version": 0,
+      "hcpc_code_group": 0,
+      "long_description": 0,
+      "short_description": 0,
+      "range": 0,
+      "last_updated": 0
+    }
+  },
+  "CMS_LCD_HCPCS_Code_Groups_All_LCDs.csv": {
+    "duplicate_rows": 0,
+    "malformed_rows": 0,
+    "html_markup_present": true,
+    "accidental_headers": false,
+    "null_counts": {
+      "lcd_id": 0,
+      "lcd_version": 0,
+      "hcpc_code_group": 0,
+      "paragraph": 0,
+      "last_updated": 0
+    }
+  },
+  "CMS_Other_Coding_Information_All_Articles.csv": {
+    "duplicate_rows": 0,
+    "malformed_rows": 0,
+    "html_markup_present": true,
+    "accidental_headers": false,
+    "null_counts": {
+      "article_id": 0,
+      "article_version": 0,
+      "other_coding_group": 0,
+      "paragraph": 943,
+      "codes": 1220,
+      "last_updated": 0
+    }
+  },
+  "article_bill_codes.csv": {
+    "duplicate_rows": 0,
+    "malformed_rows": 0,
+    "html_markup_present": false,
+    "accidental_headers": false,
+    "null_counts": {
+      "article_id": 0,
+      "article_version": 0,
+      "bill_code_id": 0,
+      "bill_code_version": 0,
+      "description": 0,
+      "last_updated": 0,
+      "source_article_id": 0
+    }
+  },
+  "article_related_lcds.csv": {
+    "duplicate_rows": 7,
+    "malformed_rows": 0,
+    "html_markup_present": false,
+    "accidental_headers": false,
+    "null_counts": {
+      "article_id": 0,
+      "article_version": 0,
+      "last_updated": 0,
+      "r_article_id": 611,
+      "r_article_version": 611,
+      "r_contractor_id": 0,
+      "r_lcd_id": 245,
+      "r_lcd_version": 245,
+      "related_num": 0,
+      "url": 0
+    }
+  },
+  "article_related_ncd_documents_data.csv": {
+    "duplicate_rows": 8,
+    "malformed_rows": 0,
+    "html_markup_present": false,
+    "accidental_headers": false,
+    "null_counts": {
+      "article_id": 0,
+      "article_version": 0,
+      "last_updated": 0,
+      "r_ncd_id": 0,
+      "r_ncd_version": 0,
+      "related_num": 0,
+      "source_article_id": 0,
+      "url": 0
+    }
+  },
+  "articles_700.csv": {
+    "duplicate_rows": 0,
+    "malformed_rows": 0,
+    "html_markup_present": true,
+    "accidental_headers": false,
+    "null_counts": {
+      "document_id": 0,
+      "document_version": 0,
+      "document_display_id": 0,
+      "document_type": 0,
+      "note": 566,
+      "title": 0,
+      "contractor_name_type": 0,
+      "updated_on": 0,
+      "updated_on_sort": 0,
+      "effective_date": 0,
+      "retirement_date": 586,
+      "url": 0,
+      "article_id": 0,
+      "article_version": 0,
+      "article_type": 0,
+      "article_type_description": 0,
+      "article_pub_date": 0,
+      "article_eff_date": 74,
+      "article_end_date": 586,
+      "description": 0,
+      "other_comments": 700,
+      "sad_url": 2,
+      "thirty_percent": 0,
+      "status": 0,
+      "last_updated": 0,
+      "history_exp": 586,
+      "key_article": 115,
+      "icd9_covered_para": 700,
+      "icd9_noncovered_para": 700,
+      "revenue_para": 488,
+      "article_rev_end_date": 591,
+      "source_article_id": 595,
+      "date_retired": 586,
+      "keywords": 541,
+      "icd10_doc": 0,
+      "add_icd10_info": 516,
+      "cms_cov_policy": 255,
+      "display_id": 700,
+      "reference_article": 22
+    }
+  },
+  "cms_article_jurisdiction.csv.xls": {
+    "duplicate_rows": 0,
+    "malformed_rows": 0,
+    "html_markup_present": false,
+    "accidental_headers": false,
+    "null_counts": {
+      "article_id": 0,
+      "article_version": 0,
+      "state_id": 0,
+      "last_updated": 0,
+      "state_name": 0
+    }
+  },
+  "cms_lcd_primary_jurisdiction.csv.xls": {
+    "duplicate_rows": 0,
+    "malformed_rows": 0,
+    "html_markup_present": false,
+    "accidental_headers": false,
+    "null_counts": {
+      "lcd_id": 0,
+      "lcd_version": 0,
+      "state_id": 0,
+      "state_name": 0,
+      "last_updated": 0
+    }
+  },
+  "icd10_covered_all_articles.csv": {
+    "duplicate_rows": 6,
+    "malformed_rows": 0,
+    "html_markup_present": false,
+    "accidental_headers": false,
+    "null_counts": {
+      "article_id": 0,
+      "article_version": 0,
+      "icd10_code_id": 0,
+      "icd10_code_version": 0,
+      "icd10_covered_group": 0,
+      "range": 0,
+      "sort_order": 0,
+      "description": 0,
+      "asterisk": 0,
+      "last_updated": 0
+    }
+  },
+  "icd10_noncovered_all_articles.csv": {
+    "duplicate_rows": 4,
+    "malformed_rows": 0,
+    "html_markup_present": false,
+    "accidental_headers": false,
+    "null_counts": {
+      "article_id": 0,
+      "article_version": 0,
+      "icd10_code_id": 0,
+      "icd10_code_version": 0,
+      "icd10_noncovered_group": 0,
+      "range": 0,
+      "sort_order": 0,
+      "description": 0,
+      "last_updated": 0
+    }
+  },
+  "icd10_pcs_codes.csv": {
+    "duplicate_rows": 0,
+    "malformed_rows": 0,
+    "html_markup_present": false,
+    "accidental_headers": false,
+    "null_counts": {
+      "article_id": 0,
+      "article_version": 0,
+      "description": 0,
+      "icd10_pcs_group": 0,
+      "icd10_pcs_code": 0,
+      "range": 0,
+      "last_updated": 0,
+      "asterisk": 0,
+      "icd10_pcs_code_id": 0
+    }
+  },
+  "icd10cm_tabular_2027.pdf": {
+    "duplicate_rows": 0,
+    "malformed_rows": 0,
+    "html_markup_present": false,
+    "accidental_headers": false,
+    "null_counts": {
+      "Page Content": 0
+    }
+  },
+  "lcd_article_relationship.csv": {
+    "duplicate_rows": 0,
+    "malformed_rows": 0,
+    "html_markup_present": false,
+    "accidental_headers": false,
+    "null_counts": {
+      "lcd_id": 0,
+      "lcd_version": 0,
+      "article_id": 0,
+      "article_version": 0,
+      "contractor_id": 0,
+      "last_updated": 0
+    }
+  },
+  "lcd_contractor.csv": {
+    "duplicate_rows": 0,
+    "malformed_rows": 0,
+    "html_markup_present": false,
+    "accidental_headers": false,
+    "null_counts": {
+      "lcd_id": 0,
+      "lcd_version": 0,
+      "contractor_id": 0,
+      "contractor_type_id": 0,
+      "contractor_version": 0,
+      "last_updated": 0
+    }
+  },
+  "lcd_documents.csv": {
+    "duplicate_rows": 0,
+    "malformed_rows": 0,
+    "html_markup_present": false,
+    "accidental_headers": false,
+    "null_counts": {
+      "contractor_name_type": 0,
+      "document_display_id": 0,
+      "document_id": 0,
+      "document_type": 0,
+      "document_version": 0,
+      "effective_date": 0,
+      "note": 830,
+      "retirement_date": 855,
+      "title": 0,
+      "updated_on": 0,
+      "updated_on_sort": 0,
+      "url": 0
+    }
+  },
+  "lcd_full_data.csv": {
+    "duplicate_rows": 0,
+    "malformed_rows": 0,
+    "html_markup_present": true,
+    "accidental_headers": false,
+    "null_counts": {
+      "lcd_id": 0,
+      "lcd_version": 0,
+      "display_id": 975,
+      "title": 0,
+      "determination_number": 975,
+      "cms_cov_policy": 25,
+      "orig_det_eff_date": 0,
+      "ent_det_end_date": 855,
+      "rev_eff_date": 80,
+      "rev_end_date": 863,
+      "indication": 0,
+      "diagnoses_support": 975,
+      "icd9_dont_support_para": 975,
+      "icd9_dont_support_ast": 975,
+      "diagnoses_dont_support": 975,
+      "coding_guidelines": 975,
+      "doc_reqs": 975,
+      "appendices": 975,
+      "util_guide": 975,
+      "source_info": 302,
+      "adv_meeting": 975,
+      "comment_start_dt": 975,
+      "comment_end_dt": 975,
+      "notice_start_dt": 246,
+      "rev_hist_num": 975,
+      "history_exp": 855,
+      "last_reviewed_on": 182,
+      "thirty_percent": 0,
+      "status": 0,
+      "last_updated": 0,
+      "draft_contact": 975,
+      "revenue_para": 975,
+      "source_lcd_id": 600,
+      "add_icd10_info": 975,
+      "keywords": 660,
+      "associated_info": 279,
+      "notice_end_dt": 241,
+      "date_retired": 855,
+      "draft_released_date": 975,
+      "icd10_doc": 0,
+      "synopsis_changes": 975,
+      "bibliography": 0,
+      "summary_of_evidence": 0,
+      "analysis_of_evidence": 0,
+      "mcd_publish_date": 975,
+      "issue": 214,
+      "issue_change": 717,
+      "mac_initiated": 0
+    }
+  },
+  "lcd_master_excel_safe.csv.xlsx": {
+    "duplicate_rows": 1,
+    "malformed_rows": 0,
+    "html_markup_present": false,
+    "accidental_headers": false,
+    "null_counts": {
+      "lcd_id": 2,
+      "lcd_version": 1,
+      "display_id": 1,
+      "title": 1,
+      "cms_cov_policy": 32,
+      "indication": 21,
+      "orig_det_eff_date": 53,
+      "rev_eff_date": 134,
+      "last_updated": 54,
+      "keywords": 698
+    }
+  },
+  "lcd_related_documents.csv": {
+    "duplicate_rows": 0,
+    "malformed_rows": 0,
+    "html_markup_present": false,
+    "accidental_headers": false,
+    "null_counts": {
+      "last_updated": 0,
+      "lcd_id": 0,
+      "lcd_version": 0,
+      "r_article_id": 399,
+      "r_article_version": 399,
+      "r_contractor_id": 0,
+      "r_lcd_id": 1406,
+      "r_lcd_version": 1406,
+      "related_num": 0,
+      "url": 0
+    }
+  },
+  "lcd_related_ncd_documents.csv": {
+    "duplicate_rows": 0,
+    "malformed_rows": 0,
+    "html_markup_present": false,
+    "accidental_headers": false,
+    "null_counts": {
+      "last_updated": 0,
+      "lcd_id": 0,
+      "lcd_version": 0,
+      "r_ncd_id": 0,
+      "r_ncd_version": 0,
+      "related_num": 0,
+      "source_lcd_id": 0,
+      "url": 0
+    }
+  },
+  "lcd_revision_history.csv": {
+    "duplicate_rows": 0,
+    "malformed_rows": 0,
+    "html_markup_present": false,
+    "accidental_headers": false,
+    "null_counts": {
+      "lcd_id": 0,
+      "lcd_version": 0,
+      "rev_hist_num": 0,
+      "rev_hist_date": 0,
+      "rev_hist_exp": 2,
+      "last_updated": 0
+    }
+  },
+  "ncd_documents_data.csv": {
+    "duplicate_rows": 0,
+    "malformed_rows": 0,
+    "html_markup_present": true,
+    "accidental_headers": false,
+    "null_counts": {
+      "ama_statement": 357,
+      "benefit_category": 0,
+      "cross_reference": 242,
+      "document_display_id": 0,
+      "document_id": 0,
+      "document_version": 0,
+      "effective_date": 0,
+      "effective_end_date": 345,
+      "implementation_date": 139,
+      "indications_limitations": 1,
+      "item_service_description": 112,
+      "other_text": 334,
+      "publication_number": 0,
+      "qr_modifier_date": 357,
+      "reasons_for_denial": 357,
+      "revision_history": 102,
+      "title": 0,
+      "transmittal_number": 96,
+      "transmittal_url": 147
+    }
+  },
+  "revenue_codes.csv": {
+    "duplicate_rows": 0,
+    "malformed_rows": 0,
+    "html_markup_present": false,
+    "accidental_headers": false,
+    "null_counts": {
+      "article_id": 0,
+      "article_version": 0,
+      "description": 0,
+      "last_updated": 0,
+      "range": 0,
+      "revenue_code": 0,
+      "revenue_code_id": 0
+    }
+  }
+}
