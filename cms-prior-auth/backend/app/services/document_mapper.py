@@ -33,10 +33,10 @@ class DocumentEvidenceMapper:
             if d.get("code"):
                 diag_codes.append(d["code"])
         if not diag_codes:
-            diag_codes = ["M17.11"]  # default fallback if completely empty but confirmed
+            diag_codes = []
             
         patient_name = extraction.get("patient", {}).get("name") or "Unknown Patient"
-        provider_npi = extraction.get("provider", {}).get("npi") or "PROV_MOCK"
+        provider_npi = extraction.get("provider", {}).get("npi") or ""
         
         return {
             "requested_service": {

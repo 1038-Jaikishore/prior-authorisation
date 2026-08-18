@@ -70,21 +70,6 @@ class PdfClinicalDocumentParser(ClinicalDocumentParser):
             avg_chars = total_chars / page_count if page_count > 0 else 0
             if avg_chars < 50:
                 warnings.append("OCR_REQUIRED")
-                
-            # Allow mock OCR simulation for scanned/image fixtures
-            if "scanned" in os.path.basename(file_path).lower() or avg_chars < 50:
-                # If we simulate OCR fallback text:
-                ocr_used = True
-                # Generate fallback text for mock testing if file is scanned
-                if not total_chars:
-                    pages = [
-                        {
-                            "page_number": 1,
-                            "text": "[OCR Output] CPT Code 97110. Osteoarthritis joint pain right knee (M17.11). State: CO. Date of Service: 2026-08-10. Referral from Dr. Jones. Prior conservative physical therapy treatment B failed after 1 months."
-                        }
-                    ]
-                    full_text_list = [pages[0]["text"]]
-                    warnings = [w for w in warnings if w != "OCR_REQUIRED"] # resolved via simulated OCR
             
             full_text = "\n\n".join(full_text_list)
             

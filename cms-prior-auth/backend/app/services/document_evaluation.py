@@ -27,7 +27,7 @@ class DocumentPriorAuthEvaluationService:
         hcpcs_override: Optional[str] = None,
         state_override: Optional[str] = None,
         dos_override: Optional[str] = None,
-        reviewer_id: str = "demo_reviewer"
+        reviewer_id: str = ""
     ) -> Dict[str, Any]:
         """Orchestrates the entire confirmed document to prior authorization decision flow."""
         db = db_connection.get_db()

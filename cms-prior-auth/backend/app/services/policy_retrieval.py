@@ -123,7 +123,7 @@ class PolicyRetrievalService:
         filtered_results = []
         for item in results:
             doc_id = item["document_id"]
-            doc_version = item["document_version"]
+            doc_version = item.get("document_version", "1")
             doc_type = item["document_type"]
             
             # Version restricted filter check

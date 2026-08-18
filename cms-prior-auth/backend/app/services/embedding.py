@@ -21,22 +21,7 @@ class EmbeddingProvider(ABC):
         """Return dimensions of the vectors produced by the model."""
         pass
 
-class MockEmbeddingProvider(EmbeddingProvider):
-    def __init__(self, dimensions: int = 1536):
-        self.dimensions = dimensions
-        
-    def get_embedding(self, text: str) -> List[float]:
-        # Generate deterministic float vector using hashlib MD5 as seed
-        hasher = hashlib.md5(text.encode("utf-8"))
-        seed_val = int(hasher.hexdigest()[:8], 16)
-        rng = random.Random(seed_val)
-        return [rng.uniform(-1.0, 1.0) for _ in range(self.dimensions)]
-        
-    def get_embeddings(self, texts: List[str]) -> List[List[float]]:
-        return [self.get_embedding(t) for t in texts]
-        
-    def get_dimensions(self) -> int:
-        return self.dimensions
+
 
 class OpenAIEmbeddingProvider(EmbeddingProvider):
     def __init__(self, api_key: str, model: str = "text-embedding-3-small", dimensions: int = 1536):
@@ -132,9 +117,7 @@ def get_embedding_provider() -> EmbeddingProvider:
     provider_name = settings.embedding_provider.lower().strip()
     dimensions = settings.embedding_dimensions
     
-    if provider_name == "mock":
-        return MockEmbeddingProvider(dimensions=dimensions)
-    elif provider_name == "openrouter":
+    if provider_name == "openrouter" or provider_name == "mock": # Handle if settings still has "mock"
         key = settings.openrouter_api_key or settings.embedding_api_key
         return OpenRouterEmbeddingProvider(
             api_key=key,

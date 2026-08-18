@@ -17,10 +17,14 @@ class Settings(BaseSettings):
     allowed_document_types: str = "pdf,docx,txt"
     
     # Allow extra fields for LLM keys in future volumes
+    llm_provider: str = "openrouter"
+    llm_model: str = "openai/gpt-3.5-turbo"
+    llm_api_key: str = ""
+
     model_config = SettingsConfigDict(
         env_file=".env",
         env_file_encoding="utf-8",
-        extra="ignore"
+        extra="allow"
     )
 
 settings = Settings()

@@ -332,6 +332,7 @@ export default function App() {
     setConfirming(true);
     setExtractionError(null);
     setLoading(true);
+    setShowIntakeWorkflow(false);
 
     try {
       // If the extraction is still a draft, save and confirm it first!
@@ -398,7 +399,6 @@ export default function App() {
       setExplanationData(data.explanation);
 
       loadCasesQueue();
-      setShowIntakeWorkflow(false);
       setActiveTab('decision');
 
       alert(`✓ CMS Evaluation completed successfully for Case ${data.authorization_request.request_id}.`);
@@ -708,6 +708,26 @@ export default function App() {
                       ⚠️ {extractionError}
                     </div>
                   )}
+                </div>
+              )}
+              {/* Extraction Loading State */}
+              {uploadedDocMetadata && !extractedFacts && !extractionError && (
+                <div style={{ textAlign: 'center', padding: '60px 20px', background: 'rgba(255,255,255,0.02)', borderRadius: '8px', border: '1px solid rgba(139, 92, 246, 0.2)' }}>
+                  <div className="spinner" style={{ width: '40px', height: '40px', margin: '0 auto 16px auto', borderColor: '#8b5cf6', borderTopColor: 'transparent', borderRadius: '50%', borderWidth: '3px', borderStyle: 'solid', animation: 'spin 1s linear infinite' }}></div>
+                  <h3 style={{ color: 'var(--text-primary)', marginBottom: '8px' }}>Extracting Clinical Facts...</h3>
+                  <p style={{ color: 'var(--text-secondary)' }}>This may take 10-15 seconds as the AI reads the document.</p>
+                </div>
+              )}
+
+              {/* Extraction Error State */}
+              {uploadedDocMetadata && !extractedFacts && extractionError && (
+                <div className="alert-box" style={{ background: 'rgba(239, 68, 68, 0.1)', borderColor: 'rgba(239, 68, 68, 0.2)', color: '#F87171', marginTop: '20px' }}>
+                  <div className="alert-title">Extraction Failed</div>
+                  <p>{extractionError}</p>
+                  <button className="btn-primary" style={{ marginTop: '12px', width: 'auto' }} onClick={() => {
+                    setUploadedDocMetadata(null);
+                    setExtractionError(null);
+                  }}>Try Again</button>
                 </div>
               )}
 
