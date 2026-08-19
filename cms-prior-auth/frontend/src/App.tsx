@@ -412,28 +412,91 @@ export default function App() {
   };
 
   return (
-    <div className="container">
-      {/* Header Banner */}
-      <header className="header">
-        <div>
-          <h1>CMS Prior Authorization Intake Dashboard</h1>
-          <p style={{ color: 'var(--text-secondary)', fontSize: '14px', marginTop: '6px' }}>
-            Structured evidence packet compiler and policy routing/RAG lookup engine.
-          </p>
+  <div className="container">
+    {/* Header Banner */}
+    <header className="header">
+      <div>
+        <h1>CMS Prior Authorization Intake Dashboard</h1>
+        <p style={{ color: 'var(--text-secondary)', fontSize: '14px', marginTop: '6px' }}>
+          Structured evidence packet compiler and policy routing/RAG lookup engine.
+        </p>
+      </div>
+  
+      <div className="banner-support">
+        <strong>PROTOTYPE DECISION SUPPORT ENGINE</strong><br />
+        This system assists with clinical text indexing, retrieval, and deterministic policy routing.
+        Final coverage decisions reside strictly with Medicare human reviewers.
+      </div>
+    </header>
+  
+    {/* Workflow Progress */}
+    <div
+      style={{
+        display: 'flex',
+        alignItems: 'center',
+        gap: '8px',
+        padding: '12px 16px',
+        marginBottom: '16px',
+        background: 'rgba(99, 102, 241, 0.06)',
+        border: '1px solid rgba(99, 102, 241, 0.18)',
+        borderRadius: '8px',
+        flexWrap: 'wrap'
+      }}
+    >
+      <strong style={{ fontSize: '12px', marginRight: '8px' }}>
+        Workflow:
+      </strong>
+  
+      {[
+        { id: 'evidence', label: 'Clinical Evidence' },
+        { id: 'routing', label: 'Policy Routing' },
+        { id: 'rag', label: 'RAG Retrieval' },
+        { id: 'evaluation', label: 'Evaluation' },
+        { id: 'decision', label: 'Decision' }
+      ].map((step, index) => (
+        <div
+          key={step.id}
+          style={{
+            display: 'flex',
+            alignItems: 'center',
+            gap: '8px'
+          }}
+        >
+          <span
+            style={{
+              padding: '5px 10px',
+              borderRadius: '999px',
+              fontSize: '11px',
+              fontWeight: 600,
+              background:
+                activeTab === step.id
+                  ? 'rgba(99, 102, 241, 0.18)'
+                  : 'rgba(255, 255, 255, 0.04)',
+              color:
+                activeTab === step.id
+                  ? '#818cf8'
+                  : 'var(--text-secondary)',
+              border:
+                activeTab === step.id
+                  ? '1px solid rgba(99, 102, 241, 0.4)'
+                  : '1px solid var(--border-color)'
+            }}
+          >
+            {index + 1}. {step.label}
+          </span>
+  
+          {index < 4 && (
+            <span style={{ color: 'var(--text-secondary)', fontSize: '12px' }}>
+              →
+            </span>
+          )}
         </div>
-        <div className="banner-support">
-          <strong>PROTOTYPE DECISION SUPPORT ENGINE</strong><br />
-          This system assists with clinical text indexing, retrieval, and deterministic policy routing.
-          Final coverage decisions reside strictly with Medicare human reviewers.
-        </div>
-      </header>
-
-      {/* Main Grid */}
-      <div className="grid-main">
-        {/* Left Form Panel */}
-        <aside className="card" style={{ alignSelf: 'start' }}>
-          <h2 className="card-title">Intake Case Setup</h2>
-
+      ))}
+    </div>
+  
+    {/* Main Grid */}
+    <div className="grid-main">
+    <aside>
           <button
             className="btn-primary"
             style={{
